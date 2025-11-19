@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>We’re Building Something New</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #050816;
+      --accent: #7b5cff;
+      --accent-soft: rgba(123, 92, 255, 0.18);
+      --accent-strong: #ffb347;
+      --text-main: #f4f4f5;
+      --text-muted: #a1a1aa;
+      --card-bg: rgba(15, 23, 42, 0.92);
+      --border-subtle: rgba(148, 163, 184, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "Space Grotesk", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at top, #1f2937 0, #020617 45%, #020617 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 24px;
+      overflow-x: hidden;
+    }
+
+    .noise-overlay {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.06;
+      background-image: url("https://i.ibb.co/C2fQn6c/noise.png");
+      mix-blend-mode: soft-light;
+      z-index: 0;
+    }
+
+    .blob {
+      position: fixed;
+      width: 420px;
+      height: 420px;
+      border-radius: 999px;
+      filter: blur(70px);
+      opacity: 0.5;
+      z-index: 0;
+      background: radial-gradient(circle at center, var(--accent) 0, transparent 70%);
+      animation: float 26s ease-in-out infinite;
+    }
+
+    .blob-2 {
+      background: radial-gradient(circle at center, #22c55e 0, transparent 70%);
+      top: 55%;
+      left: -5%;
+      animation-delay: -9s;
+    }
+
+    .blob-1 {
+      top: -10%;
+      right: -10%;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translate3d(0, 0, 0);
+      }
+      50% {
+        transform: translate3d(-40px, 30px, 0);
+      }
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      width: 100%;
+      margin: auto;
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+      gap: 32px;
+    }
+
+    @media (max-width: 900px) {
+      .page {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      border: 1px solid var(--border-subtle);
+      box-shadow:
+        0 18px 45px rgba(15, 23, 42, 0.85),
+        0 0 0 1px rgba(15, 23, 42, 0.9);
+      padding: 28px 26px 24px;
+      backdrop-filter: blur(18px);
+    }
+
+    @media (max-width: 640px) {
+      .card {
+        padding: 22px 18px 18px;
+      }
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .pill-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+    }
+
+    h1 {
+      margin-top: 18px;
+      font-size: clamp(2.5rem, 4vw, 3.4rem);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+    }
+
+    h1 span.gradient {
+      background: linear-gradient(120deg, var(--accent), var(--accent-strong));
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .subtitle {
+      margin-top: 16px;
+      font-size: 16px;
+      line-height: 1.7;
+      color: var(--text-muted);
+      max-width: 480px;
+    }
+
+    .highlight-box {
+      margin-top: 18px;
+      padding: 10px 14px;
+      border-radius: 16px;
+      border: 1px dashed rgba(148, 163, 184, 0.6);
+      background: radial-gradient(circle at top left, var(--accent-soft), transparent 55%);
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .highlight-box strong {
+      color: var(--text-main);
+    }
+
+    .cta-row {
+      margin-top: 22px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .btn-primary {
+      border: none;
+      padding: 11px 22px;
+      border-radius: 999px;
+      background: radial-gradient(circle at top left, var(--accent-strong), var(--accent));
+      color: #020617;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 14px 30px rgba(79, 70, 229, 0.7);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 20px 40px rgba(79, 70, 229, 0.9);
+    }
+
+    .btn-secondary {
+      padding: 10px 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.95);
+      color: var(--text-muted);
+      font-size: 13px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(15, 23, 42, 1);
+      border-color: var(--accent);
+      color: var(--text-main);
+    }
+
+    .email-text {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 14px;
+    }
+
+    .email-text span {
+      color: var(--text-main);
+      font-weight: 500;
+    }
+
+    .section-title {
+      font-size: 13px;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .features {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 14px;
+    }
+
+    @media (max-width: 640px) {
+      .features {
+        grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    .feature-card {
+      padding: 12px 12px 12px;
+      border-radius: 16px;
+      border: 1px solid rgba(75, 85, 99, 0.8);
+      background: radial-gradient(circle at top left, rgba(148, 163, 184, 0.12), rgba(15, 23, 42, 0.96));
+      font-size: 13px;
+    }
+
+    .feature-tag {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--accent-strong);
+      margin-bottom: 6px;
+    }
+
+    .feature-title {
+      font-size: 15px;
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+
+    .feature-body {
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .side-column {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .timeline {
+      margin-top: 4px;
+    }
+
+    .timeline-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px dashed rgba(75, 85, 99, 0.6);
+    }
+
+    .timeline-item:last-child {
+      border-bottom: none;
+    }
+
+    .timeline-bullet {
+      margin-top: 4px;
+      width: 14px;
+      height: 14px;
+      border-radius: 999px;
+      border: 2px solid rgba(148, 163, 184, 0.7);
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .timeline-bullet.active {
+      border-color: var(--accent-strong);
+    }
+
+    .timeline-bullet.active::after {
+      content: "";
+      position: absolute;
+      inset: 2px;
+      border-radius: inherit;
+      background: radial-gradient(circle at center, var(--accent-strong), var(--accent));
+    }
+
+    .timeline-content-title {
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .timeline-badge {
+      margin-left: 6px;
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      color: var(--text-muted);
+    }
+
+    .timeline-body {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      line-height: 1.6;
+    }
+
+    .faq-list {
+      margin-top: 10px;
+      border-radius: 18px;
+      border: 1px solid rgba(75, 85, 99, 0.8);
+      background: radial-gradient(circle at top left, rgba(79, 70, 229, 0.16), rgba(15, 23, 42, 0.97));
+      overflow: hidden;
+    }
+
+    .faq-item + .faq-item {
+      border-top: 1px solid rgba(55, 65, 81, 0.9);
+    }
+
+    .faq-header {
+      padding: 12px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      font-size: 13px;
+      color: var(--text-main);
+    }
+
+    .faq-header span {
+      flex: 1;
+      padding-right: 10px;
+    }
+
+    .faq-toggle {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 184, 0.9);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+      color: rgba(148, 163, 184, 0.9);
+      flex-shrink: 0;
+    }
+
+    .faq-body {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.22s ease;
+      font-size: 13px;
+      color: var(--text-muted);
+      padding: 0 14px 0;
+    }
+
+    .faq-body-inner {
+      padding-bottom: 12px;
+      padding-top: 0;
+      line-height: 1.6;
+    }
+
+    .faq-item.open .faq-body {
+      max-height: 200px;
+    }
+
+    .faq-item.open .faq-toggle {
+      background: rgba(148, 163, 184, 0.16);
+    }
+
+    .micro-copy {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 10px;
+    }
+
+    .footer-line {
+      margin-top: 12px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 4px;
+    }
+
+    .footer-line a {
+      color: var(--accent-strong);
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    .footer-line a:hover {
+      opacity: 1;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="noise-overlay"></div>
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+
+  <main class="page">
+    <!-- LEFT: Main Story -->
+    <section class="card">
+      <div class="pill">
+        <span class="pill-dot"></span>
+        Building in Public · Under Development
+      </div>
+
+      <h1>
+        We’re crafting <span class="gradient">something worth your wait.</span>
+      </h1>
+
+      <p class="subtitle">
+        This isn’t just another website. It’s a space we’re designing to help you
+        discover, learn, and act—with less noise and more clarity.
+      </p>
+
+      <div class="highlight-box">
+        <strong>What you’re seeing now</strong> is the quiet before launch.  
+        Behind the scenes, we’re sketching flows, writing copy, testing ideas,
+        and saying “no” to anything that doesn’t feel genuinely useful for you.
+      </div>
+
+      <div class="cta-row">
+        <button class="btn-primary">
+          Notify me at launch
+          <span>→</span>
+        </button>
+        <button class="btn-secondary">
+          Why is it taking time?
+        </button>
+      </div>
+
+      <p class="email-text">
+        Prefer email? Drop us a line at
+        <span>hello@yourbrand.com</span>
+      </p>
+
+      <h2 class="section-title">What’s coming to this space</h2>
+      <div class="features">
+        <article class="feature-card">
+          <div class="feature-tag">01 · Focused</div>
+          <div class="feature-title">Less clutter, more signal</div>
+          <p class="feature-body">
+            Every page will be built to answer a clear question: 
+            <em>“What should the visitor be able to do here in under 30 seconds?”</em>  
+            No fluff. No endless scrolling.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-tag">02 · Human</div>
+          <div class="feature-title">Content you’ll actually read</div>
+          <p class="feature-body">
+            We’re writing for humans, not algorithms. Expect
+            straight talk, practical explanations, and examples you can
+            recognize from everyday life.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-tag">03 · Useful</div>
+          <div class="feature-title">Tools, not just pages</div>
+          <p class="feature-body">
+            Our goal isn’t to impress you with design—it’s to give you
+            small tools, checklists, and guides that quietly make your
+            day a bit easier.
+          </p>
+        </article>
+
+        <article class="feature-card">
+          <div class="feature-tag">04 · Honest</div>
+          <div class="feature-title">No fake urgency</div>
+          <p class="feature-body">
+            We’d rather launch a week late than ship something that
+            doesn’t feel right. You’ll get transparency, not hype.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- RIGHT: Timeline + FAQ -->
+    <aside class="side-column">
+      <section class="card">
+        <h2 class="section-title">Where we are in the journey</h2>
+        <div class="timeline">
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <div>
+              <div class="timeline-content-title">
+                Phase 1 · Concept
+                <span class="timeline-badge">Done</span>
+              </div>
+              <p class="timeline-body">
+                We mapped out what this site should exist for, the problems it
+                will solve, and what doesn’t belong here.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-bullet active"></div>
+            <div>
+              <div class="timeline-content-title">
+                Phase 2 · Design & Content
+                <span class="timeline-badge">In Progress</span>
+              </div>
+              <p class="timeline-body">
+                We’re sketching layouts, drafting copy like the text you’re
+                reading now, and planning the first version of the experience.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <div>
+              <div class="timeline-content-title">
+                Phase 3 · Build & Test
+              </div>
+              <p class="timeline-body">
+                Once the structure feels right, we turn it into fast, responsive
+                pages and test them on real devices and real people.
+              </p>
+            </div>
+          </div>
+
+          <div class="timeline-item">
+            <div class="timeline-bullet"></div>
+            <div>
+              <div class="timeline-content-title">
+                Phase 4 · Launch
+              </div>
+              <p class="timeline-body">
+                The moment you’ll see everything live. If you’ve clicked
+                “Notify me”, you’ll be among the first to know.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <p class="micro-copy">
+          If you’ve read this far: thank you. You’re the kind of person
+          we’re building this for—curious, patient, and looking for
+          something better than “just another website”.
+        </p>
+      </section>
+
+      <section class="card">
+        <h2 class="section-title">Questions you might have</h2>
+        <div class="faq-list" id="faqList">
+          <div class="faq-item">
+            <div class="faq-header">
+              <span>When will the full website be live?</span>
+              <div class="faq-toggle">+</div>
+            </div>
+            <div class="faq-body">
+              <div class="faq-body-inner">
+                We’re aiming for a launch once the first experience truly feels
+                ready—not just “good enough”.  
+                You’ll see updates here as we move through the phases.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-header">
+              <span>What will I find here once it’s ready?</span>
+              <div class="faq-toggle">+</div>
+            </div>
+            <div class="faq-body">
+              <div class="faq-body-inner">
+                That depends a bit on when you arrive, but our plan is to start
+                with a clean homepage, a clear explanation of what we do, and
+                a set of resources designed to give you value in the first visit.
+              </div>
+            </div>
+          </div>
+
+          <div class="faq-item">
+            <div class="faq-header">
+              <span>Can I collaborate, suggest ideas, or report issues?</span>
+              <div class="faq-toggle">+</div>
+            </div>
+            <div class="faq-body">
+              <div class="faq-body-inner">
+                Absolutely. If something in this vision resonates with you,
+                feel free to reach out at <strong>hello@yourbrand.com</strong>.  
+                Early conversations often shape the best parts of a project.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer-line">
+          <span>Built with care, not in a rush.</span>
+          <span>Follow updates on <a href="#">@yourbrand</a></span>
+        </div>
+      </section>
+    </aside>
+  </main>
+
+  <script>
+    // Simple FAQ toggle logic
+    document.querySelectorAll(".faq-item").forEach(function (item) {
+      const header = item.querySelector(".faq-header");
+
+      header.addEventListener("click", function () {
+        const isOpen = item.classList.contains("open");
+
+        // close others
+        document.querySelectorAll(".faq-item").forEach(function (other) {
+          other.classList.remove("open");
+        });
+
+        // toggle current
+        if (!isOpen) {
+          item.classList.add("open");
+        }
+      });
+    });
+  </script>
+</body>
+</html>
