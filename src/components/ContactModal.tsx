@@ -1,0 +1,248 @@
+
+import React, { useEffect, useState } from 'react';
+
+interface ContactModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+}
+
+const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    description: '',
+    website: '',
+    phone: ''
+  });
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+      setTimeout(() => setIsAnimating(true), 10);
+    } else {
+      document.body.style.overflow = 'unset';
+      setIsAnimating(false);
+      // Reset form on close if needed, or keep state
+      setErrors({});
+    }
+  }, [isOpen]);
+
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    // Name: Required + Alpha characters only
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    } else if (!/^[a-zA-Z\s'-]+$/.test(formData.name)) {
+      newErrors.name = 'Name should only contain letters';
+    }
+
+    // Email: Required + Format
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Please enter a valid email address';
+    }
+
+    // Description: Required
+    if (!formData.description.trim()) newErrors.description = 'Description is required';
+
+    // Website: Optional + URL Format
+    if (formData.website.trim()) {
+      // Allow http/https/www or standard domain format
+      const urlPattern = /^(https?:\/\/)?(www\.)?[\w-]+\.[a-z]{2,}(\.[a-z]{2,})?([\/\w \.-]*)*\/?$/i;
+      if (!urlPattern.test(formData.website)) {
+        newErrors.website = 'Please enter a valid URL (e.g., example.com)';
+      }
+    }
+
+    // Phone: Optional + Phone Format (digits, spaces, +, -, (), min 7 chars)
+    if (formData.phone.trim()) {
+      // Filter out non-digits to check length
+      const digits = formData.phone.replace(/\D/g, '');
+      const phonePattern = /^[+]?[\d\s\-\(\)]+$/;
+
+      if (!phonePattern.test(formData.phone) || digits.length < 7) {
+        newErrors.phone = 'Please enter a valid phone number';
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (validateForm()) {
+      console.log('Form submitted:', formData);
+      // Add submission logic here
+      alert('Message sent! We will contact you shortly.');
+      onClose();
+    }
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear error when user types
+    if (errors[name]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  if (!isOpen) return null;
+
+  return (
+    <div className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-all duration-500 ${isAnimating ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+      {/* Backdrop */}
+      <div
+        className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-500"
+        onClick={onClose}
+      />
+
+      {/* Modal Content */}
+      <div className={`relative bg-white text-black w-full max-w-[800px] rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 transform ${isAnimating ? 'scale-100 translate-y-0' : 'scale-95 translate-y-8'}`}>
+
+        {/* Close Button */}
+        <button
+          onClick={onClose}
+          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 text-black/40 hover:text-black transition-colors z-10"
+          aria-label="Close modal"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+
+        <div className="p-6 md:p-8">
+          {/* Header (Team Section) */}
+          <div className="flex items-start gap-4 mb-6 relative z-10">
+            <div className="flex -space-x-3">
+              <img src="https://i.pravatar.cc/150?u=sarah" alt="Expert 1" className="w-10 h-10 rounded-full border-[3px] border-white shadow-lg object-cover" />
+              <img src="https://i.pravatar.cc/150?u=atif" alt="Expert 2" className="w-10 h-10 rounded-full border-[3px] border-white shadow-lg object-cover" />
+            </div>
+            <div>
+              <h2 className="text-xl md:text-2xl font-black tracking-tight leading-tight">Tell us what you are looking for.</h2>
+              <p className="text-black/50 text-sm font-medium mt-0.5">We will shape your project strategy</p>
+            </div>
+          </div>
+
+          {/* Form */}
+          <form className="space-y-5 relative z-10" onSubmit={handleSubmit} noValidate>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4">
+
+              {/* Name */}
+              <div className="relative group">
+                <label className="block text-black/40 text-xs font-bold mb-1">Name <span className="text-[#FF007F]">*</span></label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={`w-full bg-transparent border-b py-1.5 text-base text-black focus:outline-none transition-colors ${errors.name ? 'border-[#FF007F]' : 'border-black/10 focus:border-black'}`}
+                />
+                {errors.name && <p className="text-[#FF007F] text-[10px] mt-1 absolute">{errors.name}</p>}
+              </div>
+
+              {/* Email */}
+              <div className="relative group">
+                <label className="block text-black/40 text-xs font-bold mb-1">Email Address <span className="text-[#FF007F]">*</span></label>
+                <input
+                  type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={`w-full bg-transparent border-b py-1.5 text-base text-black focus:outline-none transition-colors ${errors.email ? 'border-[#FF007F]' : 'border-black/10 focus:border-black'}`}
+                />
+                {errors.email && <p className="text-[#FF007F] text-[10px] mt-1 absolute">{errors.email}</p>}
+              </div>
+
+              {/* Description - Spanning full width */}
+              <div className="md:col-span-2 relative group">
+                <label className="block text-black/40 text-xs font-bold mb-1">Description <span className="text-[#FF007F]">*</span></label>
+                <textarea
+                  name="description"
+                  value={formData.description}
+                  onChange={handleChange}
+                  rows={3}
+                  className={`w-full bg-transparent border-b py-1.5 text-base text-black focus:outline-none transition-colors resize-none ${errors.description ? 'border-[#FF007F]' : 'border-black/10 focus:border-black'}`}
+                />
+                {errors.description && <p className="text-[#FF007F] text-[10px] mt-1 absolute">{errors.description}</p>}
+              </div>
+
+              {/* Company Website */}
+              <div className="relative group">
+                <label className="block text-black/40 text-xs font-bold mb-1">Company Website (optional)</label>
+                <input
+                  type="url"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  className={`w-full bg-transparent border-b py-1.5 text-base text-black focus:outline-none transition-colors ${errors.website ? 'border-[#FF007F]' : 'border-black/10 focus:border-black'}`}
+                />
+                {errors.website && <p className="text-[#FF007F] text-[10px] mt-1 absolute">{errors.website}</p>}
+              </div>
+
+              {/* Phone */}
+              <div className="relative group">
+                <label className="block text-black/40 text-xs font-bold mb-1">Phone (optional)</label>
+                <input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className={`w-full bg-transparent border-b py-1.5 text-base text-black focus:outline-none transition-colors ${errors.phone ? 'border-[#FF007F]' : 'border-black/10 focus:border-black'}`}
+                />
+                {errors.phone && <p className="text-[#FF007F] text-[10px] mt-1 absolute">{errors.phone}</p>}
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row items-center gap-6 pt-4">
+              {/* Button */}
+              <button
+                type="submit"
+                className="group relative flex items-center active:scale-95 transition-transform duration-200"
+              >
+                {/* Text Pill */}
+                <div className="bg-cta-gradient group-hover:brightness-110 text-white h-12 px-8 rounded-full flex items-center font-bold text-base relative z-20 transition-all duration-500 shadow-lg shadow-[#BE00FF]/20">
+                  Let’s Talk
+                </div>
+
+                {/* Icon Bubble */}
+                <div className="bg-cta-gradient group-hover:brightness-110 h-12 w-12 rounded-full flex items-center justify-center relative z-10 -ml-4 group-hover:ml-2 transition-all duration-500 ease-spring shadow-lg shadow-[#BE00FF]/20">
+                  <div className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+                    </svg>
+                  </div>
+                </div>
+              </button>
+
+              {/* Footer Text */}
+              <div className="flex gap-3 max-w-sm">
+                <div className="flex-shrink-0 mt-0.5">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black/40">
+                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                    <polyline points="9 11 12 14 15 11"></polyline>
+                  </svg>
+                </div>
+                <p className="text-black/40 text-[10px] font-medium leading-relaxed">
+                  I confirm that I have read the Privacy Policy and agree to receive relevant messages and updates.
+                </p>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ContactModal;
