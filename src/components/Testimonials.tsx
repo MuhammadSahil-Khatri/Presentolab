@@ -1,140 +1,154 @@
-
-import React from 'react';
+import React, { useRef, useState, useEffect } from 'react';
+import { motion, useAnimation, useMotionValue } from 'framer-motion';
+import { Star, ArrowLeft, ArrowRight, Quote } from 'lucide-react';
+import { TESTIMONIALS } from '../constants';
 
 const TestimonialCard: React.FC<{
-  rating: string;
-  text: string;
-  author: string;
-  role: string;
-  image: string;
-}> = ({ rating, text, author, role, image }) => {
+  item: typeof TESTIMONIALS[0];
+}> = ({ item }) => {
   return (
-    <div className="bg-transparent p-10 rounded-[3rem] w-[400px] flex-shrink-0 flex flex-col justify-between min-h-[500px] relative overflow-hidden group hover:scale-[1.02] transition-transform duration-500 border border-white/5 hover:border-white/10">
+    <motion.div
+      className="bg-zinc-900/40 backdrop-blur-xl p-8 md:p-10 rounded-[2.5rem] w-[300px] md:w-[450px] flex-shrink-0 flex flex-col justify-between min-h-[450px] md:min-h-[500px] relative overflow-hidden group hover:bg-zinc-900/60 transition-colors duration-500 border border-white/5 hover:border-white/10"
+      whileHover={{ y: -10 }}
+      transition={{ duration: 0.4, ease: "easeOut" }}
+    >
+      {/* Glow Effect */}
+      <div className="absolute top-0 right-0 w-64 h-64 bg-[#7000FF]/10 rounded-full blur-[100px] -translate-y-1/2 md:translate-x-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+
       <div className="relative z-10">
         <div className="flex items-center gap-2 mb-8">
-          <span className="text-2xl font-bold">{rating}</span>
-          <div className="flex text-yellow-400">
-            {'★★★★★'.split('').map((s, i) => <span key={i}>{s}</span>)}
+          <div className="flex text-[#FF5C00]">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} size={20} fill="currentColor" strokeWidth={0} />
+            ))}
           </div>
+          <span className="text-xl font-bold ml-2">{item.rating}</span>
         </div>
-        <p className="text-white/80 text-lg leading-relaxed font-medium mb-12">
-          {text}
-        </p>
+
+        <div className="relative mb-4">
+          <Quote className="absolute -top-4 -left-2 text-white/5 w-12 h-12 rotate-180" />
+          <p className="text-white/80 md:text-xl text-lg leading-relaxed font-medium relative z-10">
+            "{item.text}"
+          </p>
+        </div>
       </div>
-      
-      <div className="flex items-center gap-4 relative z-10">
-        <img src={image} alt={author} className="w-12 h-12 rounded-full object-cover grayscale group-hover:grayscale-0 transition-all border border-white/10" />
+
+      <div className="flex items-center gap-5 relative z-10 border-t border-white/5">
+        <div className="relative">
+          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#FF5C00] to-[#7000FF] blur-sm opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+          <img src={item.image} alt={item.author} className="w-14 h-14 rounded-full object-cover relative z-10 border-2 border-black" />
+        </div>
         <div>
-          <p className="font-bold text-sm">{author}</p>
-          <p className="text-white/40 text-[10px] uppercase tracking-widest font-bold">{role}</p>
+          <p className="font-bold text-lg text-white group-hover:text-[#FF5C00] transition-colors duration-300">{item.author}</p>
+          <p className="text-white/40 text-xs uppercase tracking-widest font-bold">{item.role}</p>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const Testimonials: React.FC = () => {
-  const testimonials = [
-    {
-      rating: "5.0",
-      text: "The team at Presento Lab didn't just design slides; they understood our vision and translated it into a narrative that investors could finally grasp. Their excellence in communication and attention to detail gave our brand the credibility it needed to secure our seed round.",
-      author: "Sarah Jenkins",
-      role: "Product Lead, Webflow",
-      image: "https://i.pravatar.cc/150?u=sarah"
-    },
-    {
-      rating: "5.0",
-      text: "We gained immense clarity on our core value proposition thanks to their significant knowledge in UI/UX and visual storytelling. The vendor has provided valuable feedback by always being readily available. They transformed our communication challenges into a massive growth driver.",
-      author: "Atif Hussain",
-      role: "Co-Founder at Kinetic",
-      image: "https://i.pravatar.cc/150?u=atif"
-    },
-    {
-      rating: "5.0",
-      text: "Working with them was a turning point for our brand identity. The client is proud of Halo Lab's work, which their customers have praised. They lead a communicative process that ensures the final result doesn't just look good, but delivers real-world success.",
-      author: "Dmitri Lubaschevski",
-      role: "CEO, DATA Services",
-      image: "https://i.pravatar.cc/150?u=dmitri"
+  const [width, setWidth] = useState(0);
+  const carousel = useRef<HTMLDivElement>(null);
+  const controls = useAnimation();
+  const x = useMotionValue(0);
+
+  useEffect(() => {
+    if (carousel.current) {
+      setWidth(carousel.current.scrollWidth - carousel.current.offsetWidth);
     }
-  ];
+  }, []);
+
+  const slideLeft = () => {
+    const currentX = x.get();
+    const cardWidth = window.innerWidth < 768 ? 300 : 450;
+    const newX = Math.min(currentX + cardWidth, 0);
+    controls.start({ x: newX, transition: { type: "spring", stiffness: 300, damping: 30 } });
+  };
+
+  const slideRight = () => {
+    const currentX = x.get();
+    const cardWidth = window.innerWidth < 768 ? 300 : 450;
+    const newX = Math.max(currentX - cardWidth, -width);
+    controls.start({ x: newX, transition: { type: "spring", stiffness: 300, damping: 30 } });
+  };
 
   return (
-    <section className="py-32 bg-black overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
-        {/* Top Header Section - Centralized */}
-        <div className="flex flex-col items-center text-center mb-24 gap-12">
-          
-          {/* Heading and Subheading */}
-          <div className="flex flex-col items-center gap-6 max-w-4xl">
-            <h2 className="text-5xl md:text-8xl font-[900] tracking-tighter uppercase leading-[0.9]">Client Stories</h2>
-            <p className="text-gray-500 text-xl font-light leading-relaxed max-w-2xl">
-              Stories of transformation from clients who gained clarity, credibility, and real-world success through our collaboration.
-            </p>
-          </div>
+    <section className="pt-28 bg-black overflow-hidden relative">
+      {/* Background Ambience */}
+      <div className="absolute top-1/4 left-0 w-full h-[500px] bg-gradient-to-r from-purple-900/10 via-transparent to-orange-900/10 blur-[120px] pointer-events-none" />
 
-          {/* Upwork Reviews Pill - Background removed for minimal look */}
-          <button className="flex items-center gap-5 border border-white/10 rounded-full px-8 py-3.5 bg-transparent transition-all hover:border-white/30 active:scale-95 group">
-            <span className="font-black text-2xl tracking-tight text-[#14a800]">Upwork</span>
-            <div className="w-[1.5px] h-5 bg-zinc-700/50"></div>
-            <span className="text-[12px] font-black uppercase tracking-[0.2em] text-zinc-500 group-hover:text-zinc-300 transition-colors">80+ REVIEWS</span>
-          </button>
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+
+        {/* New Centered Header */}
+        <div className="flex items-center justify-center w-full z-20 relative">
+          <h2 className="text-3xl md:text-6xl font-[900] mb-8 tracking-tighter text-white uppercase leading-[0.9] text-center">
+            Client Stories
+          </h2>
         </div>
+        <p className="text-gray-500 text-xl font-light text-center mb-16 max-w-3xl mx-auto relative">
+          Every startup has a story, but not every founder knows how to present it. We take your raw ideas, shape them into a Clear narrative, and design them into visuals that speak louder than words
+        </p>
 
-        {/* Main Content: Sidebar + Carousel */}
-        <div className="flex flex-col lg:flex-row gap-12 items-stretch">
-          {/* Sidebar 4.9 Section - Entirely transparent */}
-          <div className="w-full lg:w-[450px] flex-shrink-0 relative p-12 flex flex-col justify-between min-h-[550px]">
-            <div className="relative">
-              <div className="mb-10">
-                <span className="text-[140px] font-black leading-none tracking-tighter text-white">4.9</span>
-              </div>
-              <p className="text-white/90 text-xl font-medium max-w-[340px] leading-[1.4]">
-                Upwork average based on 80+ reviews. All chances are you'll be impressed too.
-              </p>
+        <div className="flex flex-col lg:flex-row gap-16 lg:gap-8 items-end">
+
+          {/* Left Content - Rating & Nav */}
+          <div className="w-full lg:w-[400px] flex-shrink-0 flex flex-col h-full justify-between pt-10 sticky top-32 md:mb-2">
+            <div className="flex items-center justify-center md:block">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="relative inline-block md:mb-12"
+              >
+                <span className="text-[120px] font-black leading-none tracking-tighter text-white inline-block">4.9</span>
+                <p className="text-white/60 text-lg font-medium mt-4 max-w-[300px] leading-relaxed">
+                  Based on 80+ reviews on Upwork. Consistent quality that builds trust.
+                </p>
+              </motion.div>
             </div>
 
-            {/* Navigation Arrows */}
-            <div className="flex gap-4">
-              <button className="w-16 h-16 rounded-full border border-white/10 bg-transparent flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m15 18-6-6 6-6"/>
-                </svg>
+            {/* Navigation Buttons */}
+            <div className="hidden md:flex gap-4">
+              <button
+                onClick={slideLeft}
+                className="w-14 h-14 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:bg-[#FF5C00] hover:border-[#FF5C00] text-white transition-all duration-300 group"
+              >
+                <ArrowLeft size={24} className="group-hover:-translate-x-1 transition-transform" />
               </button>
-              <button className="w-16 h-16 rounded-full border border-white/10 bg-transparent flex items-center justify-center hover:bg-white hover:text-black transition-all duration-300 group">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="m9 18 6-6 6-6" transform="rotate(180 12 12)"/>
-                </svg>
+              <button
+                onClick={slideRight}
+                className="w-14 h-14 rounded-full border border-white/10 bg-white/5 flex items-center justify-center hover:bg-[#7000FF] hover:border-[#7000FF] text-white transition-all duration-300 group"
+              >
+                <ArrowRight size={24} className="group-hover:translate-x-1 transition-transform" />
               </button>
             </div>
           </div>
 
-          {/* Scrolling Cards */}
-          <div className="flex-grow w-full overflow-x-auto no-scrollbar pb-10">
-            <div className="flex gap-8 px-4">
-              {testimonials.map((t, idx) => (
-                <TestimonialCard 
-                  key={idx}
-                  rating={t.rating}
-                  text={t.text}
-                  author={t.author}
-                  role={t.role}
-                  image={t.image}
-                />
-              ))}
-            </div>
+          {/* Right Carousel */}
+          <div className="w-full overflow-hidden">
+            <motion.div
+              ref={carousel}
+              className="cursor-grab active:cursor-grabbing"
+              whileTap={{ cursor: "grabbing" }}
+            >
+              <motion.div
+                drag="x"
+                dragConstraints={{ right: 0, left: -width }}
+                animate={controls}
+                style={{ x }}
+                className="flex gap-8 md:pt-6"
+              >
+                {TESTIMONIALS.map((item, idx) => (
+                  <TestimonialCard key={item.id} item={item} />
+                ))}
+              </motion.div>
+            </motion.div>
           </div>
+
         </div>
       </div>
-      
-      <style>{`
-        .no-scrollbar::-webkit-scrollbar {
-          display: none;
-        }
-        .no-scrollbar {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-      `}</style>
     </section>
   );
 };

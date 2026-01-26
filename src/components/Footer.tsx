@@ -1,23 +1,43 @@
 
 import React from 'react';
-import Logo from './Logo';
+import { Facebook, Twitter, Linkedin, Instagram, Dribbble } from 'lucide-react';
+import logoImage from '../assets/PresentoLab_Logo.png';
+import { SERVICES } from '../constants';
 
-const Footer: React.FC = () => {
+interface FooterProps {
+  onServiceClick: (index: number) => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onServiceClick }) => {
+  const socialHealth = [
+    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61584547089606' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/company/presentolab/' },
+    { icon: Instagram, href: 'https://www.instagram.com/presentolab/' },
+    // { icon: Dribbble, href: '#' },
+  ];
+
   return (
-    <footer className="bg-black pt-32 pb-12 border-t border-zinc-900">
+    <footer className="bg-black pt-12 pb-4 border-t border-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:mb-24">
           <div className="col-span-1 md:col-span-2">
             <div className="mb-10">
-              <Logo scale={1} />
+              <a href="/" className="inline-block">
+                <img src={logoImage} alt="PresentoLab" className="h-20 w-auto" />
+              </a>
             </div>
             <p className="text-gray-500 text-xl mb-12 max-w-md font-light leading-relaxed">
               Shaping the future of visual storytelling for startups and global brands. We turn complex visions into clear impact.
             </p>
             <div className="flex items-center gap-4">
-              {['FB', 'TW', 'LI', 'IG', 'DR'].map(social => (
-                <a key={social} href="#" className="w-12 h-12 rounded-2xl bg-zinc-900/50 flex items-center justify-center text-xs font-black text-gray-500 hover:bg-[#FF006B] hover:text-white transition-all">
-                  {social}
+              {socialHealth.map((item, index) => (
+                <a
+                  key={index}
+                  href={item.href}
+                  target="_blank"
+                  className="w-12 h-12 rounded-2xl bg-zinc-900/50 flex items-center justify-center text-gray-500 hover:bg-[#FF006B] hover:text-white transition-all transform hover:scale-110 duration-200"
+                >
+                  <item.icon size={20} />
                 </a>
               ))}
             </div>
@@ -26,8 +46,15 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-black mb-10 text-xl tracking-tighter">Our Services</h4>
             <ul className="space-y-5 text-gray-500 font-medium">
-              {['Pitch Deck Design', 'Presentation Design', 'UI/UX Design', 'Documentation Design', 'Brand Design'].map(item => (
-                <li key={item}><a href="#" className="hover:text-[#FF5C00] transition-colors">{item}</a></li>
+              {SERVICES.map((item, index) => (
+                <li key={item.title}>
+                  <button
+                    onClick={() => onServiceClick(index)}
+                    className="hover:text-[#FF5C00] transition-colors text-left"
+                  >
+                    {item.title}
+                  </button>
+                </li>
               ))}
             </ul>
           </div>
@@ -35,23 +62,18 @@ const Footer: React.FC = () => {
           <div>
             <h4 className="text-white font-black mb-10 text-xl tracking-tighter">Get in Touch</h4>
             <ul className="space-y-5 text-gray-500 font-medium">
-              <li><a href="mailto:info@presentolab.com" className="text-xl text-white hover:text-[#9E00FF] transition-colors">info@presentolab.com</a></li>
-              <li><a href="tel:+923000000000" className="hover:text-[#9E00FF] transition-colors">+92 XXX XXXXXXX</a></li>
-              <li className="pt-8">
-                <p className="text-zinc-600 font-black mb-4 uppercase text-[10px] tracking-[0.4em]">Do you like?</p>
-                <button className="text-[#FFB800] hover:text-[#FFB800]/80 font-black transition-colors underline underline-offset-8 decoration-2">Visit Our Studio</button>
-              </li>
+              <li><a href="mailto:info@presentolab.com" className="text-xl text-zinc-500 hover:text-[#9E00FF] transition-colors">info@presentolab.com</a></li>
+              <li><a href="tel:+923472818480" className="hover:text-[#9E00FF] transition-colors">+92 347 2818480</a></li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-zinc-900/50 pt-12 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="border-t border-zinc-900/50 pt-4 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-zinc-600 text-sm font-medium">
-            © {new Date().getFullYear()} Presento Lab. Crafted for impact.
+            © {new Date().getFullYear()} PresentoLab. All Rights Reserved.
           </p>
           <div className="flex gap-10 text-sm text-zinc-600 font-bold uppercase tracking-widest">
-            <a href="#" className="hover:text-white transition-colors">Privacy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms</a>
+            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
           </div>
         </div>
       </div>

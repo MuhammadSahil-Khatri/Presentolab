@@ -16,60 +16,22 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
   };
 
   return (
-    <section className="relative min-h-[95vh] flex items-center justify-center overflow-hidden bg-black pb-0">
-      {/* --- MINIMALIST LIGHT BEAMS ANIMATION --- */}
+    <section className="relative flex items-center justify-center overflow-hidden bg-black pt-28 pb-5">
+      {/* --- SUBTLE AMBIENT BACKGROUND --- */}
       <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
-
         {/* Subtle Ambient Glows */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vh] bg-[#BE00FF]/5 rounded-full blur-[160px] opacity-50"></div>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-64 bg-gradient-to-t from-[#FF5C00]/10 to-transparent blur-3xl"></div>
-
-        <div className="absolute inset-0 flex items-center justify-center">
-          {/* Vertical Light Beams Container */}
-          <div className="relative w-[300px] md:w-[600px] h-full flex justify-center items-end opacity-60">
-            {[...Array(20)].map((_, i) => (
-              <div
-                key={i}
-                className="w-[1px] md:w-[2px] h-[80%] bg-beam-gradient blur-[1px] animate-beam-rise"
-                style={{
-                  animationDelay: `${i * 0.2}s`,
-                  animationDuration: `${5 + Math.random() * 5}s`,
-                  opacity: 0.1 + (Math.random() * 0.4),
-                  marginLeft: `${(Math.random() - 0.5) * 40}px`,
-                }}
-              />
-            ))}
-
-            {/* Soft Central Column of Light */}
-            <div className="absolute bottom-0 w-32 h-full bg-gradient-to-t from-[#FF007F]/10 via-transparent to-transparent blur-[100px]"></div>
-          </div>
-        </div>
-
-        {/* Floating Particles */}
-        <div className="absolute inset-0">
-          {[...Array(30)].map((_, i) => (
-            <div
-              key={i}
-              className="absolute w-[1.5px] h-[1.5px] rounded-full bg-white opacity-20 animate-particle"
-              style={{
-                left: `${Math.random() * 100}%`,
-                bottom: `${Math.random() * 100}%`,
-                animationDuration: `${8 + Math.random() * 12}s`,
-                animationDelay: `${-Math.random() * 10}s`
-              }}
-            />
-          ))}
-        </div>
       </div>
 
       {/* Atmospheric Vignette */}
       <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black via-transparent to-black z-10"></div>
 
       {/* --- CONTENT LAYER --- */}
-      <div className="max-w-6xl mx-auto px-6 text-center relative z-20 pt-36">
+      <div className="max-w-6xl mx-auto px-6 text-center relative z-20 pt-24 md:pt-12">
 
 
-        <h1 className="text-5xl md:text-9xl font-[900] leading-[0.85] mb-12 tracking-tighter">
+        <h1 className="text-4xl md:text-6xl lg:text-9xl font-[900] leading-[0.9] text-center mb-8 md:mb-12 lg:mb-16 tracking-tighter">
           FROM IDEA TO IMPACT.<br />
           <span className="text-gradient-brand">WE SHAPE YOUR STORY.</span>
         </h1>
@@ -110,31 +72,6 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
       </div>
 
       <style>{`
-        .bg-beam-gradient {
-          background: linear-gradient(to top, transparent, #FF5C00, #FF007F, #BE00FF, transparent);
-          background-size: 100% 300%;
-        }
-
-        @keyframes beam-rise {
-          0% { transform: translateY(20%) scaleY(0.5); opacity: 0; }
-          20% { opacity: 0.6; }
-          80% { opacity: 0.6; }
-          100% { transform: translateY(-100%) scaleY(1.5); opacity: 0; }
-        }
-        .animate-beam-rise {
-          animation: beam-rise linear infinite;
-        }
-
-        @keyframes particle {
-          0% { transform: translateY(0) scale(1); opacity: 0; }
-          15% { opacity: 0.3; }
-          85% { opacity: 0.3; }
-          100% { transform: translateY(-400px) scale(0); opacity: 0; }
-        }
-        .animate-particle {
-          animation: particle linear infinite;
-        }
-
         @keyframes fade-in {
           from { opacity: 0; transform: translateY(10px); }
           to { opacity: 1; transform: translateY(0); }

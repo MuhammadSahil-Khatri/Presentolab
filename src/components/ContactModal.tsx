@@ -1,6 +1,11 @@
 
 import React, { useEffect, useState } from 'react';
 
+import emailjs from '@emailjs/browser';
+import 'react-phone-number-input/style.css';
+import PhoneInput, { isValidPhoneNumber } from 'react-phone-number-input';
+import toast from 'react-hot-toast';
+
 interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -8,6 +13,7 @@ interface ContactModalProps {
 
 const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   const [isAnimating, setIsAnimating] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -59,12 +65,9 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     }
 
     // Phone: Optional + Phone Format (digits, spaces, +, -, (), min 7 chars)
-    if (formData.phone.trim()) {
-      // Filter out non-digits to check length
-      const digits = formData.phone.replace(/\D/g, '');
-      const phonePattern = /^[+]?[\d\s\-\(\)]+$/;
-
-      if (!phonePattern.test(formData.phone) || digits.length < 7) {
+    // Phone: Optional + Phone Format using library validation
+    if (formData.phone) {
+      if (!isValidPhoneNumber(formData.phone)) {
         newErrors.phone = 'Please enter a valid phone number';
       }
     }
@@ -73,24 +76,79 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (validateForm()) {
-      console.log('Form submitted:', formData);
-      // Add submission logic here
-      alert('Message sent! We will contact you shortly.');
+
+    if (!validateForm()) return;
+
+    setIsSubmitting(true);
+
+    try {
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        {
+          name: formData.name,                 // ✅ matches {{name}}
+          email: formData.email,               // ✅ matches {{email}}
+          message: formData.description,       // ✅ matches {{message}}
+          website: formData.website || "—",
+          phone: formData.phone || "—",
+          time: new Date().toLocaleString(),   // ✅ matches {{time}}
+        },
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
+
+      toast.success("Thank you for reaching out! Our team has received your message and will get back to you shortly.", {
+        duration: 3000,
+      });
+
+      setFormData({
+        name: "",
+        email: "",
+        description: "",
+        website: "",
+        phone: "",
+      });
+
       onClose();
+    } catch (error) {
+      console.error("EmailJS Error:", error);
+      toast.error("Failed to send message. Please try again later.");
+    } finally {
+      setIsSubmitting(false);
     }
   };
 
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
+
+    // Apply input restrictions
+    let sanitizedValue = value;
+
+    if (name === 'name') {
+      // Only allow letters and spaces
+      sanitizedValue = value.replace(/[^a-zA-Z\s]/g, '');
+    }
+    // Phone logic moved to separate handler
+
+    setFormData(prev => ({ ...prev, [name]: sanitizedValue }));
     // Clear error when user types
     if (errors[name]) {
       setErrors(prev => {
         const newErrors = { ...prev };
         delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  const handlePhoneChange = (value?: string) => {
+    setFormData(prev => ({ ...prev, phone: value || '' }));
+    if (errors.phone) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors.phone;
         return newErrors;
       });
     }
@@ -112,7 +170,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         {/* Close Button */}
         <button
           onClick={onClose}
-          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 text-black/40 hover:text-black transition-colors z-10"
+          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 text-black/40 hover:text-black transition-colors z-50"
           aria-label="Close modal"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -193,13 +251,17 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
               {/* Phone */}
               <div className="relative group">
                 <label className="block text-black/40 text-xs font-bold mb-1">Phone (optional)</label>
-                <input
-                  type="tel"
-                  name="phone"
-                  value={formData.phone}
-                  onChange={handleChange}
-                  className={`w-full bg-transparent border-b py-1.5 text-base text-black focus:outline-none transition-colors ${errors.phone ? 'border-[#FF007F]' : 'border-black/10 focus:border-black'}`}
-                />
+                <div className={`border-b transition-colors ${errors.phone ? 'border-[#FF007F]' : 'border-black/10 group-focus-within:border-black'}`}>
+                  <PhoneInput
+                    international
+                    defaultCountry="US"
+                    maxLength={20}
+                    value={formData.phone || undefined} // Fix for backspace reset bug
+                    onChange={handlePhoneChange}
+                    className="flex items-center gap-2 bg-transparent py-1.5 text-base text-black focus:outline-none [&_.PhoneInputInput]:bg-transparent [&_.PhoneInputInput]:outline-none [&_.PhoneInputCountrySelect]:bg-transparent [&_.PhoneInputCountrySelect]:-ml-1"
+                    placeholder="Enter phone number"
+                  />
+                </div>
                 {errors.phone && <p className="text-[#FF007F] text-[10px] mt-1 absolute">{errors.phone}</p>}
               </div>
             </div>
@@ -208,11 +270,12 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
               {/* Button */}
               <button
                 type="submit"
-                className="group relative flex items-center active:scale-95 transition-transform duration-200"
+                disabled={isSubmitting}
+                className={`group relative flex items-center transition-transform duration-200 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'active:scale-95'}`}
               >
                 {/* Text Pill */}
                 <div className="bg-cta-gradient group-hover:brightness-110 text-white h-12 px-8 rounded-full flex items-center font-bold text-base relative z-20 transition-all duration-500 shadow-lg shadow-[#BE00FF]/20">
-                  Let’s Talk
+                  {isSubmitting ? 'Sending...' : 'Let’s Talk'}
                 </div>
 
                 {/* Icon Bubble */}
@@ -233,7 +296,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                     <polyline points="9 11 12 14 15 11"></polyline>
                   </svg>
                 </div>
-                <p className="text-black/40 text-[10px] font-medium leading-relaxed">
+                <p className="text-zinc-400 text-[10px] font-medium leading-relaxed">
                   I confirm that I have read the Privacy Policy and agree to receive relevant messages and updates.
                 </p>
               </div>

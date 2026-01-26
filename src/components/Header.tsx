@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import Logo from './Logo';
+import logoImage from '../assets/PresentoLab_Logo.png';
 
 interface HeaderProps {
   onContactClick: () => void;
@@ -12,6 +12,7 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
   const logoWrapperRef = useRef<HTMLDivElement>(null);
   const ctaTextRef = useRef<HTMLDivElement>(null);
   const ctaIconRef = useRef<HTMLDivElement>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   const lastScrollY = useRef(0);
   const isCompact = useRef(false);
@@ -22,12 +23,13 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
     const duration = 0.5;
     const ease = "power2.out";
 
+    const isMobile = window.innerWidth < 768;
     // Initialize GSAP values
     // Start with glass effect active
     gsap.set(headerRef.current, {
-      width: "90%",
-      paddingLeft: "1.5rem",
-      paddingRight: "1.5rem",
+      width: isMobile ? "95%" : "90%",
+      paddingLeft: isMobile ? "1rem" : "1.5rem",
+      paddingRight: isMobile ? "1rem" : "1.5rem",
       backgroundColor: "rgba(255, 255, 255, 0.05)",
       backdropFilter: "blur(16px)",
       borderColor: "rgba(255, 255, 255, 0.08)",
@@ -74,7 +76,7 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
 
           // Shrink Header
           gsap.to(headerRef.current, {
-            width: "75%",
+            width: isMobile ? "90%" : "75%",
             paddingLeft: "1rem",
             paddingRight: "1rem",
             duration: duration,
@@ -116,7 +118,7 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
 
           // Expand Header
           gsap.to(headerRef.current, {
-            width: "90%",
+            width: isMobile ? "95%" : "90%",
             paddingLeft: "1.5rem",
             paddingRight: "1.5rem",
             duration: duration,
@@ -223,16 +225,69 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
     >
       <header
         ref={headerRef}
-        className="rounded-full px-2 py-2 flex items-center justify-between pointer-events-auto overflow-hidden border border-transparent"
-        style={{ maxWidth: '1440px', width: '90%' }}
+        className="relative rounded-full px-2 py-1 flex items-center justify-between pointer-events-auto overflow-hidden border border-transparent"
+        style={{ maxWidth: '1440px', width: '85%' }}
       >
         {/* Left Section: Logo */}
-        <div ref={logoWrapperRef} className="flex-shrink-0 origin-left">
-          <Logo scale={1} />
+        <div ref={logoWrapperRef} className="flex-shrink-0 origin-left ml-2">
+          <a href="/">
+            <img src={logoImage} alt="PresentoLab" className="h-[4.5rem] w-auto cursor-pointer" />
+          </a>
+        </div>
+
+        {/* Right Actions Group */}
+        <div className="flex items-center gap-3">
+          {/* Theme Toggle - Visible on Mobile now */}
+          <button className="text-white/60 hover:text-white transition-colors flex w-10 h-10 items-center justify-center rounded-full hover:bg-white/5" aria-label="Toggle Theme">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
+            </svg>
+          </button>
+
+          {/* Wrapper for Desktop CTA + Mobile Hamburger */}
+          <div className="flex items-center gap-3">
+            {/* Desktop CTA */}
+            <div className="hidden md:block">
+              <button
+                onClick={onContactClick}
+                className="group relative flex items-center active:scale-95 transition-transform duration-200"
+              >
+                <div
+                  ref={ctaTextRef}
+                  className="bg-cta-gradient group-hover:brightness-110 text-white rounded-full flex items-center font-bold text-sm relative z-20 transition-all duration-500 shadow-lg"
+                >
+                  Let's talk
+                </div>
+
+                <div
+                  ref={ctaIconRef}
+                  className="bg-cta-gradient group-hover:brightness-110 rounded-full flex items-center justify-center relative z-10 -ml-4 group-hover:ml-2 transition-all duration-500 ease-spring"
+                >
+                  <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+                    </svg>
+                  </div>
+                </div>
+              </button>
+            </div>
+
+            {/* Mobile Hamburger */}
+            <button
+              className="md:hidden flex items-center justify-center p-2 text-white/80 hover:text-white transition-colors relative"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+              ) : (
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Center Section: Navigation */}
-        <nav className="hidden md:flex items-center gap-4 lg:gap-8">
+        <nav className="hidden md:flex items-center gap-4 lg:gap-8 absolute left-1/2 -translate-x-1/2">
           <a
             href="#services"
             onClick={(e) => scrollToSection(e, 'services')}
@@ -257,29 +312,27 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
           </a>
         </nav>
 
-        {/* Right Section: Icons & CTA */}
-        <div className="flex items-center gap-4 lg:gap-6">
-          <button className="text-white/60 hover:text-white transition-colors hidden sm:flex w-11 h-11 items-center justify-center rounded-full hover:bg-white/5" aria-label="Toggle Theme">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
-            </svg>
-          </button>
+        {/* Slide-Down Menu - Outside Header Pill but inside Container */}
+      </header>
 
+      {/* Dropdown Menu Container */}
+      <div
+        className={`absolute top-[calc(100%+8px)] w-[90%] md:hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top ${isMobileMenuOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'}`}
+      >
+        <div className="bg-[#111]/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-6 shadow-2xl flex flex-col gap-2">
+          <a href="#services" onClick={(e) => { scrollToSection(e, 'services'); setIsMobileMenuOpen(false); }} className="px-6 py-4 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Services</a>
+          <a href="#work" onClick={(e) => { scrollToSection(e, 'work'); setIsMobileMenuOpen(false); }} className="px-6 py-4 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Work</a>
+          <a href="#about" onClick={(e) => { scrollToSection(e, 'about'); setIsMobileMenuOpen(false); }} className="px-6 py-4 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Team</a>
+          <div className="h-[1px] bg-white/5 my-2"></div>
           <button
-            onClick={onContactClick}
-            className="group relative flex items-center active:scale-95 transition-transform duration-200"
+            onClick={() => { onContactClick(); setIsMobileMenuOpen(false); }}
+            className="group relative flex items-center justify-center pt-2 active:scale-95 transition-transform duration-200"
           >
-            <div
-              ref={ctaTextRef}
-              className="bg-cta-gradient group-hover:brightness-110 text-white rounded-full flex items-center font-bold text-sm relative z-20 transition-all duration-500 shadow-lg"
-            >
+            <div className="bg-cta-gradient group-hover:brightness-110 text-white h-11 px-6 rounded-full flex items-center font-bold text-sm relative z-20 transition-all duration-500 shadow-lg justify-center">
               Let's talk
             </div>
 
-            <div
-              ref={ctaIconRef}
-              className="bg-cta-gradient group-hover:brightness-110 rounded-full flex items-center justify-center relative z-10 -ml-4 group-hover:ml-2 transition-all duration-500 ease-spring"
-            >
+            <div className="bg-cta-gradient group-hover:brightness-110 h-11 w-11 rounded-full flex items-center justify-center relative z-10 -ml-4 group-hover:ml-2 transition-all duration-500 ease-spring">
               <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors">
                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                   <path d="M7 17L17 7" /><path d="M7 7h10v10" />
@@ -288,7 +341,7 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
             </div>
           </button>
         </div>
-      </header>
+      </div>
     </div>
   );
 };

@@ -15,6 +15,15 @@ export interface PortfolioItem {
 export interface ProcessStep {
   title: string;
   description: string;
+  icon: string;
+}
+
+
+export interface TeamMember {
+  name: string;
+  role: string;
+  img: string;
+  linkedin: string;
 }
 
 export interface Testimonial {

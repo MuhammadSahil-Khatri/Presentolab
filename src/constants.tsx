@@ -1,52 +1,218 @@
-
 import { Service, PortfolioItem, ProcessStep } from './types';
+import acceronix from "./assets/Portfolio/acceronix.jpg";
+import adaminds from "./assets/Portfolio/adaminds.jpg";
+import applet from "./assets/Portfolio/applet.jpg";
+import farms from "./assets/Portfolio/farms.jpg";
+import harvest from "./assets/Portfolio/harvest.jpg";
+import marsfossil from "./assets/Portfolio/marsfossils.jpg";
+import mcg from "./assets/Portfolio/mcg.jpg";
+import medcare from "./assets/Portfolio/medcare.jpg";
+import nexatrade from "./assets/Portfolio/nexatrade.jpg";
+import strivesphere from "./assets/Portfolio/strivesphere.jpg";
+import thriftflex from "./assets/Portfolio/thriftflex.jpg";
+import voltamix from "./assets/Portfolio/voltamix.jpg";
 
 export const SERVICES: Service[] = [
-  { 
-    title: "Branding", 
-    description: "Distinctive, memorable brand experiences that communicate your values and create emotional connections with your customers.",
-    categories: ["Offline Branding", "Logo design", "Rebranding", "Typography", "Guidelines", "Visual identity", "Digital brand presence", "Color systems"]
+  {
+    title: "Pitch Deck & Presentation Design",
+    description: "High-impact pitch decks and presentations designed to clearly communicate your message, persuade stakeholders, and drive decisions.",
+    categories: [
+      "Startup Pitch Decks",
+      "Investor Presentations",
+      "Sales Decks",
+      "Corporate Presentations",
+      "Fundraising Decks",
+      "Business Storytelling",
+      "Data Visualization",
+      "Branded Slide Templates"
+    ]
   },
-  { 
-    title: "Web & App Design", 
-    description: "Modern, responsive, and user-friendly websites and apps designed to engage users and drive conversions.",
-    categories: ["Web & App UI", "iOS & Android", "Cross-Platform Design", "Animations & Microinteractions", "Prototyping & User Flows", "Design Systems & UI Kits"]
+  {
+    title: "Web & App Design",
+    description: "User-focused UI/UX design for websites and applications that delivers intuitive experiences and measurable results.",
+    categories: [
+      "Website UI Design",
+      "Mobile App UI",
+      "UX Research",
+      "Wireframing",
+      "Prototyping",
+      "User Journeys",
+      "Design Systems",
+      "Microinteractions"
+    ]
   },
-  { 
-    title: "Development", 
-    description: "Robust, scalable, and high-performance development solutions tailored to your specific technical requirements.",
-    categories: ["Frontend Dev", "Backend Systems", "CMS Integration", "E-commerce", "Performance Optimization", "API Development"]
+  {
+    title: "Brand Identity",
+    description: "Strategic brand identities that define your positioning, build trust, and ensure consistency across all visual touchpoints.",
+    categories: [
+      "Logo Design",
+      "Brand Strategy",
+      "Rebranding",
+      "Typography Systems",
+      "Color Palettes",
+      "Brand Guidelines",
+      "Visual Identity",
+      "Digital Brand Assets"
+    ]
   },
-  { 
-    title: "3D", 
-    description: "High-quality 3D visuals and animations that bring your products and concepts to life with stunning realism.",
-    categories: ["Product Rendering", "3D Animation", "Architectural Visualization", "Asset Creation", "Motion Graphics"]
+  {
+    title: "Documentation Design",
+    description: "Clear, structured, and visually polished documentation that transforms complex information into easy-to-understand content.",
+    categories: [
+      "Company Documents",
+      "Technical Documentation",
+      "Process Documentation",
+      "Reports & Whitepapers",
+      "Training Manuals",
+      "Internal Documents",
+      "Branded Documentation"
+    ]
   },
+  {
+    title: "Web & App Development",
+    description: "Reliable and scalable web and app development solutions built to support performance, usability, and business growth.",
+    categories: [
+      "Frontend Development",
+      "Backend Development",
+      "CMS Integration",
+      "E-commerce Development",
+      "Web Applications",
+      "Performance Optimization",
+      "API Integration"
+    ]
+  }
 ];
+
 
 export const PORTFOLIO: PortfolioItem[] = [
-  { id: '1', title: 'timbr', category: 'Brand Identity', imageUrl: 'https://picsum.photos/seed/timbr/704/504' },
-  { id: '2', title: 'Harvest Innovations', category: 'Pitch Deck', imageUrl: 'https://picsum.photos/seed/harvest/704/504' },
-  { id: '3', title: 'MarsFossil AI', category: 'Pitch Deck', imageUrl: 'https://picsum.photos/seed/mars/704/504' },
-  { id: '4', title: 'Nexus Partners', category: 'UI/UX Design', imageUrl: 'https://picsum.photos/seed/nexus/704/504' },
-  { id: '5', title: 'Zolia Energy', category: 'Presentation', imageUrl: 'https://picsum.photos/seed/zolia/704/504' },
-  { id: '6', title: 'Webflow X', category: 'UI/UX Design', imageUrl: 'https://picsum.photos/seed/webflow/704/504' },
-  { id: '7', title: 'Kiwii Finance', category: 'Branding', imageUrl: 'https://picsum.photos/seed/kiwii/704/504' },
-  { id: '8', title: 'Revealty Real Estate', category: 'Pitch Deck', imageUrl: 'https://picsum.photos/seed/revealty/704/504' },
-  { id: '9', title: 'Hormone Club', category: 'UI/UX Design', imageUrl: 'https://picsum.photos/seed/hormone/704/504' },
-  { id: '10', title: 'Kefron Tech', category: 'Documentation', imageUrl: 'https://picsum.photos/seed/kefron/704/504' },
-  { id: '11', title: 'AquaSonic', category: 'Brand Strategy', imageUrl: 'https://picsum.photos/seed/aqua/704/504' },
-  { id: '12', title: 'Myfo Analytics', category: 'Dashboard', imageUrl: 'https://picsum.photos/seed/myfo/704/504' },
+  { id: '1', title: 'Adaminds – AI Startup Deck', category: 'Pitch Deck', imageUrl: adaminds },
+  { id: '2', title: 'MedCare – Healthcare Corporate Presentation', category: 'Presentation', imageUrl: medcare },
+  { id: '3', title: 'NexaTrade – Real Estate Deck', category: 'Pitch Deck', imageUrl: nexatrade },
+  { id: '4', title: 'StriveSphere – Sports Brand Presentation', category: 'Presentation', imageUrl: strivesphere },
+  { id: '5', title: 'ThriftFlex – Consumer Brand Deck', category: 'Pitch Deck', imageUrl: thriftflex },
+  { id: '6', title: 'Acceronix – Technology Brand Identity', category: 'Brand Identity', imageUrl: acceronix },
+  { id: '7', title: 'Applet – SaaS Brand Identity', category: 'Branding', imageUrl: applet },
+  { id: '8', title: 'Farms – Agricultural Brand Identity', category: 'Brand Identity', imageUrl: farms },
+  { id: '9', title: 'Harvest – Agri-Business Brand Identity', category: 'Brand Identity', imageUrl: harvest },
+  { id: '10', title: 'MCG – Restaurant Brand Identity', category: 'Brand Identity', imageUrl: mcg },
+  { id: '11', title: 'Mars Fossil – AI Brand Identity', category: 'Brand Identity', imageUrl: marsfossil },
+  { id: '12', title: 'Voltamix – Scientific Brand Identity', category: 'Brand Identity', imageUrl: voltamix },
 ];
+
+import step1 from './assets/Process_Icons/step-1.svg';
+import step2 from './assets/Process_Icons/step-2.svg';
+import step3 from './assets/Process_Icons/step-3.svg';
+import step4 from './assets/Process_Icons/step-4.svg';
+import step5 from './assets/Process_Icons/step-5.svg';
 
 export const PROCESS: ProcessStep[] = [
-  { title: "Discover", description: "In-depth discussion on vision, goals, and core message." },
-  { title: "Research", description: "Comprehensive industry analysis and competitor benchmarking." },
-  { title: "Crafting", description: "Developing the story flow and initial visual concepts." },
-  { title: "Discerning", description: "Refinement phase through collaborative feedback loops." },
-  { title: "Your Story is Ready", description: "Delivery of the final polished and impactful visual assets." },
+  {
+    title: "Discovering your vision",
+    description: "We begin with a detailed discussion to understand your goals, audience, challenges, and expectations. This helps us define the project scope clearly before moving forward.",
+    icon: step1
+  },
+  {
+    title: "Research that builds Direction",
+    description: "We research your industry, competitors, and audience to propose the best solutions, structure, and enhancements that align perfectly with your objectives.",
+    icon: step2
+  },
+  {
+    title: "Crafting your Story & Structure",
+    description: "We develop the first version of your presentation or pitch deck with clear content flow, visual structure, and your core story, tailored to meet your needs.",
+    icon: step3
+  },
+  {
+    title: "Design Refinement Through Feedback",
+    description: "You review the draft, share your feedback, and we refine the content and design until it aligns perfectly with your vision and goals.",
+    icon: step4
+  },
+  {
+    title: "Your Story is ready to present",
+    description: "We prepare the final, polished version of your deck and deliver all required files, fully ready to present, share, or pitch to investors and stakeholders.",
+    icon: step5
+  },
 ];
 
+import arkLogo from './assets/Partners_Logo/ark.png';
+import financeLogo from './assets/Partners_Logo/finance.png';
+import ladevLogo from './assets/Partners_Logo/ladev.png';
+import realEstateLogo from './assets/Partners_Logo/real_estate.png';
+import seshLogo from './assets/Partners_Logo/sesh.png';
+import soundmintLogo from './assets/Partners_Logo/soundmint.png';
+import thriftflexLogo from './assets/Partners_Logo/thriftflex.png';
+import tiktokLogo from './assets/Partners_Logo/tiktok.png';
+import zoltaLogo from './assets/Partners_Logo/zolta.png';
+
 export const CLIENT_LOGOS = [
-  "seesh", "ARK7", "Financio", "LADEV", "Revelry", "SoundMint", "Zolia", "TikTok", "Thrift", "LEX"
+  arkLogo, financeLogo, ladevLogo, realEstateLogo, seshLogo, soundmintLogo, thriftflexLogo, tiktokLogo, zoltaLogo
+];
+
+export const TESTIMONIALS = [
+  {
+    id: 1,
+    rating: "5.0",
+    text: "The team at PresentoLab didn't just design slides; they understood our vision and translated it into a narrative that investors could finally grasp. Their excellence in communication and attention to detail gave our brand the credibility it needed to secure our seed round.",
+    author: "Sarah Jenkins",
+    role: "Product Lead, Webflow",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150"
+  },
+  {
+    id: 2,
+    rating: "5.0",
+    text: "We gained immense clarity on our core value proposition thanks to their significant knowledge in UI/UX and visual storytelling. The vendor has provided valuable feedback by always being readily available. They transformed our communication challenges into a massive growth driver.",
+    author: "Atif Hussain",
+    role: "Co-Founder at Kinetic",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150"
+  },
+  {
+    id: 3,
+    rating: "5.0",
+    text: "Working with them was a turning point for our brand identity. The client is proud of Halo Lab's work, which their customers have praised. They lead a communicative process that ensures the final result doesn't just look good, but delivers real-world success.",
+    author: "Dmitri Lubaschevski",
+    role: "CEO, DATA Services",
+    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150"
+  },
+  {
+    id: 4,
+    rating: "5.0",
+    text: "PresentoLab exceeded our expectations in every way. The speed of delivery, combined with the premium quality of the designs, made this one of the best agency experiences we've ever had. Our sales deck is now our most powerful asset.",
+    author: "Emily Chen",
+    role: "Marketing Director, Solaris",
+    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150"
+  },
+  {
+    id: 5,
+    rating: "5.0",
+    text: "Truly exceptional work. They managed to simplify our complex technical infrastructure into a visually stunning and easy-to-understand presentation. The feedback from our board meeting was overwhelmingly positive.",
+    author: "Marcus Johnson",
+    role: "CTO, NexusTech",
+    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150"
+  }
+];
+
+export const TEAM_MEMBERS = [
+  {
+    name: "Khizar",
+    role: "Creative Lead",
+    img: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=600&auto=format&fit=crop",
+    linkedin: "https://linkedin.com"
+  },
+  {
+    name: "Khubaib",
+    role: "Strategist",
+    img: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=600&auto=format&fit=crop",
+    linkedin: "https://linkedin.com"
+  },
+  {
+    name: "Hasan",
+    role: "UI Expert",
+    img: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=600&auto=format&fit=crop",
+    linkedin: "https://linkedin.com"
+  },
+  {
+    name: "Sahil",
+    role: "Narrative Designer",
+    img: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=600&auto=format&fit=crop",
+    linkedin: "https://linkedin.com"
+  }
 ];
