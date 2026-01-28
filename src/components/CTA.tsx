@@ -8,7 +8,7 @@ interface CTAProps {
 const CTA: React.FC<CTAProps> = ({ onContactClick }) => {
   return (
     <section id="contact" className="px-6">
-      <div className="max-w-7xl mx-auto md:pt-32 pb-6 md:pb-12 text-center relative overflow-hidden">
+      <div className="max-w-7xl mx-auto md:pt-10 pb-6 md:pb-12 text-center relative overflow-hidden">
         {/* Subtle Background Glows instead of solid box */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FF5C00]/5 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#BE00FF]/5 rounded-full blur-[120px]"></div>
@@ -23,21 +23,71 @@ const CTA: React.FC<CTAProps> = ({ onContactClick }) => {
 
           <button
             onClick={onContactClick}
-            className="group relative flex items-center active:scale-95 transition-transform duration-200"
+            aria-label="Contact us"
+            className="
+              group relative flex items-center
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
+              active:scale-[0.98] transition-transform duration-200
+            "
           >
-            {/* Main Button Body - Larger and more prominent for CTA */}
-            <div className="bg-cta-gradient group-hover:brightness-110 text-white h-14 px-10 rounded-full flex items-center font-bold text-lg relative z-20 transition-all duration-500 ease-spring shadow-[0_0_50px_rgba(255,92,0,0.2)]">
-              Let's Talk
-            </div>
+            {/* Text pill */}
+            <span
+              className="
+                bg-cta-gradient text-white
+                h-11 px-6
+                rounded-full
+                flex items-center justify-center
+                font-semibold text-sm
+                relative z-20
+                shadow-lg shadow-[#FF5C00]/20
+                transition-all duration-300
+                group-hover:brightness-110
+              "
+            >
+              Let’s talk
+            </span>
 
-            {/* The Breaking Circle */}
-            <div className="bg-cta-gradient group-hover:brightness-110 h-14 w-14 rounded-full flex items-center justify-center relative z-10 -ml-5 group-hover:ml-5 transition-all duration-500 ease-spring">
-              <div className="w-9 h-9 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+            {/* Icon pill */}
+            <span
+              className="
+                bg-cta-gradient
+                h-11 w-11
+                rounded-full
+                flex items-center justify-center
+                relative z-10
+                ml-[-0.75rem]
+                transition-all duration-300 ease-out
+                group-hover:ml-2
+                group-hover:brightness-110
+                shadow-lg shadow-[#FF5C00]/20
+              "
+            >
+              <span
+                className="
+                  w-7 h-7
+                  rounded-full
+                  bg-black/5
+                  flex items-center justify-center
+                  transition-colors
+                  group-hover:bg-black/10
+                "
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 17L17 7" />
+                  <path d="M7 7h10v10" />
                 </svg>
-              </div>
-            </div>
+              </span>
+            </span>
           </button>
         </div>
       </div>

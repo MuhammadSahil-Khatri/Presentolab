@@ -73,7 +73,7 @@ const Footer: React.FC<FooterProps> = ({ onServiceClick }) => {
             © {new Date().getFullYear()} PresentoLab. All Rights Reserved.
           </p>
           <div className="flex gap-10 text-sm text-zinc-600 font-bold uppercase tracking-widest">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
+            {/* <a href="#" className="hover:text-white transition-colors">Privacy Policy</a> */}
           </div>
         </div>
       </div>

@@ -24,14 +24,15 @@ const About: React.FC<AboutProps> = ({ onMeetTeamClick }) => {
 
           {/* Button */}
           <div className="mb-10">
+
             <button
               onClick={onMeetTeamClick}
               className="group relative flex items-center active:scale-95 transition-transform duration-200"
             >
-              <div className="bg-cta-gradient group-hover:brightness-110 text-white h-12 px-8 rounded-full flex items-center font-bold text-md relative z-20 transition-all duration-500 shadow-lg shadow-[#BE00FF]/20">
+              <div className="bg-cta-gradient group-hover:brightness-110 text-white h-12 px-8 rounded-full flex items-center font-bold text-md relative z-20 transition-all duration-500">
                 Meet the team
               </div>
-              <div className="bg-cta-gradient group-hover:brightness-110 h-12 w-12 rounded-full flex items-center justify-center relative z-10 -ml-5 group-hover:ml-5 transition-all duration-500 ease-spring shadow-lg shadow-[#BE00FF]/20">
+              <div className="bg-cta-gradient group-hover:brightness-110 h-12 w-12 rounded-full flex items-center justify-center relative z-10 -ml-5 group-hover:ml-5 transition-all duration-500 ease-spring">
                 <div className="w-9 h-9 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors">
                   <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                     <path d="M7 17L17 7" /><path d="M7 7h10v10" />
@@ -43,15 +44,20 @@ const About: React.FC<AboutProps> = ({ onMeetTeamClick }) => {
         </div>
 
         {/* Company Logos Section */}
-        <div className="flex flex-wrap items-center justify-center gap-10 md:gap-32 w-full">
+        <div className="flex flex-nowrap items-center justify-start md:justify-center gap-8 md:gap-32 w-full overflow-x-auto no-scrollbar px-4 pb-4">
           {/* LinkedIn */}
           <div className="flex flex-col items-center gap-6 group cursor-pointer transition-all">
             <div className="relative flex items-center justify-center w-20 h-20">
               <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.1)_0%,transparent_70%)] blur-2xl group-hover:bg-[radial-gradient(circle,rgba(255,255,255,0.2)_0%,transparent_70%)] transition-all duration-500"></div>
-              <div className="bg-white rounded-lg">
-                <svg className="w-14 h-14 text-black group-hover:scale-110 transition-transform duration-300" viewBox="0 0 24 24" fill="currentColor">
+              <div className="rounded-lg overflow-hidden">
+                <svg
+                  className="w-14 h-14 text-white group-hover:scale-110 transition-transform duration-300"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
                   <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
                 </svg>
+
               </div>
             </div>
             <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">LinkedIn</span>
@@ -78,14 +84,6 @@ const About: React.FC<AboutProps> = ({ onMeetTeamClick }) => {
             <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">Dribbble</span>
           </div>
 
-          {/* TBD */}
-          <div className="flex flex-col items-center gap-6 group cursor-pointer transition-all">
-            <div className="relative flex items-center justify-center w-20 h-20">
-              <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,136,255,0.2)_0%,transparent_70%)] blur-2xl group-hover:bg-[radial-gradient(circle,rgba(0,136,255,0.4)_0%,transparent_70%)] transition-all duration-500"></div>
-              <div className="w-12 h-12 rounded-full bg-[#0088FF] group-hover:scale-110 transition-transform duration-300"></div>
-            </div>
-            <span className="text-sm font-medium text-white/80 group-hover:text-white transition-colors">TBD</span>
-          </div>
         </div>
       </div>
     </section>

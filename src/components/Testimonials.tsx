@@ -34,8 +34,8 @@ const TestimonialCard: React.FC<{
       </div>
 
       <div className="flex items-center gap-5 relative z-10 border-t border-white/5">
-        <div className="relative">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-tr from-[#FF5C00] to-[#7000FF] blur-sm opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
+        <div className="relative mt-1">
+          <div className="absolute inset-0 rounded-full group-hover:opacity-100 transition-opacity duration-500" />
           <img src={item.image} alt={item.author} className="w-14 h-14 rounded-full object-cover relative z-10 border-2 border-black" />
         </div>
         <div>

@@ -199,6 +199,11 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
         });
       }
 
+      // Close mobile menu on scroll
+      if (currentScrollY > 10) {
+        setIsMobileMenuOpen(false);
+      }
+
       lastScrollY.current = currentScrollY;
     };
 
@@ -237,12 +242,7 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
 
         {/* Right Actions Group */}
         <div className="flex items-center gap-3">
-          {/* Theme Toggle - Visible on Mobile now */}
-          <button className="text-white/60 hover:text-white transition-colors flex w-10 h-10 items-center justify-center rounded-full hover:bg-white/5" aria-label="Toggle Theme">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <circle cx="12" cy="12" r="4" /><path d="M12 2v2" /><path d="M12 20v2" /><path d="m4.93 4.93 1.41 1.41" /><path d="m17.66 17.66 1.41 1.41" /><path d="M2 12h2" /><path d="M20 12h2" /><path d="m6.34 17.66-1.41 1.41" /><path d="m19.07 4.93-1.41 1.41" />
-            </svg>
-          </button>
+
 
           {/* Wrapper for Desktop CTA + Mobile Hamburger */}
           <div className="flex items-center gap-3">
@@ -250,40 +250,101 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
             <div className="hidden md:block">
               <button
                 onClick={onContactClick}
-                className="group relative flex items-center active:scale-95 transition-transform duration-200"
+                aria-label="Contact us"
+                className="
+        group relative flex items-center
+        focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
+        active:scale-[0.98] transition-transform duration-200
+      "
               >
-                <div
-                  ref={ctaTextRef}
-                  className="bg-cta-gradient group-hover:brightness-110 text-white rounded-full flex items-center font-bold text-sm relative z-20 transition-all duration-500 shadow-lg"
+                {/* Text pill */}
+                <span
+                  className="
+          bg-cta-gradient text-white
+          h-11 px-6
+          rounded-full
+          flex items-center justify-center
+          font-semibold text-sm
+          relative z-20
+          shadow-md
+          transition-all duration-300
+          group-hover:brightness-110
+        "
                 >
-                  Let's talk
-                </div>
+                  Let’s talk
+                </span>
 
-                <div
-                  ref={ctaIconRef}
-                  className="bg-cta-gradient group-hover:brightness-110 rounded-full flex items-center justify-center relative z-10 -ml-4 group-hover:ml-2 transition-all duration-500 ease-spring"
+                {/* Icon pill */}
+                <span
+                  className="
+          bg-cta-gradient
+          h-11 w-11
+          rounded-full
+          flex items-center justify-center
+          relative z-10
+          ml-[-0.75rem]
+          transition-all duration-300 ease-out
+          group-hover:ml-2
+          group-hover:brightness-110
+        "
                 >
-                  <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+                  <span
+                    className="
+            w-7 h-7
+            rounded-full
+            bg-black/5
+            flex items-center justify-center
+            transition-colors
+            group-hover:bg-black/10
+          "
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
                     </svg>
-                  </div>
-                </div>
+                  </span>
+                </span>
               </button>
             </div>
 
             {/* Mobile Hamburger */}
             <button
-              className="md:hidden flex items-center justify-center p-2 text-white/80 hover:text-white transition-colors relative"
+              aria-label="Toggle menu"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="
+      md:hidden
+      w-10 h-10
+      flex items-center justify-center
+      text-white/80 hover:text-white
+      transition-colors
+      focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
+    "
             >
               {isMobileMenuOpen ? (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="18" y1="6" x2="6" y2="18" />
+                  <line x1="6" y1="6" x2="18" y2="18" />
+                </svg>
               ) : (
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <line x1="3" y1="12" x2="21" y2="12" />
+                  <line x1="3" y1="6" x2="21" y2="6" />
+                  <line x1="3" y1="18" x2="21" y2="18" />
+                </svg>
               )}
             </button>
           </div>
+
         </div>
 
         {/* Center Section: Navigation */}
@@ -299,14 +360,14 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
           <a
             href="#work"
             onClick={(e) => scrollToSection(e, 'work')}
-            className="text-sm font-bold text-white/80 hover:text-white transition-colors no-underline px-4 py-2.5 rounded-full hover:bg-white/5 transition-all tracking-tight"
+            className="text-sm font-bold text-white/80 hover:text-white no-underline px-4 py-2.5 rounded-full hover:bg-white/5 transition-all tracking-tight"
           >
             Our Work
           </a>
           <a
             href="#about"
             onClick={(e) => scrollToSection(e, 'about')}
-            className="text-sm font-bold text-white/80 hover:text-white transition-colors no-underline px-4 py-2.5 rounded-full hover:bg-white/5 transition-all tracking-tight"
+            className="text-sm font-bold text-white/80 hover:text-white no-underline px-4 py-2.5 rounded-full hover:bg-white/5 transition-all tracking-tight"
           >
             Our Team
           </a>
@@ -315,30 +376,81 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
         {/* Slide-Down Menu - Outside Header Pill but inside Container */}
       </header>
 
-      {/* Dropdown Menu Container */}
       <div
-        className={`absolute top-[calc(100%+8px)] w-[90%] md:hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top ${isMobileMenuOpen ? 'opacity-100 scale-100 translate-y-0' : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'}`}
+        className={`absolute top-[calc(100%+8px)] w-[90%] md:hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top ${isMobileMenuOpen ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto' : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'}`}
       >
-        <div className="bg-[#111]/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-6 shadow-2xl flex flex-col gap-2">
-          <a href="#services" onClick={(e) => { scrollToSection(e, 'services'); setIsMobileMenuOpen(false); }} className="px-6 py-4 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Services</a>
-          <a href="#work" onClick={(e) => { scrollToSection(e, 'work'); setIsMobileMenuOpen(false); }} className="px-6 py-4 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Work</a>
-          <a href="#about" onClick={(e) => { scrollToSection(e, 'about'); setIsMobileMenuOpen(false); }} className="px-6 py-4 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Team</a>
+        <div className="bg-[#111]/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-4 shadow-2xl flex flex-col">
+          <a href="#services" onClick={(e) => { scrollToSection(e, 'services'); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Services</a>
+          <a href="#work" onClick={(e) => { scrollToSection(e, 'work'); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Work</a>
+          <a href="#about" onClick={(e) => { scrollToSection(e, 'about'); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Team</a>
           <div className="h-[1px] bg-white/5 my-2"></div>
           <button
             onClick={() => { onContactClick(); setIsMobileMenuOpen(false); }}
-            className="group relative flex items-center justify-center pt-2 active:scale-95 transition-transform duration-200"
+            aria-label="Contact us"
+            className="
+              group relative flex items-center justify-center pt-2
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
+              active:scale-[0.98] transition-transform duration-200
+            "
           >
-            <div className="bg-cta-gradient group-hover:brightness-110 text-white h-11 px-6 rounded-full flex items-center font-bold text-sm relative z-20 transition-all duration-500 shadow-lg justify-center">
-              Let's talk
-            </div>
+            {/* Text pill */}
+            <span
+              className="
+                bg-cta-gradient text-white
+                h-11 px-8
+                rounded-full
+                flex items-center justify-center
+                font-semibold text-sm
+                relative z-20
+                shadow-lg
+                transition-all duration-300
+                group-hover:brightness-110
+              "
+            >
+              Let’s talk
+            </span>
 
-            <div className="bg-cta-gradient group-hover:brightness-110 h-11 w-11 rounded-full flex items-center justify-center relative z-10 -ml-4 group-hover:ml-2 transition-all duration-500 ease-spring">
-              <div className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center group-hover:bg-black/10 transition-colors">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+            {/* Icon pill */}
+            <span
+              className="
+                bg-cta-gradient
+                h-11 w-11
+                rounded-full
+                flex items-center justify-center
+                relative z-10
+                ml-[-0.75rem]
+                transition-all duration-300 ease-out
+                group-hover:ml-2
+                group-hover:brightness-110
+                shadow-lg
+              "
+            >
+              <span
+                className="
+                  w-7 h-7
+                  rounded-full
+                  bg-black/5
+                  flex items-center justify-center
+                  transition-colors
+                  group-hover:bg-black/10
+                "
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M7 17L17 7" />
+                  <path d="M7 7h10v10" />
                 </svg>
-              </div>
-            </div>
+              </span>
+            </span>
           </button>
         </div>
       </div>

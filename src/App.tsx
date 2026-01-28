@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
 import TeamModal from './components/TeamModal';
 import ServicesModal from './components/ServicesModal';
+import PortfolioModal from './components/PortfolioModal';
 import ClientLogos from './components/ClientLogos';
 
 const App: React.FC = () => {
@@ -20,6 +21,8 @@ const App: React.FC = () => {
   const [isTeamModalOpen, setIsTeamModalOpen] = useState(false);
   const [isServicesModalOpen, setIsServicesModalOpen] = useState(false);
   const [activeServiceIndex, setActiveServiceIndex] = useState<number>(0);
+  const [isPortfolioModalOpen, setIsPortfolioModalOpen] = useState(false);
+  const [selectedImageUrl, setSelectedImageUrl] = useState('');
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -33,6 +36,12 @@ const App: React.FC = () => {
   };
   const closeServicesModal = () => setIsServicesModalOpen(false);
 
+  const openPortfolioModal = (imageUrl: string) => {
+    setSelectedImageUrl(imageUrl);
+    setIsPortfolioModalOpen(true);
+  };
+  const closePortfolioModal = () => setIsPortfolioModalOpen(false);
+
   return (
     <div className="min-h-screen bg-black text-white selection:bg-purple-500/30">
       <Header onContactClick={openModal} />
@@ -41,7 +50,7 @@ const App: React.FC = () => {
         <ClientLogos />
         <About onMeetTeamClick={openTeamModal} />
         <Services onSeeAllClick={openServicesModal} />
-        <Portfolio />
+        <Portfolio onImageClick={openPortfolioModal} />
         <Testimonials />
         <Process />
         <CTA onContactClick={openModal} />
@@ -55,6 +64,11 @@ const App: React.FC = () => {
         onClose={closeServicesModal}
         onGetStarted={openModal}
         initialIndex={activeServiceIndex}
+      />
+      <PortfolioModal
+        isOpen={isPortfolioModalOpen}
+        onClose={closePortfolioModal}
+        imageUrl={selectedImageUrl}
       />
       <Toaster
         position="bottom-right"

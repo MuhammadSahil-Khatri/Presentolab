@@ -23,17 +23,29 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
+  // Back button handling
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      // Push state when modal opens
+      window.history.pushState({ modal: 'contact' }, '', window.location.href);
       setTimeout(() => setIsAnimating(true), 10);
-    } else {
-      document.body.style.overflow = 'unset';
-      setIsAnimating(false);
-      // Reset form on close if needed, or keep state
-      setErrors({});
+
+      const handlePopState = () => {
+        // When back button is pressed, close modal
+        onClose();
+      };
+
+      window.addEventListener('popstate', handlePopState);
+
+      return () => {
+        document.body.style.overflow = 'unset';
+        setIsAnimating(false);
+        setErrors({});
+        window.removeEventListener('popstate', handlePopState);
+      };
     }
-  }, [isOpen]);
+  }, [isOpen, onClose]); // Note: onClose needs to be stable or this might re-run
 
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
@@ -157,19 +169,18 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={`fixed inset-0 z-[100] flex items-center justify-center p-4 transition-all duration-500 ${isAnimating ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+    <div className={`fixed inset-0 z-[100] flex items-center justify-center p-2 transition-all duration-500 ${isAnimating ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-500"
         onClick={onClose}
       />
-
       {/* Modal Content */}
-      <div className={`relative bg-white text-black w-full max-w-[800px] rounded-[2.5rem] overflow-hidden shadow-2xl transition-all duration-500 transform ${isAnimating ? 'scale-100 translate-y-0' : 'scale-95 translate-y-8'}`}>
+      <div className={`relative bg-white text-black w-full max-w-[800px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 transform ${isAnimating ? 'scale-100 translate-y-0' : 'scale-95 translate-y-8'} max-h-[90vh] overflow-y-auto`}>
 
         {/* Close Button */}
         <button
-          onClick={onClose}
+          onClick={() => window.history.back()}
           className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 text-black/40 hover:text-black transition-colors z-50"
           aria-label="Close modal"
         >
@@ -181,13 +192,13 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
         <div className="p-6 md:p-8">
           {/* Header (Team Section) */}
-          <div className="flex items-start gap-4 mb-6 relative z-10">
+          <div className="flex items-start gap-4 mb-4 relative z-10">
             <div className="flex -space-x-3">
               <img src="https://i.pravatar.cc/150?u=sarah" alt="Expert 1" className="w-10 h-10 rounded-full border-[3px] border-white shadow-lg object-cover" />
               <img src="https://i.pravatar.cc/150?u=atif" alt="Expert 2" className="w-10 h-10 rounded-full border-[3px] border-white shadow-lg object-cover" />
             </div>
             <div>
-              <h2 className="text-xl md:text-2xl font-black tracking-tight leading-tight">Tell us what you are looking for.</h2>
+              <h2 className="text-lg md:text-2xl font-black tracking-tight leading-tight">Tell us what you are looking for.</h2>
               <p className="text-black/50 text-sm font-medium mt-0.5">We will shape your project strategy</p>
             </div>
           </div>
@@ -266,26 +277,77 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center gap-6 pt-4">
+            <div className="flex flex-col md:flex-row items-center gap-6">
               {/* Button */}
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className={`group relative flex items-center transition-transform duration-200 ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'active:scale-95'}`}
+                aria-label={isSubmitting ? 'Sending message' : 'Send message'}
+                className={`
+                  group relative flex items-center
+                  focus:outline-none focus-visible:ring-2 focus-visible:ring-[#BE00FF]/40
+                  transition-transform duration-200
+                  ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'active:scale-[0.98]'}
+                `}
               >
-                {/* Text Pill */}
-                <div className="bg-cta-gradient group-hover:brightness-110 text-white h-12 px-8 rounded-full flex items-center font-bold text-base relative z-20 transition-all duration-500 shadow-lg shadow-[#BE00FF]/20">
+                {/* Text pill */}
+                <span
+                  className="
+                    bg-cta-gradient text-white
+                    h-11 px-8
+                    rounded-full
+                    flex items-center justify-center
+                    font-semibold text-sm
+                    relative z-20
+                    shadow-lg shadow-[#BE00FF]/20
+                    transition-all duration-300
+                    group-hover:brightness-110
+                  "
+                >
                   {isSubmitting ? 'Sending...' : 'Let’s Talk'}
-                </div>
+                </span>
 
-                {/* Icon Bubble */}
-                <div className="bg-cta-gradient group-hover:brightness-110 h-12 w-12 rounded-full flex items-center justify-center relative z-10 -ml-4 group-hover:ml-2 transition-all duration-500 ease-spring shadow-lg shadow-[#BE00FF]/20">
-                  <div className="w-8 h-8 rounded-full bg-black/10 flex items-center justify-center group-hover:bg-black/20 transition-colors">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
-                      <path d="M7 17L17 7" /><path d="M7 7h10v10" />
+                {/* Icon pill */}
+                <span
+                  className="
+                    bg-cta-gradient
+                    h-11 w-11
+                    rounded-full
+                    flex items-center justify-center
+                    relative z-10
+                    ml-[-0.75rem]
+                    transition-all duration-300 ease-out
+                    group-hover:ml-2
+                    group-hover:brightness-110
+                    shadow-lg shadow-[#BE00FF]/20
+                  "
+                >
+                  <span
+                    className="
+                      w-7 h-7
+                      rounded-full
+                      bg-black/5
+                      flex items-center justify-center
+                      transition-colors
+                      group-hover:bg-black/10
+                    "
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M7 17L17 7" />
+                      <path d="M7 7h10v10" />
                     </svg>
-                  </div>
-                </div>
+                  </span>
+                </span>
               </button>
 
               {/* Footer Text */}

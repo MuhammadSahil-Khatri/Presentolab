@@ -17,12 +17,23 @@ const ServicesModal: React.FC<ServicesModalProps> = ({ isOpen, onClose, onGetSta
     if (isOpen) {
       setExpandedIndex(initialIndex);
       document.body.style.overflow = 'hidden';
+      // Push state when modal opens
+      window.history.pushState({ modal: 'services' }, '', window.location.href);
       setTimeout(() => setIsAnimating(true), 10);
-    } else {
-      document.body.style.overflow = 'unset';
-      setIsAnimating(false);
+
+      const handlePopState = () => {
+        onClose();
+      };
+
+      window.addEventListener('popstate', handlePopState);
+
+      return () => {
+        document.body.style.overflow = 'unset';
+        setIsAnimating(false);
+        window.removeEventListener('popstate', handlePopState);
+      };
     }
-  }, [isOpen, initialIndex]);
+  }, [isOpen, initialIndex, onClose]);
 
   if (!isOpen) return null;
 
@@ -35,7 +46,7 @@ const ServicesModal: React.FC<ServicesModalProps> = ({ isOpen, onClose, onGetSta
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/40 backdrop-blur-md"
-        onClick={onClose}
+        onClick={() => window.history.back()}
       />
 
       {/* Modal Content - White Mode as requested */}
@@ -43,7 +54,7 @@ const ServicesModal: React.FC<ServicesModalProps> = ({ isOpen, onClose, onGetSta
 
         {/* Close Button */}
         <button
-          onClick={onClose}
+          onClick={() => window.history.back()}
           className="absolute top-8 right-8 w-11 h-11 flex items-center justify-center rounded-full hover:bg-black/5 text-black/40 hover:text-black transition-colors z-50"
           aria-label="Close modal"
         >
