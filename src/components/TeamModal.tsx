@@ -13,7 +13,7 @@ const TeamModal: React.FC<TeamModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      window.history.pushState({ modal: 'team' }, '', window.location.href);
+      window.history.pushState({ modal: true }, '', window.location.href);
       setTimeout(() => setIsAnimating(true), 10);
 
       const handlePopState = () => {

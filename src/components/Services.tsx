@@ -28,7 +28,7 @@ const Services: React.FC<ServicesProps> = ({ onSeeAllClick }) => {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="flex flex-col items-center justify-center my-16 md:my-20 bg-black overflow-hidden">
+    <section id="services" ref={sectionRef} className="flex flex-col items-center justify-center md:my-20 bg-black overflow-hidden">
       <div className="max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-6 ">
@@ -39,13 +39,14 @@ const Services: React.FC<ServicesProps> = ({ onSeeAllClick }) => {
 
         {/* Service List */}
         <HoverIcon
-          className="group border-b border-zinc-900/50"
+          className="border-b border-zinc-900/50"
         >
           <div className="flex flex-col">
             {SERVICES.map((service, idx) => (
 
               <div
-                className="service-item relative py-8 px-5 md:py-16 flex flex-col lg:flex-row lg:items-center justify-between transition-all duration-700 overflow-hidden opacity-0 translate-y-12"
+                key={idx}
+                className="service-item group relative py-8 px-5 md:py-16 flex flex-col lg:flex-row lg:items-center justify-between transition-all duration-700 overflow-hidden opacity-0 translate-y-12"
                 style={{ transitionDelay: `${idx * 150}ms` }}
                 onClick={() => onSeeAllClick?.(idx)}
               >

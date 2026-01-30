@@ -72,7 +72,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onImageClick }) => {
   };
 
   return (
-    <section id="work" className="overflow-hidden">
+    <section id="work" className="overflow-hidden mt-10">
       <div className="max-w-7xl mx-auto px-6 mb-24 text-center">
         <h2 className="text-3xl md:text-6xl font-[900] mb-8 tracking-tighter text-white uppercase leading-[0.9]">
           Work We're Proud of

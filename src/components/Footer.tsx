@@ -22,7 +22,14 @@ const Footer: React.FC<FooterProps> = ({ onServiceClick }) => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:mb-24">
           <div className="col-span-1 md:col-span-2">
             <div className="mb-10">
-              <a href="/" className="inline-block">
+              <a
+                href="/"
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }}
+                className="inline-block"
+              >
                 <img src={logoImage} alt="PresentoLab" className="h-20 w-auto" />
               </a>
             </div>

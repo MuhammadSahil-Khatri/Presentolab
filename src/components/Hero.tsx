@@ -11,7 +11,6 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', `#${id}`);
     }
   };
 

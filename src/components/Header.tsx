@@ -219,7 +219,7 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      window.history.pushState(null, '', `#${id}`);
+      // Not pushing state to history to ensure "Back" exits the site immediately if no modal is open
     }
   };
 
@@ -235,7 +235,13 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
       >
         {/* Left Section: Logo */}
         <div ref={logoWrapperRef} className="flex-shrink-0 origin-left ml-2">
-          <a href="/">
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+          >
             <img src={logoImage} alt="PresentoLab" className="h-[4.5rem] w-auto cursor-pointer" />
           </a>
         </div>

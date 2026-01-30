@@ -41,8 +41,7 @@ const HoverIcon: React.FC<HoverIconProps> = ({
     return (
         <div
             ref={containerRef}
-            className={`relative overflow-hidden ${className}`}
-            style={{ cursor: "none" }} // Hide default cursor
+            className={`relative overflow-hidden cursor-default md:cursor-none ${className}`}
             onMouseMove={handleMouseMove}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
@@ -53,6 +52,7 @@ const HoverIcon: React.FC<HoverIconProps> = ({
                 {isHovered && (
                     <motion.div
                         key="icon"
+                        className="hidden md:flex"
                         style={{
                             position: "absolute",
                             top: mousePos.y - size / 2,
@@ -61,7 +61,6 @@ const HoverIcon: React.FC<HoverIconProps> = ({
                             height: size,
                             backgroundColor: circleColor,
                             borderRadius: "50%",
-                            display: "flex",
                             alignItems: "center",
                             justifyContent: "center",
                             pointerEvents: "none",

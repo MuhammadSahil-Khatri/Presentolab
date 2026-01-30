@@ -44,7 +44,7 @@ const About: React.FC<AboutProps> = ({ onMeetTeamClick }) => {
         </div>
 
         {/* Company Logos Section */}
-        <div className="flex flex-nowrap items-center justify-start md:justify-center gap-8 md:gap-32 w-full overflow-x-auto no-scrollbar px-4 pb-4">
+        <div className="hidden flex-nowrap items-center justify-center md:justify-center gap-8 md:gap-32 w-full overflow-hidden no-scrollbar px-4 pb-4">
           {/* LinkedIn */}
           <div className="flex flex-col items-center gap-6 group cursor-pointer transition-all">
             <div className="relative flex items-center justify-center w-20 h-20">

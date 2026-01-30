@@ -14,7 +14,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ isOpen, onClose, imageU
         if (isOpen) {
             document.body.style.overflow = 'hidden';
             // Push state for back button support
-            window.history.pushState({ modal: 'portfolio' }, '');
+            window.history.pushState({ modal: true }, '');
         } else {
             document.body.style.overflow = '';
         }
@@ -42,7 +42,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ isOpen, onClose, imageU
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    onClick={onClose}
+                    onClick={() => window.history.back()}
                     className="absolute inset-0 bg-black/90 backdrop-blur-sm cursor-zoom-out"
                 />
 
@@ -51,7 +51,7 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ isOpen, onClose, imageU
                     initial={{ opacity: 0, scale: 0.5 }}
                     animate={{ opacity: 1, scale: 1 }}
                     exit={{ opacity: 0, scale: 0.5 }}
-                    onClick={onClose}
+                    onClick={() => window.history.back()}
                     className="absolute top-6 right-6 z-[110] p-2 bg-white/10 hover:bg-white/20 text-white rounded-full transition-colors"
                 >
                     <X size={24} />

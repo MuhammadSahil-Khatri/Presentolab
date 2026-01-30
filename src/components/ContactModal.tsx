@@ -28,7 +28,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
       // Push state when modal opens
-      window.history.pushState({ modal: 'contact' }, '', window.location.href);
+      window.history.pushState({ modal: true }, '', window.location.href);
       setTimeout(() => setIsAnimating(true), 10);
 
       const handlePopState = () => {
@@ -169,14 +169,14 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={`fixed inset-0 z-[100] flex items-center justify-center p-2 transition-all duration-500 ${isAnimating ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+    <div className={`fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-6 md:p-8 transition-all duration-500 opacity-100 ${isAnimating ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-500"
-        onClick={onClose}
+        onClick={() => window.history.back()}
       />
       {/* Modal Content */}
-      <div className={`relative bg-white text-black w-full max-w-[800px] rounded-3xl overflow-hidden shadow-2xl transition-all duration-500 transform ${isAnimating ? 'scale-100 translate-y-0' : 'scale-95 translate-y-8'} max-h-[90vh] overflow-y-auto`}>
+      <div className={`relative bg-white text-black sm:max-w-[780px] h-[92vh] sm:max-h-[85vh] sm:h-auto rounded-2xl overflow-y-auto shadow-2xl ${isAnimating ? 'scale-100 translate-y-0' : 'scale-95 translate-y-8'} max-h-[90vh] overflow-y-auto`}>
 
         {/* Close Button */}
         <button
@@ -192,7 +192,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
         <div className="p-6 md:p-8">
           {/* Header (Team Section) */}
-          <div className="flex items-start gap-4 mb-4 relative z-10">
+          <div className="flex items-start flex-col md:flex-row gap-4 md:mb-4 mb-8 relative z-10">
             <div className="flex -space-x-3">
               <img src="https://i.pravatar.cc/150?u=sarah" alt="Expert 1" className="w-10 h-10 rounded-full border-[3px] border-white shadow-lg object-cover" />
               <img src="https://i.pravatar.cc/150?u=atif" alt="Expert 2" className="w-10 h-10 rounded-full border-[3px] border-white shadow-lg object-cover" />
