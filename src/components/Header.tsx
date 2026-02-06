@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import gsap from 'gsap';
-import logoImage from '../assets/PresentoLab_Logo.png';
+import { motion } from 'framer-motion';
+
 
 interface HeaderProps {
   onContactClick: () => void;
@@ -13,6 +15,7 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
   const ctaTextRef = useRef<HTMLDivElement>(null);
   const ctaIconRef = useRef<HTMLDivElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+  const [activeSection, setActiveSection] = React.useState<string>('');
 
   const lastScrollY = useRef(0);
   const isCompact = useRef(false);
@@ -43,7 +46,30 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
     gsap.set(ctaTextRef.current, { height: "2.75rem", paddingLeft: "1.5rem", paddingRight: "1.5rem" });
     gsap.set(ctaIconRef.current, { height: "2.75rem", width: "2.75rem" });
 
+    // Intersection Observer for scroll spy
+    const sections = ['services', 'work', 'about', 'testimonials', 'contact'];
+    const observerOptions = {
+      root: null,
+      rootMargin: '-40% 0px -40% 0px',
+      threshold: 0
+    };
+
+    const observerCallback = (entries: IntersectionObserverEntry[]) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          setActiveSection(entry.target.id);
+        }
+      });
+    };
+
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
+
     const handleScroll = () => {
+      // ... existing scroll logic ...
       const currentScrollY = window.scrollY;
       const viewportHeight = window.innerHeight;
 
@@ -214,14 +240,34 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
     e.preventDefault();
+
+    if (location.pathname !== '/') {
+      window.location.href = '/#' + id;
+      return;
+    }
+
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
-      // Not pushing state to history to ensure "Back" exits the site immediately if no modal is open
     }
   };
+
+  useEffect(() => {
+    if (location.hash && location.pathname === '/') {
+      const id = location.hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
+    }
+  }, [location]);
 
   return (
     <div
@@ -238,11 +284,13 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
           <a
             href="/"
             onClick={(e) => {
-              e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              if (location.pathname === '/') {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
             }}
           >
-            <img src={logoImage} alt="PresentoLab" className="h-[4.5rem] w-auto cursor-pointer" />
+            <img src="/PresentoLab_Logo.png" alt="PresentoLab" className="h-[4.5rem] w-auto cursor-pointer" />
           </a>
         </div>
 
@@ -354,29 +402,36 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
         </div>
 
         {/* Center Section: Navigation */}
-        <nav className="hidden md:flex items-center gap-4 lg:gap-8 absolute left-1/2 -translate-x-1/2">
-          <a
-            href="#services"
-            onClick={(e) => scrollToSection(e, 'services')}
-            className="relative group flex items-center gap-1.5 cursor-pointer no-underline px-4 py-2.5 rounded-full hover:bg-white/5 transition-all"
-          >
-            <span className="text-sm font-bold text-white/80 group-hover:text-white transition-colors tracking-tight">Services</span>
+        <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
+          {[
+            { label: 'Our Services', path: '/#services', id: 'services' },
+            { label: 'Our Work', path: '/work' },
+            { label: 'Our Packages', path: '/pricing' },
+            { label: 'Our Team', path: '/#about', id: 'about' }
+          ].map((item) => {
+            const isExternal = !item.path.startsWith('/#');
+            const isActive = isExternal
+              ? location.pathname === item.path
+              : (location.pathname === '/' && activeSection === item.id);
 
-          </a>
-          <a
-            href="#work"
-            onClick={(e) => scrollToSection(e, 'work')}
-            className="text-sm font-bold text-white/80 hover:text-white no-underline px-4 py-2.5 rounded-full hover:bg-white/5 transition-all tracking-tight"
-          >
-            Our Work
-          </a>
-          <a
-            href="#about"
-            onClick={(e) => scrollToSection(e, 'about')}
-            className="text-sm font-bold text-white/80 hover:text-white no-underline px-4 py-2.5 rounded-full hover:bg-white/5 transition-all tracking-tight"
-          >
-            Our Team
-          </a>
+            return (
+              <a
+                key={item.label}
+                href={item.path}
+                onClick={(e) => !isExternal && scrollToSection(e, item.id!)}
+                className={`relative group px-4 py-2.5 rounded-full transition-all tracking-tight text-sm font-bold ${isActive ? 'text-gray-300' : 'text-white/80 hover:text-white'}`}
+              >
+                {item.label}
+                {isActive && (
+                  <motion.div
+                    layoutId="headerActiveTab"
+                    className="absolute bottom-0 left-[14px] right-[14px] h-[2px] bg-cta-gradient z-10"
+                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                  />
+                )}
+              </a>
+            );
+          })}
         </nav>
 
         {/* Slide-Down Menu - Outside Header Pill but inside Container */}
@@ -386,8 +441,9 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
         className={`absolute top-[calc(100%+8px)] w-[90%] md:hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top ${isMobileMenuOpen ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto' : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'}`}
       >
         <div className="bg-[#111]/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-4 shadow-2xl flex flex-col">
-          <a href="#services" onClick={(e) => { scrollToSection(e, 'services'); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Services</a>
-          <a href="#work" onClick={(e) => { scrollToSection(e, 'work'); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Work</a>
+          <a href="#services" onClick={(e) => { scrollToSection(e, 'services'); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Services</a>
+          <a href="/work" onClick={() => setIsMobileMenuOpen(false)} className={`px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold transition-colors ${location.pathname === '/work' ? 'text-white' : 'text-white/90 hover:text-white'}`}>Our Work</a>
+          <a href="/pricing" onClick={() => setIsMobileMenuOpen(false)} className={`px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold transition-colors ${location.pathname === '/pricing' ? 'text-white' : 'text-white/90 hover:text-white'}`}>Our Packages</a>
           <a href="#about" onClick={(e) => { scrollToSection(e, 'about'); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Team</a>
           <div className="h-[1px] bg-white/5 my-2"></div>
           <button

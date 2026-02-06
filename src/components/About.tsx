@@ -23,7 +23,7 @@ const About: React.FC<AboutProps> = ({ onMeetTeamClick }) => {
           </p>
 
           {/* Button */}
-          <div className="mb-10">
+          <div className="">
 
             <button
               onClick={onMeetTeamClick}

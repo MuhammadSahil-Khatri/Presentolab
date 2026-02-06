@@ -74,7 +74,7 @@ const Testimonials: React.FC = () => {
   };
 
   return (
-    <section className="pt-28 bg-black overflow-hidden relative">
+    <section className=" bg-black overflow-hidden relative">
       {/* Background Ambience */}
       <div className="absolute top-1/4 left-0 w-full h-[500px] bg-gradient-to-r from-purple-900/10 via-transparent to-orange-900/10 blur-[120px] pointer-events-none" />
 

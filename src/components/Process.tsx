@@ -50,7 +50,7 @@ const Process: React.FC = () => {
   const DESKTOP_PATH = "M -292 36 H 840 C 920 40 960 80 960 160 V 2023 C 963 2148 936 2296 1158 2306 H 4500";
 
   return (
-    <section id="process" className="bg-black overflow-hidden relative pb-52 pt-24 px-6 md:px-0">
+    <section id="process" className="bg-black overflow-hidden relative pb-48 md:pb-40 pt-24 px-6 md:px-0">
       <div className="max-w-5xl mx-auto flex flex-col items-center relative">
 
         {/* 1. Heading */}

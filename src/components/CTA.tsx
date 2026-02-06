@@ -8,7 +8,7 @@ interface CTAProps {
 const CTA: React.FC<CTAProps> = ({ onContactClick }) => {
   return (
     <section id="contact" className="px-6">
-      <div className="max-w-7xl mx-auto md:pt-10 pb-6 md:pb-12 text-center relative overflow-hidden">
+      <div className="max-w-5xl mx-auto pb-6 md:pb-12 text-center relative overflow-hidden">
         {/* Subtle Background Glows instead of solid box */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#FF5C00]/5 rounded-full blur-[120px]"></div>
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#BE00FF]/5 rounded-full blur-[120px]"></div>

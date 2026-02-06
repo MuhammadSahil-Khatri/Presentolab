@@ -1,17 +1,4 @@
-import { Service, PortfolioItem, ProcessStep } from './types';
-import acceronix from "./assets/Portfolio/acceronix.jpg";
-import adaminds from "./assets/Portfolio/adaminds.jpg";
-import applet from "./assets/Portfolio/applet.jpg";
-import farms from "./assets/Portfolio/farms.jpg";
-import harvest from "./assets/Portfolio/harvest.jpg";
-import marsfossil from "./assets/Portfolio/marsfossils.jpg";
-import mcg from "./assets/Portfolio/mcg.jpg";
-import medcare from "./assets/Portfolio/medcare.jpg";
-import nexatrade from "./assets/Portfolio/nexatrade.jpg";
-import strivesphere from "./assets/Portfolio/strivesphere.jpg";
-import thriftflex from "./assets/Portfolio/thriftflex.jpg";
-import voltamix from "./assets/Portfolio/voltamix.jpg";
-
+import { Service, ProcessStep } from './types';
 export const SERVICES: Service[] = [
   {
     title: "Pitch Deck & Presentation Design",
@@ -84,21 +71,6 @@ export const SERVICES: Service[] = [
 ];
 
 
-export const PORTFOLIO: PortfolioItem[] = [
-  { id: '1', title: 'Adaminds – AI Startup Deck', category: 'Pitch Deck', imageUrl: adaminds },
-  { id: '2', title: 'MedCare – Healthcare Corporate Presentation', category: 'Presentation', imageUrl: medcare },
-  { id: '3', title: 'NexaTrade – Real Estate Deck', category: 'Pitch Deck', imageUrl: nexatrade },
-  { id: '4', title: 'StriveSphere – Sports Brand Presentation', category: 'Presentation', imageUrl: strivesphere },
-  { id: '5', title: 'ThriftFlex – Consumer Brand Deck', category: 'Pitch Deck', imageUrl: thriftflex },
-  { id: '6', title: 'Acceronix – Technology Brand Identity', category: 'Brand Identity', imageUrl: acceronix },
-  { id: '7', title: 'Applet – SaaS Brand Identity', category: 'Branding', imageUrl: applet },
-  { id: '8', title: 'Farms – Agricultural Brand Identity', category: 'Brand Identity', imageUrl: farms },
-  { id: '9', title: 'Harvest – Agri-Business Brand Identity', category: 'Brand Identity', imageUrl: harvest },
-  { id: '10', title: 'MCG – Restaurant Brand Identity', category: 'Brand Identity', imageUrl: mcg },
-  { id: '11', title: 'Mars Fossil – AI Brand Identity', category: 'Brand Identity', imageUrl: marsfossil },
-  { id: '12', title: 'Voltamix – Scientific Brand Identity', category: 'Brand Identity', imageUrl: voltamix },
-];
-
 import step1 from './assets/Process_Icons/step-1.svg';
 import step2 from './assets/Process_Icons/step-2.svg';
 import step3 from './assets/Process_Icons/step-3.svg';
@@ -133,18 +105,16 @@ export const PROCESS: ProcessStep[] = [
   },
 ];
 
-import arkLogo from './assets/Partners_Logo/ark.png';
-import financeLogo from './assets/Partners_Logo/finance.png';
-import ladevLogo from './assets/Partners_Logo/ladev.png';
-import realEstateLogo from './assets/Partners_Logo/real_estate.png';
-import seshLogo from './assets/Partners_Logo/sesh.png';
-import soundmintLogo from './assets/Partners_Logo/soundmint.png';
-import thriftflexLogo from './assets/Partners_Logo/thriftflex.png';
-import tiktokLogo from './assets/Partners_Logo/tiktok.png';
-import zoltaLogo from './assets/Partners_Logo/zolta.png';
-
 export const CLIENT_LOGOS = [
-  arkLogo, financeLogo, ladevLogo, realEstateLogo, seshLogo, soundmintLogo, thriftflexLogo, tiktokLogo, zoltaLogo
+  '/Partners_Logo/ark.png',
+  '/Partners_Logo/finance.png',
+  '/Partners_Logo/ladev.png',
+  '/Partners_Logo/real_estate.png',
+  '/Partners_Logo/sesh.png',
+  '/Partners_Logo/soundmint.png',
+  '/Partners_Logo/thriftflex.png',
+  '/Partners_Logo/tiktok.png',
+  '/Partners_Logo/zolta.png'
 ];
 
 export const TESTIMONIALS = [

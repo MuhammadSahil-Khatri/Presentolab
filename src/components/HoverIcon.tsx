@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
 interface HoverIconProps {
@@ -21,6 +21,7 @@ const HoverIcon: React.FC<HoverIconProps> = ({
     const containerRef = useRef<HTMLDivElement>(null);
     const [isHovered, setIsHovered] = useState(false);
     const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+    const requestRef = useRef<number>();
 
     const handleMouseMove = (e: React.MouseEvent) => {
         if (!containerRef.current) return;
@@ -28,15 +29,25 @@ const HoverIcon: React.FC<HoverIconProps> = ({
         const rect = containerRef.current.getBoundingClientRect();
         const halfSize = size / 2;
 
-        let x = e.clientX - rect.left;
-        let y = e.clientY - rect.top;
+        const x = Math.max(halfSize, Math.min(e.clientX - rect.left, rect.width - halfSize));
+        const y = Math.max(halfSize, Math.min(e.clientY - rect.top, rect.height - halfSize));
 
-        // Clamp values so the icon stays inside the container
-        x = Math.max(halfSize, Math.min(x, rect.width - halfSize));
-        y = Math.max(halfSize, Math.min(y, rect.height - halfSize));
+        if (requestRef.current) {
+            cancelAnimationFrame(requestRef.current);
+        }
 
-        setMousePos({ x, y });
+        requestRef.current = requestAnimationFrame(() => {
+            setMousePos({ x, y });
+        });
     };
+
+    useEffect(() => {
+        return () => {
+            if (requestRef.current) {
+                cancelAnimationFrame(requestRef.current);
+            }
+        };
+    }, []);
 
     return (
         <div
@@ -55,8 +66,9 @@ const HoverIcon: React.FC<HoverIconProps> = ({
                         className="hidden md:flex"
                         style={{
                             position: "absolute",
-                            top: mousePos.y - size / 2,
-                            left: mousePos.x - size / 2,
+                            top: 0,
+                            left: 0,
+                            transform: `translate(${mousePos.x - size / 2}px, ${mousePos.y - size / 2}px)`,
                             width: size,
                             height: size,
                             backgroundColor: circleColor,

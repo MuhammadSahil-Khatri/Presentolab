@@ -15,7 +15,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
   };
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden bg-black pt-28 pb-5">
+    <section className="relative flex items-center justify-center overflow-hidden bg-black pt-28">
       {/* --- SUBTLE AMBIENT BACKGROUND --- */}
       <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
         {/* Subtle Ambient Glows */}
@@ -112,10 +112,16 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
           <a
             href="#work"
             onClick={(e) => scrollToSection(e, 'work')}
-            className="text-white/40 hover:text-white font-bold transition-all text-xs flex items-center gap-4 group uppercase tracking-[0.3em] px-6 py-4 rounded-full hover:bg-white/5"
+            className="text-white/40 hover:text-gray-300 font-bold transition-all text-xs flex flex-col items-center gap-1 group uppercase tracking-[0.3em] px-6 py-4 rounded-full relative"
           >
-            Explore Our Work
-            <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+            <div className="flex items-center gap-4">
+              Explore Our Work
+              <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+            </div>
+            {/* Sliding underline effect: Enter from left, exit to right */}
+            <div className="absolute bottom-3 left-6 right-6 h-[2px] overflow-hidden pointer-events-none">
+              <div className="w-full h-full bg-cta-gradient transition-transform duration-500 ease-in-out scale-x-0 group-hover:scale-x-100 origin-right group-hover:origin-left" />
+            </div>
           </a>
         </div>
       </div>

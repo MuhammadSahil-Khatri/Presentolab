@@ -1,20 +1,17 @@
 
 import React, { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Header from './components/Header';
-import Hero from './components/Hero';
-import About from './components/About';
-import Services from './components/Services';
-import Portfolio from './components/Portfolio';
-import Testimonials from './components/Testimonials';
-import Process from './components/Process';
-import CTA from './components/CTA';
 import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
 import TeamModal from './components/TeamModal';
 import ServicesModal from './components/ServicesModal';
 import PortfolioModal from './components/PortfolioModal';
-import ClientLogos from './components/ClientLogos';
+import Home from './pages/Home';
+import PricingPage from './pages/PricingPage';
+import PortfolioPage from './pages/PortfolioPage';
+import Loader from './components/Loader';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -23,6 +20,18 @@ const App: React.FC = () => {
   const [activeServiceIndex, setActiveServiceIndex] = useState<number>(0);
   const [isPortfolioModalOpen, setIsPortfolioModalOpen] = useState(false);
   const [selectedImageUrl, setSelectedImageUrl] = useState('');
+  const [isLoading, setIsLoading] = useState(true);
+
+  const location = useLocation();
+
+  React.useEffect(() => {
+    setIsLoading(true);
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 3000); // 3 seconds to experience the loader
+
+    return () => clearTimeout(timer);
+  }, [location.pathname]);
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -44,18 +53,31 @@ const App: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-black text-white selection:bg-purple-500/30">
-      <Header onContactClick={openModal} />
-      <main>
-        <Hero onContactClick={openModal} />
-        <ClientLogos />
-        <About onMeetTeamClick={openTeamModal} />
-        <Services onSeeAllClick={openServicesModal} />
-        <Portfolio onImageClick={openPortfolioModal} />
-        <Testimonials />
-        <Process />
-        <CTA onContactClick={openModal} />
-      </main>
-      <Footer onServiceClick={openServicesModal} />
+      {isLoading && (
+        <div className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center backdrop-blur-md ">
+          <Loader size={100} spacing={8} duration={1.2} />
+        </div>
+      )}
+      {!isLoading && (
+        <>
+          <Header onContactClick={openModal} />
+          <main>
+            <Routes>
+              <Route path="/" element={
+                <Home
+                  openModal={openModal}
+                  openTeamModal={openTeamModal}
+                  openServicesModal={openServicesModal}
+                  openPortfolioModal={openPortfolioModal}
+                />
+              } />
+              <Route path="/pricing" element={<PricingPage onContactClick={openModal} />} />
+              <Route path="/work" element={<PortfolioPage onContactClick={openModal} onImageClick={openPortfolioModal} />} />
+            </Routes>
+          </main>
+          <Footer onServiceClick={openServicesModal} />
+        </>
+      )}
 
       <ContactModal isOpen={isModalOpen} onClose={closeModal} />
       <TeamModal isOpen={isTeamModalOpen} onClose={closeTeamModal} />

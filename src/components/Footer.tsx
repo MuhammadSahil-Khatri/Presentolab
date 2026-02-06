@@ -1,7 +1,7 @@
-
 import React from 'react';
 import { Facebook, Twitter, Linkedin, Instagram, Dribbble } from 'lucide-react';
-import logoImage from '../assets/PresentoLab_Logo.png';
+import { Link, useLocation } from 'react-router-dom';
+
 import { SERVICES } from '../constants';
 
 interface FooterProps {
@@ -25,12 +25,14 @@ const Footer: React.FC<FooterProps> = ({ onServiceClick }) => {
               <a
                 href="/"
                 onClick={(e) => {
-                  e.preventDefault();
-                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                  if (location.pathname === '/') {
+                    e.preventDefault();
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                  }
                 }}
                 className="inline-block"
               >
-                <img src={logoImage} alt="PresentoLab" className="h-20 w-auto" />
+                <img src="/PresentoLab_Logo.png" alt="PresentoLab" className="h-20 w-auto" />
               </a>
             </div>
             <p className="text-gray-500 text-xl mb-12 max-w-md font-light leading-relaxed">
@@ -67,8 +69,10 @@ const Footer: React.FC<FooterProps> = ({ onServiceClick }) => {
           </div>
 
           <div>
-            <h4 className="text-white font-black mb-10 text-xl tracking-tighter">Get in Touch</h4>
+            <h4 className="text-white font-black mb-10 text-xl tracking-tighter">Quick Links</h4>
             <ul className="space-y-5 text-gray-500 font-medium">
+              <li><a href="/work" className="hover:text-[#FF5C00] transition-colors">Our Work</a></li>
+              <li><a href="/pricing" className="hover:text-[#FF5C00] transition-colors">Our Packages</a></li>
               <li><a href="mailto:info@presentolab.com" className="text-xl text-zinc-500 hover:text-[#9E00FF] transition-colors">info@presentolab.com</a></li>
               <li><a href="tel:+923472818480" className="hover:text-[#9E00FF] transition-colors">+92 347 2818480</a></li>
             </ul>

@@ -1,0 +1,153 @@
+
+import React, { useEffect } from 'react';
+import ClientLogos from '../components/ClientLogos';
+import CTA from '../components/CTA';
+import PricingTabs from '../components/PricingTabs';
+import Testimonials from '@/components/Testimonials';
+
+interface PricingPageProps {
+    onContactClick: () => void;
+}
+
+const PricingPage: React.FC<PricingPageProps> = ({ onContactClick }) => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
+    const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+        e.preventDefault();
+        window.location.href = '/#' + id;
+    };
+
+    return (
+        <div className="bg-black">
+            {/* Intro / Hero Section */}
+            <section className="relative md:pt-40 md:pb-6 pt-56 overflow-hidden px-2">
+                {/* Ambient background */}
+                <div className="absolute inset-0 pointer-events-none">
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vh] bg-[#FF5C00]/5 rounded-full blur-[160px] opacity-70"></div>
+                    <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-[#BE00FF]/5 rounded-full blur-[120px]"></div>
+                </div>
+
+                <div className="max-w-6xl mx-auto relative z-10 text-center">
+                    <h1 className="text-5xl md:text-8xl lg:text-9xl font-[900] tracking-tighter leading-[0.85] mb-8 md:mb-12 uppercase">
+                        Clear Pricing.<br />
+                        <span className="text-gradient-brand">Proven Results.</span>
+                    </h1>
+
+                    <p className="text-gray-400 text-lg md:text-3xl max-w-4xl mx-auto mb-12 font-light leading-relaxed">
+                        We specialize in presentation design, storytelling, and brand clarity.
+                        Our pricing is designed to provide maximum value for businesses at every stage of growth.
+                    </p>
+
+                    <div className="flex flex-col items-center justify-center gap-6 md:gap-10">
+                        <button
+                            onClick={onContactClick}
+                            aria-label="Contact us"
+                            className="
+              group relative flex items-center
+              focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
+              active:scale-[0.98] transition-transform duration-200
+            "
+                        >
+                            {/* Text pill */}
+                            <span
+                                className="
+                bg-cta-gradient text-white
+                h-11 px-6
+                rounded-full
+                flex items-center justify-center
+                font-semibold text-sm
+                relative z-20
+                shadow-md
+                transition-all duration-300
+                group-hover:brightness-110
+              "
+                            >
+                                Let’s talk
+                            </span>
+
+                            {/* Icon pill */}
+                            <span
+                                className="
+                bg-cta-gradient
+                h-11 w-11
+                rounded-full
+                flex items-center justify-center
+                relative z-10
+                ml-[-0.75rem]
+                transition-all duration-300 ease-out
+                group-hover:ml-2
+                group-hover:brightness-110
+              "
+                            >
+                                <span
+                                    className="
+                  w-7 h-7
+                  rounded-full
+                  bg-black/5
+                  flex items-center justify-center
+                  transition-colors
+                  group-hover:bg-black/10
+                "
+                                >
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="14"
+                                        height="14"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        strokeWidth="2.5"
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                    >
+                                        <path d="M7 17L17 7" />
+                                        <path d="M7 7h10v10" />
+                                    </svg>
+                                </span>
+                            </span>
+                        </button>
+
+                        <a
+                            href="#work"
+                            onClick={(e) => scrollToSection(e, 'work')}
+                            className="text-white/40 hover:text-gray-300 font-bold transition-all text-xs flex flex-col items-center gap-1 group uppercase tracking-[0.3em] px-6 py-4 rounded-full relative"
+                        >
+                            <div className="flex items-center gap-4">
+                                Explore Our Work
+                                <span className="group-hover:translate-x-2 transition-transform duration-300">→</span>
+                            </div>
+                            {/* Sliding underline effect: Enter from left, exit to right */}
+                            <div className="absolute bottom-3 left-6 right-6 h-[2px] overflow-hidden pointer-events-none">
+                                <div className="w-full h-full bg-cta-gradient transition-transform duration-500 ease-in-out scale-x-0 group-hover:scale-x-100 origin-right group-hover:origin-left" />
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </section>
+
+            {/* Client Logos Section */}
+            <div className="my-10">
+                <ClientLogos />
+            </div>
+
+            {/* Pricing Tabs Section */}
+            <div className="py-5 relative">
+                <PricingTabs onContactClick={onContactClick} />
+            </div>
+
+            {/* Testimonials Section */}
+            <div className="py-5 md:pb-20">
+                <Testimonials />
+            </div>
+
+            {/* CTA Section */}
+            <div className="py-5 md:py-10">
+                <CTA onContactClick={onContactClick} />
+            </div>
+        </div>
+    );
+};
+
+export default PricingPage;

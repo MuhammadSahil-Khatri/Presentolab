@@ -28,7 +28,7 @@ const Services: React.FC<ServicesProps> = ({ onSeeAllClick }) => {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="flex flex-col items-center justify-center md:my-20 bg-black overflow-hidden">
+    <section id="services" ref={sectionRef} className="flex flex-col items-center justify-center bg-black overflow-hidden">
       <div className="max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-6 ">
