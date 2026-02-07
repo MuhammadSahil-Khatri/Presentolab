@@ -14,7 +14,28 @@ export const PORTFOLIO_DATA: PortfolioCategory[] = [
     {
         title: "Logo Design",
         description: "Minimalist and impactful logos that define your brand at first glance.",
-        items: []
+        items: [
+            { id: '1', title: 'Acceronix', imageUrl: '/portfolio/logo-design/acceronix.jpg' },
+            { id: '2', title: 'Costa Coral', imageUrl: '/portfolio/logo-design/costacoral.jpg' },
+            { id: '3', title: 'Call Hub', imageUrl: '/portfolio/logo-design/callhub.jpg' },
+            { id: '4', title: 'Voltamix', imageUrl: '/portfolio/logo-design/voltamix.jpg' },
+            { id: '5', title: 'Pure Kentucky Farms', imageUrl: '/portfolio/logo-design/purekentuckyfarms.jpg' },
+            { id: '6', title: '0Minute', imageUrl: '/portfolio/logo-design/0minute.jpg' },
+            { id: '7', title: 'Ugicify', imageUrl: '/portfolio/logo-design/ugicify.jpg' },
+            { id: '8', title: 'Wingworks', imageUrl: '/portfolio/logo-design/wingworks.jpg' },
+            { id: '9', title: 'NewsLeenks', imageUrl: '/portfolio/logo-design/newsleenks.jpg' },
+            { id: '10', title: 'Bulls Ring', imageUrl: '/portfolio/logo-design/bullsring.jpg' },
+            { id: '11', title: 'Al Habib', imageUrl: '/portfolio/logo-design/alhabib.jpg' },
+            { id: '12', title: 'Cofee', imageUrl: '/portfolio/logo-design/cofee.jpg' },
+            { id: '13', title: 'Vego', imageUrl: '/portfolio/logo-design/vego.jpg' },
+            { id: '14', title: 'Domer', imageUrl: '/portfolio/logo-design/domer.jpg' },
+            { id: '15', title: 'Edaly', imageUrl: '/portfolio/logo-design/edaly.jpg' },
+            { id: '16', title: 'Fabcare', imageUrl: '/portfolio/logo-design/fabcare.jpg' },
+            { id: '17', title: 'Arqaam', imageUrl: '/portfolio/logo-design/arqaam.jpg' },
+            { id: '18', title: 'Vintage', imageUrl: '/portfolio/logo-design/vintage.jpg' },
+
+
+        ]
     },
     {
         title: "Branding",
@@ -33,11 +54,6 @@ export const PORTFOLIO_DATA: PortfolioCategory[] = [
             { id: '11', title: 'Ugicify', imageUrl: '/portfolio/branding/ugicify.JPG' },
             { id: '12', title: 'Vira', imageUrl: '/portfolio/branding/vira.JPG' },
         ]
-    },
-    {
-        title: "Web/App Design",
-        description: "Modern UI/UX designs crafted for clarity, usability, and growth.",
-        items: []
     },
     {
         title: "Presentation Design",
@@ -60,15 +76,20 @@ export const PORTFOLIO_DATA: PortfolioCategory[] = [
             { id: '15', title: 'Dermaly ', imageUrl: '/portfolio/presentation-design/dermaly.jpg' },
         ]
     },
-
     {
-        title: "Web/App Development",
-        description: "Robust and scalable development solutions for modern digital products.",
+        title: "Web/App Design",
+        description: "Modern UI/UX designs crafted for clarity, usability, and growth.",
         items: []
     },
+
     {
         title: "Documentation Design",
         description: "Clear, structured, and visually polished documentation for complex information.",
+        items: []
+    },
+    {
+        title: "Web/App Development",
+        description: "Robust and scalable development solutions for modern digital products.",
         items: []
     }
 ];

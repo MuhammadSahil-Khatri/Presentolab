@@ -14,7 +14,7 @@ const CTA: React.FC<CTAProps> = ({ onContactClick }) => {
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-[#BE00FF]/5 rounded-full blur-[120px]"></div>
 
         <div className="relative z-10 flex flex-col items-center">
-          <h2 className="text-4xl md:text-9xl font-[900] mb-8 md:mb-12 leading-[1] tracking-tighter">
+          <h2 className="text-4xl md:text-9xl font-[900] mb-8 md:mb-12 leading-tight tracking-tighter">
             Ready To Transform Your Idea Into <span className="text-gradient-brand">Impact?</span>
           </h2>
           <p className="text-gray-400 text-xl md:text-3xl max-w-4xl mx-auto mb-8 font-light leading-relaxed">

@@ -115,7 +115,7 @@ const Process: React.FC = () => {
 
                 {/* Node Icon - Fixed Height */}
                 <div className="relative flex-shrink-0 w-16 h-16 rounded-full bg-cta-gradient z-20 transition-transform duration-500 group-hover:scale-110 flex items-center justify-center">
-                  <img src={step.icon} alt={step.title} className="w-6 h-6 md:w-8 md:h-8 object-contain brightness-0" />
+                  <img src={step.icon} alt={step.title} className="w-7 h-7 md:w-9 md:h-9 object-contain" />
                 </div>
 
                 {/* Text Content */}

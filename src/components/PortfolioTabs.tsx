@@ -68,7 +68,7 @@ const PortfolioRow: React.FC<{
 };
 
 const PortfolioTabs: React.FC<PortfolioTabsProps> = ({ onImageClick }) => {
-    const [activeTab, setActiveTab] = useState(3);
+    const [activeTab, setActiveTab] = useState(2);
 
     const activeCategory = PORTFOLIO_DATA[activeTab];
 
@@ -82,7 +82,7 @@ const PortfolioTabs: React.FC<PortfolioTabsProps> = ({ onImageClick }) => {
         <div className="max-w-full overflow-hidden">
             <div className="max-w-6xl mx-auto px-6">
                 {/* Navigation Tabs */}
-                <div className="flex flex-wrap justify-center border-b border-gray-100/10 mb-16 gap-x-5 gap-y-4">
+                <div className="flex flex-wrap flex-col items-center md:flex-row justify-center mb-16 gap-x-5 gap-y-4">
                     {PORTFOLIO_DATA.map((category, idx) => (
                         <button
                             key={idx}
@@ -95,7 +95,7 @@ const PortfolioTabs: React.FC<PortfolioTabsProps> = ({ onImageClick }) => {
                                 <>
                                     <motion.div
                                         layoutId="activeTab"
-                                        className="absolute bottom-0 left-[-1px] right-[-1px] h-[2px] bg-cta-gradient z-10"
+                                        className="absolute bottom-0 inset-x-0 h-[2px] bg-cta-gradient z-10"
                                         transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                                     />
                                 </>

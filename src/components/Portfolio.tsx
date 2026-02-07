@@ -14,7 +14,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ onImageClick }) => {
   return (
     <section id="work" className="overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-16 text-center">
-        <h2 className="text-3xl md:text-6xl font-[900] mb-8 tracking-tighter text-white uppercase leading-[0.9]">
+        <h2 className="text-3xl md:text-6xl font-[900] mb-8 tracking-tighter text-white uppercase leading-tight">
           Work We're Proud of
         </h2>
         <p className="text-gray-500 text-xl font-light max-w-2xl mx-auto">

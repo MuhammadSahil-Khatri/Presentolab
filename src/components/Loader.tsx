@@ -13,9 +13,9 @@ const LineScale: React.FC<LineScaleProps> = ({
     duration = 1.2,
     spacing = 8,
 }) => {
-    const bars = 8;
-    const colors = ["#FF5C00", "#FF007F", "#BE00FF", "#FF007F", "#FF5C00", "#FF5C00", "#FF007F", "#BE00FF"];
-    const beginTimes = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8];
+    const bars = 6;
+    const colors = ["#FEDB2B", "#F3742A", "#EE343A", "#C5549F", "#8E54A2", "#6B55A4"];
+    const beginTimes = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6];
 
     return (
         <div
@@ -43,7 +43,7 @@ const LineScale: React.FC<LineScaleProps> = ({
                     }}
                     style={{
                         backgroundColor: colors[i],
-                        width: (size - spacing * (bars - 1)) / (bars * 1.1),
+                        width: (size - spacing * (bars - 1)) / (bars * 1.99),
                         height: "100%",
                         borderRadius: 20, // More rounded like the image
                         originY: 0.5,

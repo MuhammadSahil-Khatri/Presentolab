@@ -11,7 +11,9 @@ const PricingTierCard: React.FC<PricingTierCardProps> = ({ tier, onctaClick }) =
     const finalPrice = calculateFinalPrice(tier.basePrice, tier.discountPercent);
 
     return (
-        <div className="relative cursor-pointer bg-white/5 backdrop-blur-2xl rounded-3xl p-8 flex flex-col h-full border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:bg-white/10 transition-all duration-500 group">
+        <div
+            className="relative cursor-pointer select-none bg-white/5 backdrop-blur-2xl rounded-3xl p-8 flex flex-col h-full border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:bg-white/10 transition-all duration-500 group"
+        >
             {/* Ribbon */}
             {tier.ribbon && (
                 <div className="absolute top-0 right-0 overflow-hidden w-40 h-40 rounded-tr-3xl">
@@ -55,6 +57,7 @@ const PricingTierCard: React.FC<PricingTierCardProps> = ({ tier, onctaClick }) =
                 <div className="flex justify-center">
                     <button
                         onClick={onctaClick}
+                        onPointerDown={(e) => e.stopPropagation()}
                         aria-label="Contact us"
                         className="
                             group/btn relative flex items-center
