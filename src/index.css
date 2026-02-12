@@ -20,6 +20,12 @@ body::-webkit-scrollbar,
 body {
     font-family: 'Inter', sans-serif;
     background-color: #000000;
+    background-image: url('/background.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    min-height: 100vh;
     color: #ffffff;
     scrollbar-width: none;
     /* Firefox */

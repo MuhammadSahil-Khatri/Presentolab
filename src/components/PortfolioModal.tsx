@@ -13,10 +13,12 @@ const PortfolioModal: React.FC<PortfolioModalProps> = ({ isOpen, onClose, imageU
     useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = 'hidden';
+            document.documentElement.style.overflow = 'hidden';
             // Push state for back button support
             window.history.pushState({ modal: true }, '');
         } else {
             document.body.style.overflow = '';
+            document.documentElement.style.overflow = '';
         }
 
         const handlePopState = () => {

@@ -15,7 +15,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
   };
 
   return (
-    <section className="relative flex items-center justify-center overflow-hidden bg-black pt-28">
+    <section className="relative flex items-center justify-center overflow-hidden pt-28">
       {/* --- SUBTLE AMBIENT BACKGROUND --- */}
       <div className="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
         {/* Subtle Ambient Glows */}
@@ -23,14 +23,11 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-64 bg-gradient-to-t from-[#FF5C00]/10 to-transparent blur-3xl"></div>
       </div>
 
-      {/* Atmospheric Vignette */}
-      <div className="absolute inset-0 pointer-events-none bg-gradient-to-b from-black via-transparent to-black z-10"></div>
-
       {/* --- CONTENT LAYER --- */}
       <div className="max-w-6xl mx-auto px-6 text-center relative z-20 pt-24 md:pt-12">
 
 
-        <h1 className="text-4xl md:text-6xl lg:text-9xl font-[900] leading-10 text-center mb-8 md:mb-12 lg:mb-16 tracking-tighter">
+        <h1 className="text-6xl md:text-8xl lg:text-9xl font-[900] leading-tight text-center mb-8 md:mb-12 lg:mb-16 tracking-tighter">
           FROM IDEA TO IMPACT.<br />
           <span className="text-gradient-brand">WE SHAPE YOUR STORY.</span>
         </h1>

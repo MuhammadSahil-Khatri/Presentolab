@@ -8,7 +8,7 @@ const TestimonialCard: React.FC<{
 }> = ({ item }) => {
   return (
     <motion.div
-      className="bg-zinc-900/40 backdrop-blur-xl p-8 md:p-10 rounded-[2.5rem] w-[300px] md:w-[450px] flex-shrink-0 flex flex-col justify-between min-h-[450px] md:min-h-[500px] relative overflow-hidden group hover:bg-zinc-900/60 transition-colors duration-500 border border-white/5 hover:border-white/10"
+      className="bg-zinc-900/40 backdrop-blur-xl p-8 rounded-3xl w-[85vw] md:w-[350px] flex-shrink-0 flex flex-col justify-between min-h-[550px] relative overflow-hidden group hover:bg-zinc-900/60 transition-colors duration-500 border border-white/5 hover:border-white/10"
       whileHover={{ y: -10 }}
       transition={{ duration: 0.4, ease: "easeOut" }}
     >
@@ -61,20 +61,28 @@ const Testimonials: React.FC = () => {
 
   const slideLeft = () => {
     const currentX = x.get();
-    const cardWidth = window.innerWidth < 768 ? 300 : 450;
+    const gap = 32; // gap-8
+    const cardWidth = window.innerWidth < 768
+      ? (window.innerWidth * 0.85) + gap
+      : 350 + gap;
+
     const newX = Math.min(currentX + cardWidth, 0);
     controls.start({ x: newX, transition: { type: "spring", stiffness: 300, damping: 30 } });
   };
 
   const slideRight = () => {
     const currentX = x.get();
-    const cardWidth = window.innerWidth < 768 ? 300 : 450;
+    const gap = 32; // gap-8
+    const cardWidth = window.innerWidth < 768
+      ? (window.innerWidth * 0.85) + gap
+      : 350 + gap;
+
     const newX = Math.max(currentX - cardWidth, -width);
     controls.start({ x: newX, transition: { type: "spring", stiffness: 300, damping: 30 } });
   };
 
   return (
-    <section className=" bg-black overflow-hidden relative">
+    <section className="overflow-hidden relative">
       {/* Background Ambience */}
       <div className="absolute top-1/4 left-0 w-full h-[500px] bg-gradient-to-r from-purple-900/10 via-transparent to-orange-900/10 blur-[120px] pointer-events-none" />
 
@@ -82,7 +90,7 @@ const Testimonials: React.FC = () => {
 
         {/* New Centered Header */}
         <div className="flex items-center justify-center w-full z-20 relative">
-          <h2 className="text-3xl md:text-6xl font-[900] mb-8 tracking-tighter text-white uppercase leading-[0.9] text-center">
+          <h2 className="text-5xl md:text-6xl font-[900] mb-8 tracking-tighter text-white uppercase leading-[0.9] text-center">
             Client Stories
           </h2>
         </div>

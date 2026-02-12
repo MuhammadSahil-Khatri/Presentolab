@@ -28,11 +28,11 @@ const Services: React.FC<ServicesProps> = ({ onSeeAllClick }) => {
   }, []);
 
   return (
-    <section id="services" ref={sectionRef} className="flex flex-col items-center justify-center bg-black overflow-hidden">
+    <section id="services" ref={sectionRef} className="flex flex-col items-center justify-center overflow-hidden">
       <div className="max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-6 ">
-          <h2 className="text-3xl md:text-7xl font-[900] tracking-tighter text-white uppercase leading-[0.9]">
+          <h2 className="text-5xl md:text-7xl font-[900] tracking-tighter text-white uppercase leading-[0.9]">
             What We Do ?
           </h2>
         </div>

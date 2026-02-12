@@ -13,6 +13,7 @@ const TeamModal: React.FC<TeamModalProps> = ({ isOpen, onClose }) => {
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
+      document.documentElement.style.overflow = 'hidden';
       window.history.pushState({ modal: true }, '', window.location.href);
       setTimeout(() => setIsAnimating(true), 10);
 
@@ -23,6 +24,7 @@ const TeamModal: React.FC<TeamModalProps> = ({ isOpen, onClose }) => {
 
       return () => {
         document.body.style.overflow = 'unset';
+        document.documentElement.style.overflow = 'unset';
         setIsAnimating(false);
         window.removeEventListener('popstate', handlePopState);
       };
@@ -33,7 +35,7 @@ const TeamModal: React.FC<TeamModalProps> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-6 md:p-8 transition-all duration-500 ${isAnimating ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      className={`fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-4 md:p-8 transition-all duration-500 ${isAnimating ? 'opacity-100' : 'opacity-0 pointer-events-none'
         }`}
     >
       {/* Backdrop */}

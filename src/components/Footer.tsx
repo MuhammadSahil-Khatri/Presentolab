@@ -17,7 +17,7 @@ const Footer: React.FC<FooterProps> = ({ onServiceClick }) => {
   ];
 
   return (
-    <footer className="bg-black pt-12 pb-4 border-t border-zinc-900">
+    <footer className="bg-black/90 backdrop-blur-md pt-12 pb-4 border-t border-zinc-900">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:mb-24">
           <div className="col-span-1 md:col-span-2">
@@ -79,7 +79,7 @@ const Footer: React.FC<FooterProps> = ({ onServiceClick }) => {
           </div>
         </div>
 
-        <div className="border-t border-zinc-900/50 pt-4 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="border-t border-zinc-900/50 pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-zinc-600 text-sm font-medium">
             © {new Date().getFullYear()} PresentoLab. All Rights Reserved.
           </p>

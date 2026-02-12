@@ -20,7 +20,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onContactClick }) => {
     };
 
     return (
-        <div className="bg-black">
+        <div className="">
             {/* Intro / Hero Section */}
             <section className="relative md:pt-40 md:pb-6 pt-56 overflow-hidden px-2">
                 {/* Ambient background */}

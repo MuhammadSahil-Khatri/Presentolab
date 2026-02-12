@@ -80,30 +80,30 @@ const PortfolioTabs: React.FC<PortfolioTabsProps> = ({ onImageClick }) => {
 
     return (
         <div className="max-w-full overflow-hidden">
-            <div className="max-w-6xl mx-auto px-6">
-                {/* Navigation Tabs */}
-                <div className="flex flex-wrap flex-col items-center md:flex-row justify-center mb-16 gap-x-5 gap-y-4">
-                    {PORTFOLIO_DATA.map((category, idx) => (
-                        <button
-                            key={idx}
-                            onClick={() => setActiveTab(idx)}
-                            className={`relative pb-4 text-sm font-bold uppercase tracking-wider transition-colors hover:text-white ${activeTab === idx ? 'text-gray-300' : 'text-gray-500'
-                                }`}
-                        >
-                            {category.title}
-                            {activeTab === idx && (
-                                <>
-                                    <motion.div
-                                        layoutId="activeTab"
-                                        className="absolute bottom-0 inset-x-0 h-[2px] bg-cta-gradient z-10"
-                                        transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-                                    />
-                                </>
-                            )}
-                        </button>
-                    ))}
-                </div>
+            {/* Navigation Tabs */}
+            {/* <div className=""> */}
+            <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-center mb-16 pb-6 gap-6 border-b border-gray-100/10">
+                {PORTFOLIO_DATA.map((category, idx) => (
+                    <button
+                        key={idx}
+                        onClick={() => setActiveTab(idx)}
+                        className={`relative pb-4 text-sm font-bold uppercase tracking-wider transition-colors hover:text-white ${activeTab === idx ? 'text-gray-300' : 'text-gray-500'
+                            }`}
+                    >
+                        {category.title}
+                        {activeTab === idx && (
+                            <>
+                                <motion.div
+                                    layoutId="activeTab"
+                                    className="absolute bottom-0 inset-x-0 h-[2px] bg-cta-gradient z-10"
+                                    transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                                />
+                            </>
+                        )}
+                    </button>
+                ))}
             </div>
+            {/* </div> */}
 
             {/* Sliding Portfolio Rows */}
             <HoverIcon

@@ -169,7 +169,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className={`fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-6 md:p-8 transition-all duration-500 opacity-100 ${isAnimating ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
+    <div className={`fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-4 md:p-8 transition-all duration-500 opacity-100 ${isAnimating ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}>
       {/* Backdrop */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-md transition-opacity duration-500"
@@ -190,7 +190,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
           </svg>
         </button>
 
-        <div className="p-6 md:p-8">
+        <div className="p-4 md:p-8">
           {/* Header (Team Section) */}
           <div className="flex items-start flex-col md:flex-row gap-4 md:mb-4 mb-8 relative z-10">
             <div className="flex -space-x-3">

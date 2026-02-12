@@ -12,7 +12,7 @@ const PricingTierCard: React.FC<PricingTierCardProps> = ({ tier, onctaClick }) =
 
     return (
         <div
-            className="relative cursor-pointer select-none bg-white/5 backdrop-blur-2xl rounded-3xl p-8 flex flex-col h-full border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:bg-white/10 transition-all duration-500 group"
+            className="relative select-none touch-pan-y bg-white/5 backdrop-blur-2xl rounded-3xl p-8 flex flex-col h-full border border-white/10 shadow-[0_8px_32px_0_rgba(0,0,0,0.36)] hover:bg-white/10 transition-all duration-500 group"
         >
             {/* Ribbon */}
             {tier.ribbon && (
@@ -39,7 +39,7 @@ const PricingTierCard: React.FC<PricingTierCardProps> = ({ tier, onctaClick }) =
             </div>
 
             {/* Features List */}
-            <div className="flex-1 space-y-4 mb-10 overflow-y-auto max-h-[300px] pr-2 custom-scrollbar">
+            <div className="flex-1 space-y-4 mb-10 pr-2 custom-scrollbar overflow-y-auto max-h-[220px] touch-pan-y overscroll-contain" style={{ WebkitOverflowScrolling: 'touch' }}>
                 {tier.features.map((feature, idx) => (
                     <div key={idx} className="flex items-start gap-3 group/item">
                         <div className="mt-1 flex-shrink-0">
@@ -134,17 +134,35 @@ const PricingTierCard: React.FC<PricingTierCardProps> = ({ tier, onctaClick }) =
             </div>
 
             <style>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.05);
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 10px;
-        }
-      `}</style>
+  .custom-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  /* REMOVE SCROLLBAR ARROWS COMPLETELY */
+  .custom-scrollbar::-webkit-scrollbar-button,
+  .custom-scrollbar::-webkit-scrollbar-button:single-button,
+  .custom-scrollbar::-webkit-scrollbar-button:vertical:decrement,
+  .custom-scrollbar::-webkit-scrollbar-button:vertical:increment {
+    display: none;
+    width: 0;
+    height: 0;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+  }
+
+  /* Firefox support */
+  .custom-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,255,255,0.5) transparent;
+  }
+`}</style>
         </div>
     );
 };

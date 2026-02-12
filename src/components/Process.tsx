@@ -46,16 +46,16 @@ const Process: React.FC = () => {
     return () => ctx.revert(); // Cleanup
   }, [isDesktop]);
 
-  const MOBILE_PATH = "M -292 36 H 840 C 920 40 960 80 960 160 V 4796 C 970 4973 1027 5030 1188 5030 H 4505";
+  const MOBILE_PATH = "M -292 36 H 840 C 920 40 960 80 960 160 V 4134 C 968 4300 950 4405 1086 4423 H 4505";
   const DESKTOP_PATH = "M -292 36 H 840 C 920 40 960 80 960 160 V 2023 C 963 2148 936 2296 1158 2306 H 4500";
 
   return (
-    <section id="process" className="bg-black overflow-hidden relative pb-48 md:pb-40 pt-24 px-6 md:px-0">
+    <section id="process" className="overflow-hidden relative pb-32 md:pb-40 pt-24 px-6 md:px-0">
       <div className="max-w-5xl mx-auto flex flex-col items-center relative">
 
         {/* 1. Heading */}
         <div className="flex items-center justify-center w-full z-20 relative">
-          <h2 className="text-3xl md:text-6xl font-[900] mb-8 tracking-tighter text-white uppercase leading-[0.9] text-center">
+          <h2 className="text-5xl md:text-6xl font-[900] mb-8 tracking-tighter text-white uppercase leading-[0.9] text-center">
             How we cater the problem ?
           </h2>
         </div>
@@ -118,8 +118,9 @@ const Process: React.FC = () => {
                   <img src={step.icon} alt={step.title} className="w-7 h-7 md:w-9 md:h-9 object-contain" />
                 </div>
 
+
                 {/* Text Content */}
-                <div className="md:ml-10 ml-5 flex flex-col">
+                <div className="md:ml-10 ml-5 flex flex-col relative">
                   {/* Title Container - Fixed Height matching Icon to ensure center alignment */}
                   <div className="h-16 flex items-center">
                     <h3 className="text-xl md:text-3xl font-light text-white tracking-wide group-hover:text-gray-200 transition-colors duration-300">
@@ -131,14 +132,14 @@ const Process: React.FC = () => {
                   <AnimatePresence>
                     {activeStep === idx && (
                       <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
                         transition={{ duration: 0.3, ease: "easeInOut" }}
-                        className="overflow-hidden"
+                        className="absolute top-14 left-0 z-50 w-[80vw] md:w-[50vw] bg-transparent"
                       >
                         <p
-                          className="text-gray-400 text-sm font-light leading-relaxed md:max-w-2xl text-left pb-4"
+                          className="text-gray-400 text-sm font-light leading-relaxed text-left"
                           onClick={(e) => e.stopPropagation()}
                         >
                           {step.description}
@@ -146,6 +147,7 @@ const Process: React.FC = () => {
                       </motion.div>
                     )}
                   </AnimatePresence>
+
                 </div>
               </div>
             ))}

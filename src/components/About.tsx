@@ -6,12 +6,12 @@ interface AboutProps {
 
 const About: React.FC<AboutProps> = ({ onMeetTeamClick }) => {
   return (
-    <section id="about" className="bg-black overflow-hidden px-4 md:px-0">
+    <section id="about" className="overflow-hidden px-4 md:px-0">
       <div className="max-w-5xl mx-auto flex flex-col items-center">
 
         {/* Section Header */}
         <div className="text-center mb-10 w-full">
-          <h2 className="text-3xl md:text-6xl font-[900] tracking-tighter text-white uppercase leading-[0.9] text-center">
+          <h2 className="text-5xl md:text-6xl font-[900] tracking-tighter text-white uppercase leading-[0.9] text-center">
             Who We Are ?
           </h2>
         </div>

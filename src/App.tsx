@@ -52,7 +52,7 @@ const App: React.FC = () => {
   const closePortfolioModal = () => setIsPortfolioModalOpen(false);
 
   return (
-    <div className="min-h-screen bg-black text-white selection:bg-purple-500/30">
+    <div className="min-h-screen bg-gradient-to-l from-black/60 via-black/50 to-black/60 text-white selection:bg-purple-500/30">
       {isLoading && (
         <div className="fixed inset-0 z-[9999] bg-black/95 flex items-center justify-center backdrop-blur-md ">
           <Loader size={100} spacing={8} duration={1.2} />

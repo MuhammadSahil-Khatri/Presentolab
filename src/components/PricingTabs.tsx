@@ -39,11 +39,11 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ onContactClick }) => {
     }, [activeTab, x, controls]);
 
     return (
-        <div className="max-w-6xl mx-auto px-6">
+        <div className="max-w-6xl mx-auto">
             {/* Header Area with Navigation */}
             <div className="flex flex-col md:flex-row items-center justify-center mb-16 gap-8 border-b border-gray-100/10">
                 {/* Navigation Tabs */}
-                <div className="flex flex-wrap flex-col items-center md:flex-row justify-center mb-16 gap-x-5 gap-y-4">
+                <div className="flex flex-wrap flex-col items-center md:flex-row justify-center pb-6 gap-x-5 gap-y-4">
                     {PRICING_DATA.map((category, idx) => (
                         <button
                             key={idx}
@@ -65,7 +65,7 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ onContactClick }) => {
             </div>
 
             {/* Pricing Tiers Carousel */}
-            <div className="relative min-h-[550px] overflow-hidden -mx-6 px-6">
+            <div className="relative min-h-[550px] overflow-hidden">
                 <AnimatePresence mode="wait">
                     <motion.div
                         key={activeTab}

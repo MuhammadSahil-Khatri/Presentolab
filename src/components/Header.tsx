@@ -243,31 +243,10 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const scrollToSection = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+  const handleHomeRedirect = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
-
-    if (location.pathname !== '/') {
-      window.location.href = '/#' + id;
-      return;
-    }
-
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.location.href = '/';
   };
-
-  useEffect(() => {
-    if (location.hash && location.pathname === '/') {
-      const id = location.hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) {
-        setTimeout(() => {
-          element.scrollIntoView({ behavior: 'smooth' });
-        }, 100);
-      }
-    }
-  }, [location]);
 
   return (
     <div
@@ -283,12 +262,7 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
         <div ref={logoWrapperRef} className="flex-shrink-0 origin-left ml-2">
           <a
             href="/"
-            onClick={(e) => {
-              if (location.pathname === '/') {
-                e.preventDefault();
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-            }}
+            onClick={handleHomeRedirect}
           >
             <img src="/PresentoLab_Logo.png" alt="PresentoLab" className="h-[4.5rem] w-auto cursor-pointer" />
           </a>
@@ -404,25 +378,23 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
         {/* Center Section: Navigation */}
         <nav className="hidden md:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
           {[
-            { label: 'Our Services', path: '/#services', id: 'services' },
+            { label: 'Our Services', path: '/' },
             { label: 'Our Work', path: '/work' },
             { label: 'Our Packages', path: '/pricing' },
-            { label: 'Our Team', path: '/#about', id: 'about' }
+            { label: 'Our Team', path: '/' }
           ].map((item) => {
-            const isExternal = !item.path.startsWith('/#');
-            const isActive = isExternal
-              ? location.pathname === item.path
-              : (location.pathname === '/' && activeSection === item.id);
+            const isRedirect = item.path === '/';
 
             return (
               <a
                 key={item.label}
                 href={item.path}
-                onClick={(e) => !isExternal && scrollToSection(e, item.id!)}
-                className={`relative group px-4 py-2.5 rounded-full transition-all tracking-tight text-sm font-bold ${isActive ? 'text-gray-300' : 'text-white/80 hover:text-white'}`}
+                onClick={(e) => isRedirect && handleHomeRedirect(e)}
+                className={`relative group px-4 py-2.5 rounded-full transition-all tracking-tight text-sm font-bold ${location.pathname === item.path && !isRedirect ? 'text-gray-300' : 'text-white/80 hover:text-white'}`}
               >
                 {item.label}
-                {isActive && (
+                {/* Active indicator only for non-redirect paths */}
+                {location.pathname === item.path && !isRedirect && (
                   <motion.div
                     layoutId="headerActiveTab"
                     className="absolute bottom-0 left-[14px] right-[14px] h-[2px] bg-cta-gradient z-10"
@@ -441,10 +413,10 @@ const Header: React.FC<HeaderProps> = ({ onContactClick }) => {
         className={`absolute top-[calc(100%+8px)] w-[90%] md:hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top ${isMobileMenuOpen ? 'opacity-100 scale-100 translate-y-0 pointer-events-auto' : 'opacity-0 scale-95 -translate-y-4 pointer-events-none'}`}
       >
         <div className="bg-[#111]/90 backdrop-blur-2xl border border-white/10 rounded-[2rem] p-4 shadow-2xl flex flex-col">
-          <a href="#services" onClick={(e) => { scrollToSection(e, 'services'); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Services</a>
+          <a href="/" onClick={(e) => { handleHomeRedirect(e); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Services</a>
           <a href="/work" onClick={() => setIsMobileMenuOpen(false)} className={`px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold transition-colors ${location.pathname === '/work' ? 'text-white' : 'text-white/90 hover:text-white'}`}>Our Work</a>
           <a href="/pricing" onClick={() => setIsMobileMenuOpen(false)} className={`px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold transition-colors ${location.pathname === '/pricing' ? 'text-white' : 'text-white/90 hover:text-white'}`}>Our Packages</a>
-          <a href="#about" onClick={(e) => { scrollToSection(e, 'about'); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Team</a>
+          <a href="/" onClick={(e) => { handleHomeRedirect(e); setIsMobileMenuOpen(false); }} className="px-6 pb-4 pt-2 rounded-xl hover:bg-white/5 text-lg font-bold text-white/90 hover:text-white transition-colors">Our Team</a>
           <div className="h-[1px] bg-white/5 my-2"></div>
           <button
             onClick={() => { onContactClick(); setIsMobileMenuOpen(false); }}
