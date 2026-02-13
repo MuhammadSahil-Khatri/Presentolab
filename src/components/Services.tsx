@@ -32,7 +32,7 @@ const Services: React.FC<ServicesProps> = ({ onSeeAllClick }) => {
       <div className="max-w-6xl">
         {/* Section Header */}
         <div className="text-center mb-6 ">
-          <h2 className="text-5xl md:text-7xl font-[900] tracking-tighter text-white uppercase leading-[0.9]">
+          <h2 className="text-5xl md:text-7xl font-[900] tracking-tighter text-white uppercase leading-tight">
             What We Do ?
           </h2>
         </div>

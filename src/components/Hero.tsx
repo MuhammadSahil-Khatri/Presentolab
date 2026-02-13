@@ -27,7 +27,7 @@ const Hero: React.FC<HeroProps> = ({ onContactClick }) => {
       <div className="max-w-6xl mx-auto px-6 text-center relative z-20 pt-24 md:pt-12">
 
 
-        <h1 className="text-6xl md:text-8xl lg:text-9xl font-[900] leading-tight text-center mb-8 md:mb-12 lg:mb-16 tracking-tighter">
+        <h1 className="text-5xl md:text-9xl font-[900] leading-tight text-center mb-8 md:mb-12 lg:mb-16 tracking-tighter">
           FROM IDEA TO IMPACT.<br />
           <span className="text-gradient-brand">WE SHAPE YOUR STORY.</span>
         </h1>

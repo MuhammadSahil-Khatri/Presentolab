@@ -22,7 +22,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onContactClick }) => {
     return (
         <div className="">
             {/* Intro / Hero Section */}
-            <section className="relative md:pt-40 md:pb-6 pt-56 overflow-hidden px-2">
+            <section className="relative md:pt-48 md:pb-6 pt-52 overflow-hidden px-2">
                 {/* Ambient background */}
                 <div className="absolute inset-0 pointer-events-none">
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90vw] h-[90vh] bg-[#FF5C00]/5 rounded-full blur-[160px] opacity-70"></div>
@@ -30,12 +30,12 @@ const PricingPage: React.FC<PricingPageProps> = ({ onContactClick }) => {
                 </div>
 
                 <div className="max-w-6xl mx-auto relative z-10 text-center">
-                    <h1 className="text-5xl md:text-8xl lg:text-9xl font-[900] tracking-tighter leading-[0.85] mb-8 md:mb-12 uppercase">
+                    <h1 className="text-5xl md:text-9xl font-[900] tracking-tighter leading-tight mb-8 md:mb-12 uppercase">
                         Clear Pricing.<br />
                         <span className="text-gradient-brand">Proven Results.</span>
                     </h1>
 
-                    <p className="text-gray-400 text-lg md:text-3xl max-w-4xl mx-auto mb-12 font-light leading-relaxed">
+                    <p className="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto mb-16 font-light leading-relaxed">
                         We specialize in presentation design, storytelling, and brand clarity.
                         Our pricing is designed to provide maximum value for businesses at every stage of growth.
                     </p>
@@ -133,17 +133,16 @@ const PricingPage: React.FC<PricingPageProps> = ({ onContactClick }) => {
             </div>
 
             {/* Pricing Tabs Section */}
-            <div className="py-5 relative">
+            <div className="pb-16 relative px-4">
                 <PricingTabs onContactClick={onContactClick} />
             </div>
 
             {/* Testimonials Section */}
-            <div className="py-5 md:pb-20">
-                <Testimonials />
-            </div>
+            <Testimonials />
+
 
             {/* CTA Section */}
-            <div className="py-5 md:py-10">
+            <div className="pt-20">
                 <CTA onContactClick={onContactClick} />
             </div>
         </div>

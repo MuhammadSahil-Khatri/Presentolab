@@ -25,12 +25,12 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onContactClick, onImageCl
                 </div>
 
                 <div className="max-w-6xl mx-auto relative z-10 text-center">
-                    <h1 className="text-5xl md:text-8xl lg:text-9xl font-[900] tracking-tighter leading-[0.85] mb-8 md:mb-12 uppercase">
+                    <h1 className="text-5xl md:text-9xl font-[900] tracking-tighter leading-tight mb-8 md:mb-12 uppercase">
                         Our Work.<br />
                         <span className="text-gradient-brand">Real Impact.</span>
                     </h1>
 
-                    <p className="text-gray-400 text-lg md:text-3xl max-w-4xl mx-auto mb-12 font-light leading-relaxed">
+                    <p className="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto mb-16 font-light leading-relaxed">
                         We transform complex ideas into high-impact narratives and visuals.
                         Explore our portfolio to see how we help startups and global brands accelerate growth.
                     </p>
@@ -115,7 +115,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onContactClick, onImageCl
             <Testimonials />
 
             {/* CTA Section */}
-            <div className="py-20">
+            <div className="pt-20">
                 <CTA onContactClick={onContactClick} />
             </div>
         </div>

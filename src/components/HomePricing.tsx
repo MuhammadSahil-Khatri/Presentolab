@@ -11,10 +11,10 @@ const HomePricing: React.FC<HomePricingProps> = ({ onContactClick }) => {
             <div className="max-w-7xl mx-auto flex flex-col items-center">
                 {/* Section Header */}
                 <div className="text-center mb-16 w-full px-4">
-                    <h2 className="text-5xl md:text-7xl font-[900] tracking-tighter text-white uppercase leading-[0.9] text-center mb-8">
+                    <h2 className="text-5xl md:text-7xl font-[900] tracking-tighter text-white uppercase leading-tight text-center mb-8">
                         OUR PACKAGES
                     </h2>
-                    <p className="text-gray-400 text-lg md:text-2xl max-w-4xl mx-auto leading-relaxed font-light text-center">
+                    <p className="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto leading-relaxed font-light text-center">
                         We specialize in presentation design, storytelling, and brand clarity.
                         Our pricing is designed to provide maximum value for businesses at every stage of growth.
                     </p>

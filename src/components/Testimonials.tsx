@@ -90,11 +90,11 @@ const Testimonials: React.FC = () => {
 
         {/* New Centered Header */}
         <div className="flex items-center justify-center w-full z-20 relative">
-          <h2 className="text-5xl md:text-6xl font-[900] mb-8 tracking-tighter text-white uppercase leading-[0.9] text-center">
+          <h2 className="text-5xl md:text-7xl font-[900] mb-8 tracking-tighter text-white uppercase leading-tight text-center">
             Client Stories
           </h2>
         </div>
-        <p className="text-gray-500 text-xl font-light text-center mb-16 max-w-3xl mx-auto relative">
+        <p className="text-gray-500 text-lg md:text-2xl font-light text-center mb-16 max-w-3xl mx-auto leading-relaxed relative">
           Every startup has a story, but not every founder knows how to present it. We take your raw ideas, shape them into a Clear narrative, and design them into visuals that speak louder than words
         </p>
 

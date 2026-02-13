@@ -181,7 +181,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         {/* Close Button */}
         <button
           onClick={() => window.history.back()}
-          className="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 text-black/40 hover:text-black transition-colors z-50"
+          className="absolute top-3 right-3 w-10 h-10 flex items-center justify-center rounded-full hover:bg-black/5 text-black/40 hover:text-black transition-colors z-50"
           aria-label="Close modal"
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -190,15 +190,15 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
           </svg>
         </button>
 
-        <div className="p-4 md:p-8">
+        <div className="pt-10 p-4 md:p-8">
           {/* Header (Team Section) */}
           <div className="flex items-start flex-col md:flex-row gap-4 md:mb-4 mb-8 relative z-10">
-            <div className="flex -space-x-3">
+            {/* <div className="flex -space-x-3">
               <img src="https://i.pravatar.cc/150?u=sarah" alt="Expert 1" className="w-10 h-10 rounded-full border-[3px] border-white shadow-lg object-cover" />
               <img src="https://i.pravatar.cc/150?u=atif" alt="Expert 2" className="w-10 h-10 rounded-full border-[3px] border-white shadow-lg object-cover" />
-            </div>
+            </div> */}
             <div>
-              <h2 className="text-lg md:text-2xl font-black tracking-tight leading-tight">Tell us what you are looking for.</h2>
+              <h2 className="text-lg md:text-2xl font-black tracking-tight leading-tight ">Tell us what you are looking for.</h2>
               <p className="text-black/50 text-sm font-medium mt-0.5">We will shape your project strategy</p>
             </div>
           </div>

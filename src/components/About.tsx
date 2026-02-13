@@ -11,7 +11,7 @@ const About: React.FC<AboutProps> = ({ onMeetTeamClick }) => {
 
         {/* Section Header */}
         <div className="text-center mb-10 w-full">
-          <h2 className="text-5xl md:text-6xl font-[900] tracking-tighter text-white uppercase leading-[0.9] text-center">
+          <h2 className="text-5xl md:text-7xl font-[900] tracking-tighter text-white uppercase leading-tight text-center">
             Who We Are ?
           </h2>
         </div>

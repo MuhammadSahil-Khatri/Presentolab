@@ -17,7 +17,7 @@ const CTA: React.FC<CTAProps> = ({ onContactClick }) => {
           <h2 className="text-5xl md:text-9xl font-[900] mb-8 md:mb-12 leading-tight tracking-tighter">
             Ready To Transform Your Idea Into <span className="text-gradient-brand">Impact?</span>
           </h2>
-          <p className="text-gray-400 text-xl md:text-3xl max-w-4xl mx-auto mb-8 font-light leading-relaxed">
+          <p className="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto mb-8 font-light leading-relaxed">
             Share your project. Our experts will reach out quickly to discuss how we can shape your story.
           </p>
 
