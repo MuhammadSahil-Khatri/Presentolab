@@ -12,6 +12,9 @@ import Home from './pages/Home';
 import PricingPage from './pages/PricingPage';
 import PortfolioPage from './pages/PortfolioPage';
 import Loader from './components/Loader';
+import CheckoutPage from './pages/CheckoutPage';
+import CheckoutSuccess from './pages/CheckoutSuccess';
+import CheckoutCancel from './pages/CheckoutCancel';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,6 +76,9 @@ const App: React.FC = () => {
               } />
               <Route path="/pricing" element={<PricingPage onContactClick={openModal} />} />
               <Route path="/work" element={<PortfolioPage onContactClick={openModal} onImageClick={openPortfolioModal} />} />
+              <Route path="/checkout" element={<CheckoutPage />} />
+              <Route path="/checkout/success" element={<CheckoutSuccess />} />
+              <Route path="/checkout/cancel" element={<CheckoutCancel />} />
             </Routes>
           </main>
           <Footer onServiceClick={openServicesModal} />

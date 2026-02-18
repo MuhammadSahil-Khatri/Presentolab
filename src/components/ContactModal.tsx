@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from 'react';
 
 import emailjs from '@emailjs/browser';
@@ -261,7 +260,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
               {/* Phone */}
               <div className="relative group">
-                <label className="block text-black/40 text-xs font-bold mb-1">Phone (optional)</label>
+                <label className="block text-black/40 text-xs font-bold mb-1">Phone Number (optional)</label>
                 <div className={`border-b transition-colors ${errors.phone ? 'border-[#FF007F]' : 'border-black/10 group-focus-within:border-black'}`}>
                   <PhoneInput
                     international

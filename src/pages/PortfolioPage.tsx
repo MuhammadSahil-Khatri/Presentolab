@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import PortfolioTabs from '../components/PortfolioTabs';
 import Testimonials from '../components/Testimonials';
 import CTA from '../components/CTA';
+import SEO from '../seo/SEO';
 
 interface PortfolioPageProps {
     onContactClick: () => void;
@@ -16,6 +17,7 @@ const PortfolioPage: React.FC<PortfolioPageProps> = ({ onContactClick, onImageCl
 
     return (
         <div className="">
+            <SEO pageKey="work" />
             {/* Intro / Hero Section */}
             <section className="relative overflow-hidden max-w-6xl mx-auto px-6 text-center z-20 pt-56">
                 {/* Ambient background */}

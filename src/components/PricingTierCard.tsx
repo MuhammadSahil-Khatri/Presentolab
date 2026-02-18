@@ -5,10 +5,19 @@ import { PricingTier, calculateFinalPrice } from '../constants/pricing';
 interface PricingTierCardProps {
     tier: PricingTier;
     onctaClick: () => void;
+    onPlanSelect?: (id: string) => void;
 }
 
-const PricingTierCard: React.FC<PricingTierCardProps> = ({ tier, onctaClick }) => {
+const PricingTierCard: React.FC<PricingTierCardProps> = ({ tier, onctaClick, onPlanSelect }) => {
     const finalPrice = calculateFinalPrice(tier.basePrice, tier.discountPercent);
+
+    const handleCtaClick = () => {
+        if (onPlanSelect && tier.id) {
+            onPlanSelect(tier.id);
+        } else {
+            onctaClick();
+        }
+    };
 
     return (
         <div
@@ -56,9 +65,9 @@ const PricingTierCard: React.FC<PricingTierCardProps> = ({ tier, onctaClick }) =
             <div className="mt-auto space-y-6">
                 <div className="flex justify-center">
                     <button
-                        onClick={onctaClick}
+                        onClick={handleCtaClick}
                         onPointerDown={(e) => e.stopPropagation()}
-                        aria-label="Contact us"
+                        aria-label="Choose Plan"
                         className="
                             group/btn relative flex items-center
                             focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40
@@ -79,7 +88,7 @@ const PricingTierCard: React.FC<PricingTierCardProps> = ({ tier, onctaClick }) =
                                 group-hover/btn:brightness-110
                             "
                         >
-                            Let’s talk
+                            Choose Plan
                         </span>
 
                         {/* Icon pill */}

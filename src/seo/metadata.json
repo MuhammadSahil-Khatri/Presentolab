@@ -1,0 +1,54 @@
+{
+    "home": {
+        "title": "Home",
+        "description": "PresentoLab crafts world-class presentation design, storytelling, and brand clarity for startups and global brands. Transform your ideas into high-impact narratives.",
+        "keywords": "presentation design, pitch deck design, brand storytelling, slide design, startup presentations, business presentations",
+        "image": "https://presentolab.com/og-image.png",
+        "url": "https://presentolab.com/",
+        "schemaType": "Organization"
+    },
+    "pricing": {
+        "title": "Pricing",
+        "description": "Transparent pricing for presentation design services. Choose a plan that fits your business — from startups to enterprise. Clear pricing, proven results.",
+        "keywords": "presentation design pricing, pitch deck cost, slide design packages, presentation service plans",
+        "image": "https://presentolab.com/og-image.png",
+        "url": "https://presentolab.com/pricing",
+        "schemaType": "WebPage"
+    },
+    "work": {
+        "title": "Our Work",
+        "description": "Explore PresentoLab's portfolio of high-impact presentations, pitch decks, and brand narratives for startups and global brands. Real work, real impact.",
+        "keywords": "presentation portfolio, pitch deck examples, slide design portfolio, brand narrative examples, presentation design work",
+        "image": "https://presentolab.com/og-image.png",
+        "url": "https://presentolab.com/work",
+        "schemaType": "WebPage"
+    },
+    "checkout": {
+        "title": "Checkout",
+        "description": "Complete your order with PresentoLab. Secure checkout for professional presentation design services.",
+        "url": "https://presentolab.com/checkout",
+        "noIndex": true,
+        "schemaType": "WebPage"
+    },
+    "checkoutSuccess": {
+        "title": "Order Confirmed",
+        "description": "Your order has been placed successfully. PresentoLab will be in touch shortly to get started on your presentation.",
+        "url": "https://presentolab.com/checkout/success",
+        "noIndex": true,
+        "schemaType": "WebPage"
+    },
+    "checkoutCancel": {
+        "title": "Order Cancelled",
+        "description": "Your payment was not processed. Return to pricing to choose a plan and get started with PresentoLab.",
+        "url": "https://presentolab.com/checkout/cancel",
+        "noIndex": true,
+        "schemaType": "WebPage"
+    },
+    "default": {
+        "title": "PresentoLab",
+        "description": "PresentoLab crafts world-class presentation design, storytelling, and brand clarity for startups and global brands.",
+        "image": "https://presentolab.com/og-image.png",
+        "url": "https://presentolab.com/",
+        "schemaType": "Organization"
+    }
+}

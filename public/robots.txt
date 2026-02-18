@@ -1,0 +1,40 @@
+# robots.txt for https://yourdomain.com/
+
+User-agent: *
+Allow: /
+
+# Block backend & system routes
+Disallow: /api/
+Disallow: /supabase/
+Disallow: /.netlify/
+Disallow: /.vercel/
+
+# Block payment & checkout flow
+Disallow: /checkout/
+Disallow: /checkout/success
+Disallow: /checkout/cancel
+Disallow: /payment/
+
+# Prevent duplicate/query URLs
+Disallow: /*?*
+Disallow: /*.json$
+Disallow: /*.xml$
+
+# --- AI crawler guidance ---
+User-agent: GPTBot
+Allow: /llms.txt
+
+User-agent: ClaudeBot
+Allow: /llms.txt
+
+User-agent: CCBot
+Allow: /llms.txt
+
+User-agent: PerplexityBot
+Allow: /llms.txt
+
+User-agent: Google-Extended
+Allow: /llms.txt
+
+# Sitemap
+Sitemap: https://presentolab.com/sitemap.xml

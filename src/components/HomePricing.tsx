@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import PricingTabs from './PricingTabs';
 
 interface HomePricingProps {
@@ -6,6 +7,7 @@ interface HomePricingProps {
 }
 
 const HomePricing: React.FC<HomePricingProps> = ({ onContactClick }) => {
+    const navigate = useNavigate();
     return (
         <section id="pricing" className="pb-20 pt-8 overflow-hidden px-4 md:px-0">
             <div className="max-w-7xl mx-auto flex flex-col items-center">
@@ -22,7 +24,7 @@ const HomePricing: React.FC<HomePricingProps> = ({ onContactClick }) => {
 
                 {/* Pricing Tabs Content */}
                 <div className="w-full">
-                    <PricingTabs onContactClick={onContactClick} />
+                    <PricingTabs onContactClick={onContactClick} onPlanSelect={(planId) => navigate(`/checkout?plan=${planId}`)} />
                 </div>
             </div>
         </section>

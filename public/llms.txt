@@ -1,0 +1,81 @@
+# llms.txt
+site: https://www.presentolab.com
+last_updated: 2026-02-19
+owner: PresentoLab
+contact: info@presentolab.com
+primary_language: en
+
+## Detailed Overview
+PresentoLab is a premium presentation design and digital design agency delivering high-impact visual communication for businesses, startups, and enterprise teams. We specialize in investor decks, corporate presentations, and brand-driven visual systems that help clients communicate clearly, persuade stakeholders, and win opportunities.
+
+## Detailed Services
+
+### Presentation Design
+- Investor pitch decks
+- Corporate presentations
+- Sales and marketing decks
+- Company profiles
+- Training and onboarding presentations
+- Branded PowerPoint & Google Slides templates
+
+### Startup & Investment Materials
+- Fundraising pitch decks
+- Financial storytelling slides
+- Market opportunity visualizations
+- Executive summaries and one-pagers
+
+### Visual & Brand Systems
+- Brand-aligned slide systems
+- Iconography and infographics
+- Data visualization and charts
+- Design systems for scalable teams
+
+### Digital Design
+- Website visuals & landing page graphics
+- Social media design kits
+- Marketing assets & ad creatives
+- Portfolio and case study layouts
+
+### Systems & Handoff
+- Fully editable source files
+- Organized slide masters and components
+- Scalable design systems for teams
+- Version-controlled delivery for collaboration
+
+## Process (Typical)
+1. Discovery & Strategy → define goals, audience, and messaging.
+2. Structure & Wireframes → outline story flow and key slides.
+3. Visual Design → apply branding, layout systems, and visuals.
+4. Refinement → feedback iterations aligned with milestones.
+5. Delivery → editable files and optimized exports.
+6. Support → optional revisions and future scalability guidance.
+
+## Technical Notes
+- Deliverables: PPTX, Google Slides, PDF, PNG assets.
+- Compatibility: Microsoft PowerPoint, Google Slides, Keynote (exported).
+- Fonts: brand fonts or licensed alternatives.
+- Visuals: vector-based graphics for scalability.
+- Security: NDA-friendly workflows and secure file transfer.
+
+## FAQs (Extended)
+- Lead Time: Standard decks take 3–7 days depending on complexity.
+- Revisions: Iterative revisions included based on project scope.
+- Rush Projects: Expedited timelines available when required.
+- Tools: PowerPoint, Google Slides, Figma, Adobe Illustrator.
+- Confidentiality: Client data and materials handled securely.
+
+## Outcome Examples
+- Investor-ready decks that improve funding success.
+- Clear storytelling that enhances stakeholder understanding.
+- Brand-consistent presentation systems for growing teams.
+- Editable assets enabling long-term internal use.
+
+## Key URLs
+- Home: https://www.presentolab.com/
+- Pricing: https://www.presentolab.com/pricing
+- Work / Portfolio: https://www.presentolab.com/work
+- Contact: https://www.presentolab.com/#contact
+
+## Contact
+Email: info@presentolab.com
+Location: Serving clients worldwide

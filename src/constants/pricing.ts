@@ -6,6 +6,7 @@ export interface PricingTier {
     features: string[];
     ribbon?: string | null;
     isPopular?: boolean;
+    id: string;
 }
 
 export interface PricingCategory {
@@ -39,7 +40,8 @@ export const PRICING_DATA: PricingCategory[] = [
                     "Social Media + Web-Ready Logos"
                 ],
                 ribbon: "Fast Delivery",
-                isPopular: false
+                isPopular: false,
+                id: "logo-starter"
             },
             {
                 name: "Pro Logo Pack",
@@ -57,7 +59,8 @@ export const PRICING_DATA: PricingCategory[] = [
                     "Social Media + Web-Ready Logos"
                 ],
                 ribbon: null,
-                isPopular: true
+                isPopular: true,
+                id: "logo-pro"
             },
             {
                 name: "Premium Logo Pack",
@@ -76,7 +79,8 @@ export const PRICING_DATA: PricingCategory[] = [
                     "Social Media + Web-Ready Logos"
                 ],
                 ribbon: "BEST CHOICE",
-                isPopular: false
+                isPopular: false,
+                id: "logo-premium"
             }
         ]
     },
@@ -103,7 +107,8 @@ export const PRICING_DATA: PricingCategory[] = [
                     "Source Files (AI / EPS)",
                 ],
                 ribbon: null,
-                isPopular: false
+                isPopular: false,
+                id: "branding-starter"
             },
             {
                 name: "Pro Brand Pack",
@@ -125,7 +130,8 @@ export const PRICING_DATA: PricingCategory[] = [
                     "Source Files (AI / EPS)",
                 ],
                 ribbon: "RECOMMENDED",
-                isPopular: true
+                isPopular: true,
+                id: "branding-pro"
             },
             {
                 name: "Premium Brand Pack",
@@ -147,7 +153,8 @@ export const PRICING_DATA: PricingCategory[] = [
                     "Source Files (AI / EPS)",
                 ],
                 ribbon: null,
-                isPopular: false
+                isPopular: false,
+                id: "branding-premium"
             }
         ]
     },
@@ -171,7 +178,8 @@ export const PRICING_DATA: PricingCategory[] = [
                     "Fast Turnaround: 12–24 Hours",
                     "Fully Editable Source File",
                 ],
-                ribbon: null
+                ribbon: null,
+                id: "presentation-starter"
             },
             {
                 name: "Pro Presentation Pack",
@@ -190,7 +198,8 @@ export const PRICING_DATA: PricingCategory[] = [
                     "Fully Editable Source File",
                 ],
                 ribbon: "BEST CHOICE",
-                isPopular: true
+                isPopular: true,
+                id: "presentation-pro"
             },
             {
                 name: "Premium Deck Pack",
@@ -211,7 +220,8 @@ export const PRICING_DATA: PricingCategory[] = [
                     "Fully Editable Source File",
                 ],
                 ribbon: "RECOMMENDED",
-                isPopular: true
+                isPopular: true,
+                id: "presentation-premium"
             },
             {
                 name: "Executive Deck Pack",
@@ -234,7 +244,8 @@ export const PRICING_DATA: PricingCategory[] = [
                     "Fully Editable Source Files",
                 ],
                 ribbon: null,
-                isPopular: false
+                isPopular: false,
+                id: "presentation-executive"
             }
         ]
     },

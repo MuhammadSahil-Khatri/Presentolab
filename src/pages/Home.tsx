@@ -9,6 +9,7 @@ import Testimonials from '../components/Testimonials';
 import Process from '../components/Process';
 import HomePricing from '../components/HomePricing';
 import CTA from '../components/CTA';
+import SEO from '../seo/SEO';
 
 interface HomeProps {
     openModal: () => void;
@@ -25,6 +26,7 @@ const Home: React.FC<HomeProps> = ({
 }) => {
     return (
         <>
+            <SEO pageKey="home" />
             <Hero onContactClick={openModal} />
             <div className="my-10">
                 <ClientLogos />

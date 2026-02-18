@@ -6,37 +6,37 @@ import PricingTierCard from './PricingTierCard';
 
 interface PricingTabsProps {
     onContactClick: () => void;
+    onPlanSelect?: (id: string) => void;
 }
 
-const PricingTabs: React.FC<PricingTabsProps> = ({ onContactClick }) => {
+const PricingTabs: React.FC<PricingTabsProps> = ({ onContactClick, onPlanSelect }) => {
     const [activeTab, setActiveTab] = useState(0);
-    const carouselRef = useRef<HTMLDivElement>(null);
+    const [carouselNode, setCarouselNode] = useState<HTMLDivElement | null>(null);
     const [scrollWidth, setScrollWidth] = useState(0);
     const controls = useAnimation();
     const x = useMotionValue(0);
 
+    const measureRef = React.useCallback((node: HTMLDivElement | null) => {
+        if (node !== null) {
+            setCarouselNode(node);
+            setScrollWidth(node.scrollWidth - node.offsetWidth);
+        }
+    }, []);
+
     useEffect(() => {
-        const updateWidth = () => {
-            if (carouselRef.current) {
-                // Calculate scrollable width
-                const newScrollWidth = carouselRef.current.scrollWidth - carouselRef.current.offsetWidth;
-                setScrollWidth(newScrollWidth);
-            }
-        };
-
-        // Update width after a short delay to ensure DOM is ready
-        const timer = setTimeout(updateWidth, 100);
-        window.addEventListener('resize', updateWidth);
-
         // Reset scroll position when tab changes
         x.set(0);
         controls.start({ x: 0 });
 
-        return () => {
-            clearTimeout(timer);
-            window.removeEventListener('resize', updateWidth);
-        };
-    }, [activeTab, x, controls]);
+        if (carouselNode) {
+            const updateWidth = () => {
+                setScrollWidth(carouselNode.scrollWidth - carouselNode.offsetWidth);
+            };
+
+            window.addEventListener('resize', updateWidth);
+            return () => window.removeEventListener('resize', updateWidth);
+        }
+    }, [activeTab, carouselNode, x, controls]);
 
     return (
         <div className="max-w-6xl mx-auto">
@@ -76,7 +76,7 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ onContactClick }) => {
                         className="w-full overflow-hidden"
                     >
                         <motion.div
-                            ref={carouselRef}
+                            ref={measureRef}
                             className="cursor-grab active:cursor-grabbing"
                             whileTap={{ cursor: "grabbing" }}
                         >
@@ -92,6 +92,7 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ onContactClick }) => {
                                         <PricingTierCard
                                             tier={tier}
                                             onctaClick={onContactClick}
+                                            onPlanSelect={onPlanSelect}
                                         />
                                     </div>
                                 ))}

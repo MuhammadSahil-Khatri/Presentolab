@@ -1,9 +1,11 @@
 
 import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import ClientLogos from '../components/ClientLogos';
 import CTA from '../components/CTA';
 import PricingTabs from '../components/PricingTabs';
 import Testimonials from '@/components/Testimonials';
+import SEO from '../seo/SEO';
 
 interface PricingPageProps {
     onContactClick: () => void;
@@ -19,8 +21,15 @@ const PricingPage: React.FC<PricingPageProps> = ({ onContactClick }) => {
         window.location.href = '/#' + id;
     };
 
+    const navigate = useNavigate();
+
+    const handlePlanSelect = (planId: string) => {
+        navigate(`/checkout?plan=${planId}`);
+    };
+
     return (
         <div className="">
+            <SEO pageKey="pricing" />
             {/* Intro / Hero Section */}
             <section className="relative md:pt-48 md:pb-6 pt-52 overflow-hidden px-2">
                 {/* Ambient background */}
@@ -134,7 +143,7 @@ const PricingPage: React.FC<PricingPageProps> = ({ onContactClick }) => {
 
             {/* Pricing Tabs Section */}
             <div className="pb-16 relative px-4">
-                <PricingTabs onContactClick={onContactClick} />
+                <PricingTabs onContactClick={onContactClick} onPlanSelect={handlePlanSelect} />
             </div>
 
             {/* Testimonials Section */}
