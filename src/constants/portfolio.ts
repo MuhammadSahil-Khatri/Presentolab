@@ -38,7 +38,7 @@ export const PORTFOLIO_DATA: PortfolioCategory[] = [
         ]
     },
     {
-        title: "Branding",
+        title: "Brand Design",
         description: "",
         items: [
             { id: '1', title: 'Acceronix', imageUrl: '/portfolio/branding/acceronix.jpg' },
@@ -77,7 +77,7 @@ export const PORTFOLIO_DATA: PortfolioCategory[] = [
         ]
     },
     // {
-    //     title: "Web Design & Development",
+    //     title: "Web/App Design & Development",
     //     description: "",
     //     items: []
     // },

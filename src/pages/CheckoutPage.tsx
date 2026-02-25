@@ -75,6 +75,7 @@ const CheckoutPage: React.FC = () => {
                 alert("Something went wrong while saving your order.");
             } else {
                 console.log("Order saved:", data);
+                sessionStorage.setItem('checkoutCompleted', 'true');
                 navigate('/checkout/success');
             }
         } catch (err) {

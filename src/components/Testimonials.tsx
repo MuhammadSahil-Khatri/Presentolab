@@ -112,7 +112,7 @@ const Testimonials: React.FC = () => {
               >
                 <span className="text-[120px] font-black leading-none tracking-tighter text-white inline-block">4.9</span>
                 <p className="text-white/60 text-lg font-medium mt-4 max-w-[300px] leading-relaxed">
-                  Based on 80+ reviews on Upwork. Consistent quality that builds trust.
+                  Based on 80+ reviews, our commitment to quality and reliability has built lasting trust with clients across the globe.
                 </p>
               </motion.div>
             </div>
@@ -138,8 +138,7 @@ const Testimonials: React.FC = () => {
           <div className="w-full overflow-hidden">
             <motion.div
               ref={carousel}
-              className="cursor-grab active:cursor-grabbing"
-              whileTap={{ cursor: "grabbing" }}
+              className="cursor-pointer"
             >
               <motion.div
                 drag="x"

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { Toaster } from 'react-hot-toast';
-import { Routes, Route, useLocation } from 'react-router-dom';
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ContactModal from './components/ContactModal';
@@ -79,6 +79,7 @@ const App: React.FC = () => {
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/checkout/success" element={<CheckoutSuccess />} />
               <Route path="/checkout/cancel" element={<CheckoutCancel />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>
           <Footer onServiceClick={openServicesModal} />

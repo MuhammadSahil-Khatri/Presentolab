@@ -1,71 +1,93 @@
 import { Service, ProcessStep } from './types';
 export const SERVICES: Service[] = [
   {
-    title: "Pitch Deck & Presentation Design",
-    description: "High-impact pitch decks and presentations designed to clearly communicate your message, persuade stakeholders, and drive decisions.",
+    title: "Presentation Design",
+    description: "High-impact presentations designed to clearly communicate your message, engage your audience, and drive confident decisions.",
     categories: [
-      "Startup Pitch Decks",
-      "Investor Presentations",
-      "Sales Decks",
+      "Investor Pitch Decks",
+      "Film Pitch Decks",
+      "FinTech Pitch Decks",
+      "Gaming Presentations",
+      "Medical Pitch Decks",
+      "Real Estate Presentations",
+      "Web3 Presentations",
+      "Sales & Marketing Decks",
+      "Company Profile Presentations",
+      "Product Launch Presentations",
+      "Training & Workshop Presentations",
+      "Webinar & Virtual Event Slides",
       "Corporate Presentations",
       "Fundraising Decks",
-      "Business Storytelling",
-      "Data Visualization",
-      "Branded Slide Templates"
+      "Canva",
+      "PowerPoint",
+      "Google Slides",
+      "Branded Slide Templates",
+      "Master Template Design"
     ]
   },
   {
-    title: "Web & App Design",
-    description: "User-focused UI/UX design for websites and applications that delivers intuitive experiences and measurable results.",
+    title: "Logo Design",
+    description: "Strategic and memorable logo designs crafted to build strong brand recognition and create a lasting first impression across all platforms.",
     categories: [
-      "Website UI Design",
-      "Mobile App UI",
-      "UX Research",
-      "Wireframing",
-      "Prototyping",
-      "User Journeys",
-      "Design Systems",
-      "Microinteractions"
+      "Wordmark (Logotype)",
+      "Lettermark (Monogram)",
+      "Pictorial Mark (Brandmark)",
+      "Favicon & App Icon",
+      "Abstract Logo Mark",
+      "Mascot Logo",
+      "Combination Mark",
+      "Emblem / Badge Logo",
     ]
   },
   {
-    title: "Brand Identity",
-    description: "Strategic brand identities that define your positioning, build trust, and ensure consistency across all visual touchpoints.",
+    title: "Brand Design",
+    description: "Strategic brand identity systems that define your positioning, build trust, and ensure consistency across every visual and communication touchpoint.",
     categories: [
-      "Logo Design",
       "Brand Strategy",
-      "Rebranding",
-      "Typography Systems",
-      "Color Palettes",
+      "Brand Naming",
+      "Brand Architecture",
+      "Visual Identity Design",
+      "Typography",
+      "Color Palette",
+      "Imagery & Photography Direction",
       "Brand Guidelines",
-      "Visual Identity",
+      "Brand Book",
+      "Stationery Design",
+      "Marketing Collateral Design",
       "Digital Brand Assets"
     ]
   },
   {
-    title: "Documentation Design",
-    description: "Clear, structured, and visually polished documentation that transforms complex information into easy-to-understand content.",
+    title: "Web Design & Development",
+    description: "End-to-end web and app solutions designed to provide intuitive, high-performing digital experiences that help your business grow.",
     categories: [
-      "Company Documents",
-      "Technical Documentation",
-      "Process Documentation",
-      "Reports & Whitepapers",
-      "Training Manuals",
-      "Internal Documents",
-      "Branded Documentation"
+      "Website Design",
+      "Mobile App Design",
+      "UI/UX Design",
+      "Figma Design",
+      "E-commerce Website",
+      "CMS-Based Websites",
+      "React/Next.js Development",
+      "Wordpress Development",
+      "Webflow Development",
+      "Shopify Development",
+      "Custom Software Development",
     ]
   },
   {
-    title: "Web & App Development",
-    description: "Reliable and scalable web and app development solutions built to support performance, usability, and business growth.",
+    title: "Social Media Marketing",
+    description: "Comprehensive social media solutions to grow your brand, engage your audience, and drive measurable business results through creative content and targeted advertising.",
     categories: [
-      "Frontend Development",
-      "Backend Development",
-      "CMS Integration",
-      "E-commerce Development",
-      "Web Applications",
-      "Performance Optimization",
-      "API Integration"
+      "Social Media Management",
+      "Account Creation",
+      "Account Optimization",
+      "Analytics & Reporting",
+      "Content Creation",
+      "Story & Reel Creation",
+      "Campaign Management ",
+      "Campaign Optimization",
+      "Meta Ads",
+      "Google Ads",
     ]
   }
 ];
@@ -121,26 +143,26 @@ export const TESTIMONIALS = [
   {
     id: 1,
     rating: "5.0",
-    text: "The team at PresentoLab didn't just design slides; they understood our vision and translated it into a narrative that investors could finally grasp. Their excellence in communication and attention to detail gave our brand the credibility it needed to secure our seed round.",
-    author: "Sarah Jenkins",
-    role: "Product Lead, Webflow",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&q=80&w=150&h=150"
+    text: "I used Presentolab for a high-priority project with a tight deadline, and it delivered perfectly. The platform turned rough concepts into clean, professional visuals quickly and easily. I’d definitely use Presentolab again.",
+    author: "Victor Thomas",
+    role: "Director, Hearst",
+    image: "https://media.licdn.com/dms/image/v2/D4E03AQEXJHHHXPS8Yg/profile-displayphoto-scale_200_200/B4EZj22deoGYAc-/0/1756488128832?e=1773878400&v=beta&t=D1EYibnL4eU5Unrwef_BLLB2lL5ka7Wq1ASh93lgSHM"
   },
   {
     id: 2,
     rating: "5.0",
-    text: "We gained immense clarity on our core value proposition thanks to their significant knowledge in UI/UX and visual storytelling. The vendor has provided valuable feedback by always being readily available. They transformed our communication challenges into a massive growth driver.",
-    author: "Atif Hussain",
-    role: "Co-Founder at Kinetic",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=150&h=150"
+    text: "Presentolab turned a complex investor pitch into a clear, elegant, and compelling deck. It quickly transformed feedback into high-impact visuals, making tight deadlines easy to meet. For structured, professional, and visually strong presentations, Presentolab is the tool you need.",
+    author: "Thomas P. Lah",
+    role: "Founder, STI Inc",
+    image: "https://media.licdn.com/dms/image/v2/D4E03AQFch6HnMXCu-g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1686889318370?e=1773878400&v=beta&t=fPQh42-KR4B9nDyTHKVhv47gkqJwwjhomMuiICX_mQg"
   },
   {
     id: 3,
     rating: "5.0",
-    text: "Working with them was a turning point for our brand identity. The client is proud of Halo Lab's work, which their customers have praised. They lead a communicative process that ensures the final result doesn't just look good, but delivers real-world success.",
-    author: "Dmitri Lubaschevski",
-    role: "CEO, DATA Services",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=150&h=150"
+    text: "I had the pleasure of using Presentolab, and it’s an outstanding platform for design. It turned ideas into high-quality visuals with ease, handled feedback quickly, and made tight deadlines simple to meet. I highly recommend it for any project needing professional, reliable design solutions.",
+    author: "Simon Dijkstra",
+    role: "Director, GapYear.world",
+    image: "https://media.licdn.com/dms/image/v2/D4E03AQGaAVWM7xVIMw/profile-displayphoto-scale_400_400/B4EZf5QPrJHgAg-/0/1752233475808?e=1773878400&v=beta&t=xN3-iGuYWXGpZIpyfngwN9EEY1ViR-hK294R3femJwM"
   },
   {
     id: 4,

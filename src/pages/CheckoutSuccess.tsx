@@ -1,8 +1,20 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import SEO from '../seo/SEO';
 
 const CheckoutSuccess: React.FC = () => {
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        const completed = sessionStorage.getItem('checkoutCompleted');
+        if (!completed) {
+            navigate('/', { replace: true });
+            return;
+        }
+        // Clear the flag so refreshing this page redirects home
+        sessionStorage.removeItem('checkoutCompleted');
+    }, [navigate]);
+
     return (
         <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center pt-20">
             <SEO pageKey="checkoutSuccess" />

@@ -77,8 +77,7 @@ const PricingTabs: React.FC<PricingTabsProps> = ({ onContactClick, onPlanSelect 
                     >
                         <motion.div
                             ref={measureRef}
-                            className="cursor-grab active:cursor-grabbing"
-                            whileTap={{ cursor: "grabbing" }}
+                            className="cursor-pointer"
                         >
                             <motion.div
                                 drag="x"

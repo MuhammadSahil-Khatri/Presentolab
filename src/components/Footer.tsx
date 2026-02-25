@@ -1,5 +1,5 @@
 import React from 'react';
-import { Facebook, Twitter, Linkedin, Instagram, Dribbble } from 'lucide-react';
+import { Facebook, Twitter, Linkedin, Instagram, Dribbble, Mail, Phone, MapPin } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 
 import { SERVICES } from '../constants';
@@ -53,8 +53,10 @@ const Footer: React.FC<FooterProps> = ({ onServiceClick }) => {
           </div>
 
           <div>
-            <h4 className="text-white font-black mb-10 text-xl tracking-tighter">Our Services</h4>
+            <h4 className="text-white font-black mb-10 text-xl tracking-tighter">Quick Links</h4>
             <ul className="space-y-5 text-gray-500 font-medium">
+              <li><a href="/work" className="hover:text-[#FF5C00] transition-colors">Our Work</a></li>
+              <li><a href="/pricing" className="hover:text-[#FF5C00] transition-colors">Our Packages</a></li>
               {SERVICES.map((item, index) => (
                 <li key={item.title}>
                   <button
@@ -69,12 +71,30 @@ const Footer: React.FC<FooterProps> = ({ onServiceClick }) => {
           </div>
 
           <div>
-            <h4 className="text-white font-black mb-10 text-xl tracking-tighter">Quick Links</h4>
-            <ul className="space-y-5 text-gray-500 font-medium">
-              <li><a href="/work" className="hover:text-[#FF5C00] transition-colors">Our Work</a></li>
-              <li><a href="/pricing" className="hover:text-[#FF5C00] transition-colors">Our Packages</a></li>
-              <li><a href="mailto:info@presentolab.com" className="text-xl text-zinc-500 hover:text-[#9E00FF] transition-colors">info@presentolab.com</a></li>
-              <li><a href="tel:+923472818480" className="hover:text-[#9E00FF] transition-colors">+92 347 2818480</a></li>
+            <h4 className="text-white font-black mb-10 text-xl tracking-tighter">Get in touch</h4>
+            <ul className="space-y-6 text-gray-500 font-medium">
+              <li>
+                <a href="mailto:info@presentolab.com" className="flex items-center gap-4 hover:text-[#FF5C00] transition-colors group">
+                  <div className="w-10 h-10 rounded-xl bg-zinc-900/50 flex items-center justify-center group-hover:bg-[#9E00FF]/10 transition-colors">
+                    <Mail size={18} />
+                  </div>
+                  info@presentolab.com
+                </a>
+              </li>
+              <li className="flex items-center gap-4 hover:text-[#FF5C00] transition-colors group">
+                <div className="w-10 h-10 rounded-xl bg-zinc-900/50 flex items-center justify-center flex-shrink-0 group-hover:bg-[#FF006B]/10 transition-colors">
+                  <MapPin size={18} />
+                </div>
+                <span className="">5900 Balcones Drive #15684, Austin, TX 78731</span>
+              </li>
+              <li>
+                <a href="tel:+12812565434" className="flex items-center gap-4 hover:text-[#FF5C00] transition-colors group">
+                  <div className="w-10 h-10 rounded-xl bg-zinc-900/50 flex items-center justify-center group-hover:bg-[#FF5C00]/10 transition-colors">
+                    <Phone size={18} />
+                  </div>
+                  +1 281 256 5434
+                </a>
+              </li>
             </ul>
           </div>
         </div>

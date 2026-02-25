@@ -16,7 +16,7 @@ type PageMetadata = {
     schemaType?: 'WebPage' | 'Organization';
 };
 
-const SITE_NAME = 'PresentoLab';
+const SITE_NAME = 'PresentoLab Visual Storytelling Agency';
 const DEFAULT_IMAGE = 'https://presentolab.com/og-image.png';
 const BASE_URL = 'https://presentolab.com';
 
@@ -37,13 +37,21 @@ const organizationSchema = {
         contactType: 'customer support',
         email: 'hello@presentolab.com',
     },
+    address: {
+        '@type': 'PostalAddress',
+        streetAddress: '5900 Balcones Drive #15684',
+        addressLocality: 'Austin',
+        addressRegion: 'TX',
+        postalCode: '78731',
+        addressCountry: 'US'
+    }
 };
 
 const SEO: React.FC<SEOProps> = ({ pageKey }) => {
     const pages = metadata as Record<string, PageMetadata>;
     const page: PageMetadata = pages[pageKey] ?? pages['default'];
 
-    const fullTitle = `${page.title} | ${SITE_NAME}`;
+    const fullTitle = `${page.title} ${SITE_NAME}`;
     const image = page.image ?? DEFAULT_IMAGE;
     const canonicalUrl = page.url;
     const schemaType = page.schemaType ?? 'WebPage';

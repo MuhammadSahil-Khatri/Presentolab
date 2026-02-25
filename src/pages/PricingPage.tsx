@@ -40,8 +40,8 @@ const PricingPage: React.FC<PricingPageProps> = ({ onContactClick }) => {
 
                 <div className="max-w-6xl mx-auto relative z-10 text-center">
                     <h1 className="text-5xl md:text-9xl font-[900] tracking-tighter leading-tight mb-8 md:mb-12 uppercase">
-                        Clear Pricing.<br />
-                        <span className="text-gradient-brand">Proven Results.</span>
+                        Premium Solutions.<br />
+                        <span className="text-gradient-brand">Structured for Impact.</span>
                     </h1>
 
                     <p className="text-gray-400 text-lg md:text-2xl max-w-3xl mx-auto mb-16 font-light leading-relaxed">
