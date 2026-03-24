@@ -18,7 +18,6 @@ Disallow: /payment/
 # Prevent duplicate/query URLs
 Disallow: /*?*
 Disallow: /*.json$
-Disallow: /*.xml$
 
 # --- AI crawler guidance ---
 User-agent: GPTBot
