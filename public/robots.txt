@@ -1,4 +1,4 @@
-# robots.txt for https://yourdomain.com/
+# robots.txt for https://presentolab.com/
 
 User-agent: *
 Allow: /
