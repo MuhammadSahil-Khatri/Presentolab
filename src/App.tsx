@@ -15,6 +15,8 @@ import Loader from './components/Loader';
 import CheckoutPage from './pages/CheckoutPage';
 import CheckoutSuccess from './pages/CheckoutSuccess';
 import CheckoutCancel from './pages/CheckoutCancel';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsAndConditionsPage from './pages/TermsAndConditionsPage';
 
 const App: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -79,6 +81,8 @@ const App: React.FC = () => {
               <Route path="/checkout" element={<CheckoutPage />} />
               <Route path="/checkout/success" element={<CheckoutSuccess />} />
               <Route path="/checkout/cancel" element={<CheckoutCancel />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicyPage onContactClick={openModal} />} />
+              <Route path="/terms-and-conditions" element={<TermsAndConditionsPage />} />
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
           </main>

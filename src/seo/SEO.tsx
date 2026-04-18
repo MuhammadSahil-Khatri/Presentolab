@@ -35,7 +35,7 @@ const organizationSchema = {
     contactPoint: {
         '@type': 'ContactPoint',
         contactType: 'customer support',
-        email: 'hello@presentolab.com',
+        email: 'info@presentolab.com',
     },
     address: {
         '@type': 'PostalAddress',

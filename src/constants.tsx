@@ -208,3 +208,90 @@ export const TEAM_MEMBERS = [
     linkedin: "https://linkedin.com"
   }
 ];
+
+export const PRIVACY_POLICY = [
+  {
+    title: "1. Information We Collect",
+    content: "We may collect the following types of information:\n* Personal Information: This includes your name, email address, phone number, company website, and any other details you provide when contacting us or using our services.\n* Communication Data: Information you share when you contact us via forms, email, or SMS."
+  },
+  {
+    title: "2. How We Use Your Information",
+    content: "We use your information for purposes such as:\n* Delivering, managing, and improving our services\n* Responding to inquiries and providing customer support\n* Sending important updates related to your requests or services\n* Sharing promotional content or offers (only with your consent)"
+  },
+  {
+    title: "3. Data Retention",
+    content: "We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy. We may also retain certain information to comply with legal obligations, resolve disputes, or enforce agreements."
+  },
+  {
+    title: "4. Information Sharing",
+    content: "We do not sell, rent, or trade your personal information. Your data is used strictly for business operations and is not shared with third parties or affiliates for marketing purposes."
+  },
+  {
+    title: "5. SMS Consent",
+    content: "By actively selecting the SMS consent checkbox on our forms, you expressly agree to receive SMS communications from PresentoLab. These messages may include updates, notifications, and relevant service-related information.\nProviding your phone number alone does not constitute consent. SMS consent must be given separately through the checkbox.\nConsent to receive SMS messages is not a condition of purchase.\nYou may opt out at any time by following the unsubscribe instructions included in our messages."
+  },
+  {
+    title: "6. Data Security",
+    content: "We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, misuse, or disclosure."
+  },
+  {
+    title: "7. Your Rights",
+    content: "You have the right to:\n* Request access to your personal data\n* Request correction of inaccurate information\n* Request deletion of your personal data\nTo exercise any of these rights, please contact us using the information below."
+  },
+  {
+    title: "8. Contact Information",
+    content: "If you have any questions or concerns about this Privacy Policy, you can contact us at:\nPresentoLab\n +1 281 256 5434 \n info@presentolab.com\n 5900 Balcones Drive #15684, Austin, TX 78731, United States"
+  },
+  {
+    title: "9. Messaging Terms",
+    content: "By actively selecting the SMS consent checkbox on our forms, you agree to receive informational SMS messages from PresentoLab. These messages may include appointment reminders, service updates, account notifications, and other operational communications.\n* Message frequency may vary depending on your interaction with our services.\n* For help, email us at info@presentolab.com or call +1 281 256 5434\n* You can opt out at any time by replying STOP.\nConsent to receive SMS messages is not a condition of purchase.\nBy submitting your information through our forms and selecting the SMS consent checkbox, you agree to receive SMS messages related to your inquiry and services.\nMessage frequency may vary (typically up to 5–10 messages per week)."
+  }
+];
+
+export const TERMS_AND_CONDITIONS = [
+  {
+    title: "1. Use of Services",
+    content: "By using PresentoLab’s services, you agree to use them only for lawful purposes. You may not misuse, disrupt, or attempt to interfere with the functionality of our website, systems, or services.\nWe reserve the right to refuse service to anyone who violates these terms."
+  },
+  {
+    title: "2. Services Overview",
+    content: "PresentoLab provides design and presentation-related services including, but not limited to, pitch decks, branding assets, and visual communication materials.\nAll deliverables are provided based on agreed project scope and client requirements."
+  },
+  {
+    title: "3. Payments",
+    content: "All payments must be completed as agreed upon before or during the project timeline unless otherwise stated in writing.\nFailure to make timely payments may result in suspension or termination of services."
+  },
+  {
+    title: "4. Intellectual Property",
+    content: "All custom designs and deliverables remain the property of PresentoLab until full payment is received.\nUpon full payment, ownership rights for final approved deliverables are transferred to the client, unless otherwise agreed in writing.\nWe reserve the right to showcase completed work in our portfolio unless explicitly restricted by a written agreement."
+  },
+  {
+    title: "5. Revisions",
+    content: "Revisions are provided based on the agreed project scope. Any additional revisions outside the agreed scope may incur additional charges."
+  },
+  {
+    title: "6. Limitation of Liability",
+    content: "PresentoLab is not responsible for any indirect, incidental, or consequential damages resulting from the use or inability to use our services.\nWe do not guarantee specific business outcomes, as results may vary based on multiple external factors."
+  },
+  {
+    title: "7. Third-Party Services",
+    content: "We may use third-party tools or platforms to deliver certain aspects of our services. We are not responsible for issues arising from third-party services beyond our control."
+  },
+  {
+    title: "8. SMS Messaging Terms",
+    content: "By actively selecting the SMS consent checkbox on our forms, you agree to receive SMS messages from PresentoLab related to your inquiries and services.\n* Message frequency may vary depending on your interaction with our services\n* Standard message and data rates may apply\n* You can opt out anytime by replying STOP\n* For help, contact us at info@presentolab.com or call +1 281 256 5434\nConsent to receive SMS messages is not a condition of purchase."
+  },
+  {
+    title: "9. Termination",
+    content: "We reserve the right to suspend or terminate access to our services at any time if we believe a user has violated these Terms & Conditions."
+  },
+  {
+    title: "10. Changes to Terms",
+    content: "We may update these Terms & Conditions from time to time. Any changes will be posted on this page with an updated effective date."
+  },
+  {
+    title: "11. Contact Information",
+    content: "If you have any questions about these Terms & Conditions, you can contact us at:\nPresentoLab\n +1 281 256 5434\n info@presentolab.com\n 5900 Balcones Drive #15684, Austin, TX 78731, United States"
+  }
+];
+

@@ -18,7 +18,9 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
     email: '',
     description: '',
     website: '',
-    phone: ''
+    phone: '',
+    smsConsent: false,
+    termsConsent: false
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
@@ -75,12 +77,19 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
       }
     }
 
-    // Phone: Optional + Phone Format (digits, spaces, +, -, (), min 7 chars)
-    // Phone: Optional + Phone Format using library validation
-    if (formData.phone) {
-      if (!isValidPhoneNumber(formData.phone)) {
-        newErrors.phone = 'Please enter a valid phone number';
-      }
+    // Phone: Required + Phone Format using library validation
+    if (!formData.phone) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!isValidPhoneNumber(formData.phone)) {
+      newErrors.phone = 'Please enter a valid phone number';
+    }
+
+    // Consent Validation
+    if (!formData.smsConsent) {
+      newErrors.smsConsent = 'You must agree to receive SMS messages to continue.';
+    }
+    if (!formData.termsConsent) {
+      newErrors.termsConsent = 'You must agree to the Terms & Conditions and Privacy Policy.';
     }
 
     setErrors(newErrors);
@@ -104,6 +113,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
           message: formData.description,       // ✅ matches {{message}}
           website: formData.website || "—",
           phone: formData.phone || "—",
+          smsConsent: formData.smsConsent ? "Yes" : "No",
+          termsConsent: formData.termsConsent ? "Yes" : "No",
           time: new Date().toLocaleString(),   // ✅ matches {{time}}
         },
         import.meta.env.VITE_EMAILJS_PUBLIC_KEY
@@ -119,6 +130,8 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
         description: "",
         website: "",
         phone: "",
+        smsConsent: false,
+        termsConsent: false,
       });
 
       onClose();
@@ -132,7 +145,20 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
+    const { name, value, type } = e.target;
+
+    if (type === 'checkbox') {
+      const checked = (e.target as HTMLInputElement).checked;
+      setFormData(prev => ({ ...prev, [name]: checked }));
+      if (errors[name]) {
+        setErrors(prev => {
+          const newErrors = { ...prev };
+          delete newErrors[name];
+          return newErrors;
+        });
+      }
+      return;
+    }
 
     // Apply input restrictions
     let sanitizedValue = value;
@@ -260,7 +286,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
               {/* Phone */}
               <div className="relative group">
-                <label className="block text-black/40 text-xs font-bold mb-1">Phone Number (optional)</label>
+                <label className="block text-black/40 text-xs font-bold mb-1">Phone Number <span className="text-[#FF007F]">*</span></label>
                 <div className={`border-b transition-colors ${errors.phone ? 'border-[#FF007F]' : 'border-black/10 group-focus-within:border-black'}`}>
                   <PhoneInput
                     international
@@ -275,23 +301,72 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                 {errors.phone && <p className="text-[#FF007F] text-[10px] mt-1 absolute">{errors.phone}</p>}
               </div>
             </div>
+            <div className="lg:mr-48 lg:ml-4 md:mr-24 md:ml-4 flex flex-col gap-y-4">
+              {/* Consents */}
+              <div className="space-y-6 pt-4 ">
+                {/* SMS Consent */}
+                <div className="relative flex items-start gap-3">
+                  <div className="flex items-center h-5 mt-0.5 shrink-0">
+                    <input
+                      id="smsConsent"
+                      name="smsConsent"
+                      type="checkbox"
+                      checked={formData.smsConsent}
+                      onChange={handleChange}
+                      className="w-4 h-4 rounded border-black/20 text-[#FF007F] focus:ring-[#FF007F] bg-transparent cursor-pointer accent-[#FF007F]"
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="text-black/80 text-xs font-medium leading-tight">
+                      By checking this box, I agree to receive SMS messages from PresentoLab regarding my inquiry, updates, and services. <span className="text-[#FF007F]">*</span>
+                    </div>
+                    <p className="text-black/50 text-[10px] mt-1 pr-4">
+                      Message frequency may vary. Standard message and data rates may apply. Reply STOP to unsubscribe at any time. Consent is not a condition of purchase.
+                    </p>
+                    {errors.smsConsent && <p className="text-[#FF007F] text-[10px] mt-1">{errors.smsConsent}</p>}
+                  </div>
+                </div>
 
-            <div className="flex flex-col md:flex-row items-center gap-6">
-              {/* Button */}
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                aria-label={isSubmitting ? 'Sending message' : 'Send message'}
-                className={`
+                {/* Terms Consent */}
+                <div className="relative flex items-start gap-3">
+                  <div className="flex items-center h-5 mt-0.5 shrink-0">
+                    <input
+                      id="termsConsent"
+                      name="termsConsent"
+                      type="checkbox"
+                      checked={formData.termsConsent}
+                      onChange={handleChange}
+                      className="w-4 h-4 rounded border-black/20 text-[#FF007F] focus:ring-[#FF007F] bg-transparent cursor-pointer accent-[#FF007F]"
+                    />
+                  </div>
+                  <div className="flex flex-col">
+                    <div className="text-black/80 text-xs font-medium leading-tight">
+                      By checking this box, I agree to the <a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold tracking-wide">Terms &amp; Conditions</a> and <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold tracking-wide">Privacy Policy</a> of PresentoLab. <span className="text-[#FF007F]">*</span>
+                    </div>
+                    <p className="text-black/50 text-[10px] mt-1 pr-4">
+                      I understand how my data is collected, used, and protected.
+                    </p>
+                    {errors.termsConsent && <p className="text-[#FF007F] text-[10px] mt-1">{errors.termsConsent}</p>}
+                  </div>
+                </div>
+              </div>
+
+              <div className="flex flex-col md:flex-row items-center gap-6 pt-2">
+                {/* Button */}
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  aria-label={isSubmitting ? 'Sending message' : 'Send message'}
+                  className={`
                   group relative flex items-center
                   focus:outline-none focus-visible:ring-2 focus-visible:ring-[#BE00FF]/40
                   transition-transform duration-200
                   ${isSubmitting ? 'opacity-70 cursor-not-allowed' : 'active:scale-[0.98]'}
                 `}
-              >
-                {/* Text pill */}
-                <span
-                  className="
+                >
+                  {/* Text pill */}
+                  <span
+                    className="
                     bg-cta-gradient text-white
                     h-11 px-8
                     rounded-full
@@ -302,13 +377,13 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                     transition-all duration-300
                     group-hover:brightness-110
                   "
-                >
-                  {isSubmitting ? 'Sending...' : 'Let’s Talk'}
-                </span>
+                  >
+                    {isSubmitting ? 'Sending...' : 'Let’s Talk'}
+                  </span>
 
-                {/* Icon pill */}
-                <span
-                  className="
+                  {/* Icon pill */}
+                  <span
+                    className="
                     bg-cta-gradient
                     h-11 w-11
                     rounded-full
@@ -320,9 +395,9 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                     group-hover:brightness-110
                     shadow-lg shadow-[#BE00FF]/20
                   "
-                >
-                  <span
-                    className="
+                  >
+                    <span
+                      className="
                       w-7 h-7
                       rounded-full
                       bg-black/5
@@ -330,36 +405,24 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                       transition-colors
                       group-hover:bg-black/10
                     "
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
                     >
-                      <path d="M7 17L17 7" />
-                      <path d="M7 7h10v10" />
-                    </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2.5"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M7 17L17 7" />
+                        <path d="M7 7h10v10" />
+                      </svg>
+                    </span>
                   </span>
-                </span>
-              </button>
-
-              {/* Footer Text */}
-              <div className="flex gap-3 max-w-sm">
-                <div className="flex-shrink-0 mt-0.5">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-black/40">
-                    <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
-                    <polyline points="9 11 12 14 15 11"></polyline>
-                  </svg>
-                </div>
-                <p className="text-zinc-400 text-[10px] font-medium leading-relaxed">
-                  I confirm that I have read the Privacy Policy and agree to receive relevant messages and updates.
-                </p>
+                </button>
               </div>
             </div>
           </form>

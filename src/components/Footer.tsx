@@ -103,8 +103,9 @@ const Footer: React.FC<FooterProps> = ({ onServiceClick }) => {
           <p className="text-zinc-600 text-sm font-medium">
             © {new Date().getFullYear()} PresentoLab. All Rights Reserved.
           </p>
-          <div className="flex gap-10 text-sm text-zinc-600 font-bold uppercase tracking-widest">
-            {/* <a href="#" className="hover:text-white transition-colors">Privacy Policy</a> */}
+          <div className="flex gap-6 text-zinc-600 text-sm font-medium">
+            <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/terms-and-conditions" className="hover:text-white transition-colors">Terms & Conditions</Link>
           </div>
         </div>
       </div>
