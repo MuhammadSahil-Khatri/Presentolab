@@ -143,42 +143,42 @@ export const TESTIMONIALS = [
   {
     id: 1,
     rating: "5.0",
-    text: "I used Presentolab for a high-priority project with a tight deadline, and it delivered perfectly. The platform turned rough concepts into clean, professional visuals quickly and easily. I’d definitely use Presentolab again.",
-    author: "Victor Thomas",
-    role: "Director, Hearst",
-    image: "https://media.licdn.com/dms/image/v2/D4E03AQEXJHHHXPS8Yg/profile-displayphoto-scale_200_200/B4EZj22deoGYAc-/0/1756488128832?e=1773878400&v=beta&t=D1EYibnL4eU5Unrwef_BLLB2lL5ka7Wq1ASh93lgSHM"
+    text: "Presentolab turned a complex investor pitch into a clear, elegant, and compelling deck. It quickly transformed feedback into high-impact visuals, making tight deadlines easy to meet. For structured, professional, and visually strong presentations, Presentolab is the tool you need.",
+    author: "Thomas P. Lah",
+    role: "Founder, STI Inc",
+    image: "/Testimonial_Images/thomas.jpg"
   },
   {
     id: 2,
     rating: "5.0",
-    text: "Presentolab turned a complex investor pitch into a clear, elegant, and compelling deck. It quickly transformed feedback into high-impact visuals, making tight deadlines easy to meet. For structured, professional, and visually strong presentations, Presentolab is the tool you need.",
-    author: "Thomas P. Lah",
-    role: "Founder, STI Inc",
-    image: "https://media.licdn.com/dms/image/v2/D4E03AQFch6HnMXCu-g/profile-displayphoto-shrink_200_200/profile-displayphoto-shrink_200_200/0/1686889318370?e=1773878400&v=beta&t=fPQh42-KR4B9nDyTHKVhv47gkqJwwjhomMuiICX_mQg"
+    text: "I had the pleasure of using Presentolab, and it’s an outstanding platform for design. It turned ideas into high-quality visuals with ease, handled feedback quickly, and made tight deadlines simple to meet. I highly recommend it for any project needing professional, reliable design solutions.",
+    author: "Simon Dijkstra",
+    role: "Director, GapYear.world",
+    image: "/Testimonial_Images/simon.jpg"
   },
   {
     id: 3,
     rating: "5.0",
-    text: "I had the pleasure of using Presentolab, and it’s an outstanding platform for design. It turned ideas into high-quality visuals with ease, handled feedback quickly, and made tight deadlines simple to meet. I highly recommend it for any project needing professional, reliable design solutions.",
-    author: "Simon Dijkstra",
-    role: "Director, GapYear.world",
-    image: "https://media.licdn.com/dms/image/v2/D4E03AQGaAVWM7xVIMw/profile-displayphoto-scale_400_400/B4EZf5QPrJHgAg-/0/1752233475808?e=1773878400&v=beta&t=xN3-iGuYWXGpZIpyfngwN9EEY1ViR-hK294R3femJwM"
+    text: "I used Presentolab for a high-priority project with a tight deadline, and it delivered perfectly. The platform turned rough concepts into clean, professional visuals quickly and easily. I’d definitely use Presentolab again.",
+    author: "Victor Thomas",
+    role: "Director, Hearst",
+    image: "/Testimonial_Images/victor.jpg"
   },
   {
     id: 4,
-    rating: "5.0",
+    rating: "4.9",
     text: "PresentoLab exceeded our expectations in every way. The speed of delivery, combined with the premium quality of the designs, made this one of the best agency experiences we've ever had. Our sales deck is now our most powerful asset.",
     author: "Emily Chen",
     role: "Marketing Director, Solaris",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&q=80&w=150&h=150"
+    image: "/Testimonial_Images/emily.jpg"
   },
   {
     id: 5,
-    rating: "5.0",
+    rating: "4.9",
     text: "Truly exceptional work. They managed to simplify our complex technical infrastructure into a visually stunning and easy-to-understand presentation. The feedback from our board meeting was overwhelmingly positive.",
     author: "Marcus Johnson",
     role: "CTO, NexusTech",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&q=80&w=150&h=150"
+    image: "/Testimonial_Images/johnson.jpg"
   }
 ];
 

@@ -26,7 +26,7 @@ const About: React.FC<AboutProps> = ({ onMeetTeamClick }) => {
           <div className="">
 
             <button
-              onClick={onMeetTeamClick}
+              // onClick={onMeetTeamClick}
               className="group relative flex items-center active:scale-95 transition-transform duration-200"
             >
               <div className="bg-cta-gradient group-hover:brightness-110 text-white h-12 px-8 rounded-full flex items-center font-bold text-md relative z-20 transition-all duration-500">
