@@ -212,39 +212,35 @@ export const TEAM_MEMBERS = [
 export const PRIVACY_POLICY = [
   {
     title: "1. Information We Collect",
-    content: "We may collect the following types of information:\n* Personal Information: This includes your name, email address, phone number, company website, and any other details you provide when contacting us or using our services.\n* Communication Data: Information you share when you contact us via forms, email, or SMS."
+    content: "We collect information to provide better services to our clients. This includes:\n* Personal Information: Name, email address, phone number, and company website provided through our contact forms.\n* SMS Data: Phone numbers and consent records provided specifically for text-based communications."
   },
   {
     title: "2. How We Use Your Information",
-    content: "We use your information for purposes such as:\n* Delivering, managing, and improving our services\n* Responding to inquiries and providing customer support\n* Sending important updates related to your requests or services\n* Sharing promotional content or offers (only with your consent)"
+    content: "Your information is used to:\n* Deliver and manage our design and strategy services\n* Respond to your inquiries and provide support\n* Send service-related SMS updates (if you have opted in), such as project milestones, consultation follow-ups, and onboarding details"
   },
   {
     title: "3. Data Retention",
-    content: "We retain your personal information only for as long as necessary to fulfill the purposes outlined in this Privacy Policy. We may also retain certain information to comply with legal obligations, resolve disputes, or enforce agreements."
+    content: "We retain your personal information only for as long as necessary to fulfill the purposes outlined in this policy, comply with legal obligations, or resolve disputes."
   },
   {
     title: "4. Information Sharing",
-    content: "We do not sell, rent, or trade your personal information. Your data is used strictly for business operations and is not shared with third parties or affiliates for marketing purposes."
+    content: "We do not sell, rent, or trade your personal information. Your data is used strictly for business operations.\n* Mobile information will not be shared with third parties or affiliates for marketing or promotional purposes.\n* Information sharing with subcontractors in support services, such as customer service, is permitted.\n* All other use case categories excluding text messaging originator opt-in data and consent will not be shared with any third parties."
   },
   {
-    title: "5. SMS Consent",
-    content: "By actively selecting the SMS consent checkbox on our forms, you expressly agree to receive SMS communications from PresentoLab. These messages may include updates, notifications, and relevant service-related information.\nProviding your phone number alone does not constitute consent. SMS consent must be given separately through the checkbox.\nConsent to receive SMS messages is not a condition of purchase.\nYou may opt out at any time by following the unsubscribe instructions included in our messages."
+    title: "5. SMS Consent & Opt-Out",
+    content: "SMS consent is obtained through a clear, non-mandatory checkbox on our forms. Providing your phone number alone does not constitute consent.\n* You can opt out of SMS communications at any time by replying STOP to any message.\n* For support, reply HELP or contact us at info@presentolab.com.\n* Consent to receive SMS is not a condition of any purchase."
   },
   {
     title: "6. Data Security",
-    content: "We implement appropriate technical and organizational measures to protect your personal information from unauthorized access, misuse, or disclosure."
+    content: "We implement industry-standard security measures to protect your data from unauthorized access, alteration, or disclosure."
   },
   {
     title: "7. Your Rights",
-    content: "You have the right to:\n* Request access to your personal data\n* Request correction of inaccurate information\n* Request deletion of your personal data\nTo exercise any of these rights, please contact us using the information below."
+    content: "You have the right to access, correct, or delete your personal data. Contact us to exercise these rights."
   },
   {
     title: "8. Contact Information",
-    content: "If you have any questions or concerns about this Privacy Policy, you can contact us at:\nPresentoLab\n +1 281 256 5434 \n info@presentolab.com\n 5900 Balcones Drive #15684, Austin, TX 78731, United States"
-  },
-  {
-    title: "9. Messaging Terms",
-    content: "By actively selecting the SMS consent checkbox on our forms, you agree to receive informational SMS messages from PresentoLab. These messages may include appointment reminders, service updates, account notifications, and other operational communications.\n* Message frequency may vary depending on your interaction with our services.\n* For help, email us at info@presentolab.com or call +1 281 256 5434\n* You can opt out at any time by replying STOP.\nConsent to receive SMS messages is not a condition of purchase.\nBy submitting your information through our forms and selecting the SMS consent checkbox, you agree to receive SMS messages related to your inquiry and services.\nMessage frequency may vary (typically up to 5–10 messages per week)."
+    content: "For questions regarding this policy, contact us at:\nPresentoLab\n+1 281 256 5434\ninfo@presentolab.com\n5900 Balcones Drive #15684, Austin, TX 78731, United States"
   }
 ];
 
@@ -278,8 +274,8 @@ export const TERMS_AND_CONDITIONS = [
     content: "We may use third-party tools or platforms to deliver certain aspects of our services. We are not responsible for issues arising from third-party services beyond our control."
   },
   {
-    title: "8. SMS Messaging Terms",
-    content: "By actively selecting the SMS consent checkbox on our forms, you agree to receive SMS messages from PresentoLab related to your inquiries and services.\n* Message frequency may vary depending on your interaction with our services\n* Standard message and data rates may apply\n* You can opt out anytime by replying STOP\n* For help, contact us at info@presentolab.com or call +1 281 256 5434\nConsent to receive SMS messages is not a condition of purchase."
+    title: "8. SMS Communication Terms",
+    content: "By opting into SMS communications, you agree to receive text messages from PresentoLab regarding project updates, consultation follow-ups, and service notifications.\n* Message frequency may vary based on your project status.\n* Standard message and data rates may apply.\n* You can opt out at any time by replying STOP to any message.\n* For support, reply HELP or contact us at info@presentolab.com.\n* Carriers are not liable for delayed or undelivered messages.\n* Consent is not a condition of purchase."
   },
   {
     title: "9. Termination",

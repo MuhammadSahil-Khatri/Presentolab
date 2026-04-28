@@ -77,17 +77,13 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
       }
     }
 
-    // Phone: Required + Phone Format using library validation
-    if (!formData.phone) {
-      newErrors.phone = 'Phone number is required';
-    } else if (!isValidPhoneNumber(formData.phone)) {
+    // Phone: Optional + Phone Format using library validation
+    if (formData.phone && !isValidPhoneNumber(formData.phone)) {
       newErrors.phone = 'Please enter a valid phone number';
     }
 
     // Consent Validation
-    if (!formData.smsConsent) {
-      newErrors.smsConsent = 'You must agree to receive SMS messages to continue.';
-    }
+
     if (!formData.termsConsent) {
       newErrors.termsConsent = 'You must agree to the Terms & Conditions and Privacy Policy.';
     }
@@ -286,7 +282,7 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
 
               {/* Phone */}
               <div className="relative group">
-                <label className="block text-black/40 text-xs font-bold mb-1">Phone Number <span className="text-[#FF007F]">*</span></label>
+                <label className="block text-black/40 text-xs font-bold mb-1">Phone Number (optional)</label>
                 <div className={`border-b transition-colors ${errors.phone ? 'border-[#FF007F]' : 'border-black/10 group-focus-within:border-black'}`}>
                   <PhoneInput
                     international
@@ -317,13 +313,9 @@ const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) => {
                     />
                   </div>
                   <div className="flex flex-col">
-                    <div className="text-black/80 text-xs font-medium leading-tight">
-                      By checking this box, I agree to receive SMS messages from PresentoLab regarding my inquiry, updates, and services. <span className="text-[#FF007F]">*</span>
+                    <div className="text-black/80 text-[11px] font-medium leading-relaxed">
+                      By checking this box, you consent to receive project updates and service-related text messages from PresentoLab at the number provided. Consent is not a condition of purchase. Message & data rates may apply. Message frequency varies. Unsubscribe by replying STOP. Reply HELP for help or contact us at <a href="tel:+12812565434" className="text-blue-600 hover:underline">+1 281 256 5434</a> or email us at <a href="mailto:info@presentolab.com" className="text-blue-600 hover:underline">info@presentolab.com</a>. Phone numbers aren't shared with third parties. <a href="/privacy-policy" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Privacy Policy</a> & <a href="/terms-and-conditions" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">Terms</a>.
                     </div>
-                    <p className="text-black/50 text-[10px] mt-1 pr-4">
-                      Message frequency may vary. Standard message and data rates may apply. Reply STOP to unsubscribe at any time. Consent is not a condition of purchase.
-                    </p>
-                    {errors.smsConsent && <p className="text-[#FF007F] text-[10px] mt-1">{errors.smsConsent}</p>}
                   </div>
                 </div>
 
